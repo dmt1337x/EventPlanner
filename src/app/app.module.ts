@@ -10,6 +10,7 @@ import { NavBarComponentModule } from '@home';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { InMemoryEventIdStorageModule } from '@core';
 import { InMemoryDietIdStorageModule } from '@diets';
+import { InMemoryTransportIdStorageModule } from '@transport';
 
 @NgModule({
   declarations: [AppComponent],
@@ -22,6 +23,7 @@ import { InMemoryDietIdStorageModule } from '@diets';
     ModalModule.forRoot(),
     InMemoryEventIdStorageModule,
     InMemoryDietIdStorageModule,
+    InMemoryTransportIdStorageModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
