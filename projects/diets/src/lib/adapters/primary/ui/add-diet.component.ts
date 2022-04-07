@@ -38,10 +38,10 @@ export class AddDietComponent {
     private _eventContextDtoStorage: EventContextDtoStoragePort
   ) {}
 
-  onDietAdded(diet: FormGroup): void {
+  onDietAdded(diet: FormGroup, eventId: EventContextDTO): void {
     this._addsDietDto.add({
       dietName: this.addDiet.get('dietName')?.value,
-      eventId: this.addDiet.get('eventId')?.value,
+      eventId: eventId.selectedEventId,
     });
     diet.reset();
   }

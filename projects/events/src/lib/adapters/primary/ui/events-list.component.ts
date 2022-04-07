@@ -15,7 +15,6 @@ import {
   EVENT_CONTEXT_DTO_STORAGE,
   EventContextDtoStoragePort,
 } from 'projects/core/src/lib/application/ports/secondary/event-context-dto.storage-port';
-import { EventContextDTO } from 'projects/core/src/lib/application/ports/secondary/event-context.dto';
 
 @Component({
   selector: 'lib-events-list',
@@ -25,8 +24,6 @@ import { EventContextDTO } from 'projects/core/src/lib/application/ports/seconda
 })
 export class EventsListComponent {
   events$: Observable<EventDTO[]> = this._getsAllEventDto.getAll();
-  eventIdContext$: Observable<EventContextDTO> =
-    this._eventContextDtoStorage.asObservable();
 
   constructor(
     @Inject(GETS_ALL_EVENT_DTO)
