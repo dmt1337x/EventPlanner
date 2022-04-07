@@ -1,0 +1,4 @@
+<form [formGroup]="addTransport" (ngSubmit)="onTransportAdded(addTransport, eventId)" *ngIf="eventIdContext$ | async as eventId">
+    <input type="text" formControlName="transportName">
+    <input type="submit" value="Submit">
+</form>
