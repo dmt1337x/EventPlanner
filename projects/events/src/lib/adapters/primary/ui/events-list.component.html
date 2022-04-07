@@ -1,6 +1,6 @@
 <ul><li *ngFor="let event of events$ | async" >
     <span>{{event.eventTitle}}</span>
-    <button (click)="onEventIdToStorageAdded(event)">Dodaj</button>
+    <button [routerLink]="'/events/' + event.id">Dodaj</button>
 </li><br></ul>
 
 <!-- <h1>{{eventIdContext$ | async | json}}</h1> -->
