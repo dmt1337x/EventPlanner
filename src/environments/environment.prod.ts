@@ -1,13 +1,12 @@
 export const environment = {
   firebase: {
-    projectId: 'wework-457a0',
-    appId: '1:373450986834:web:da50dbbf133b52d76d568b',
-    storageBucket: 'wework-457a0.appspot.com',
-    locationId: 'europe-west',
-    apiKey: 'AIzaSyBL7GOeUqHwO9cjdqb3pwvpHuZYxwksz_g',
-    authDomain: 'wework-457a0.firebaseapp.com',
-    messagingSenderId: '373450986834',
-    measurementId: 'G-9QT021YEL3',
+    apiKey: 'AIzaSyCwXQUAYS7xcd16obRB2jCRwRnmRuv7w0c',
+    authDomain: 'eventplanner-adb48.firebaseapp.com',
+    projectId: 'eventplanner-adb48',
+    storageBucket: 'eventplanner-adb48.appspot.com',
+    messagingSenderId: '379924452387',
+    appId: '1:379924452387:web:494f90a2d6ecdc1b6d4d96',
+    measurementId: 'G-1N7QV41RS0',
   },
-  production: true
+  production: true,
 };
