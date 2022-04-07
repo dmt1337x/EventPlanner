@@ -1,0 +1,7 @@
+<form [formGroup]="addEvent" (ngSubmit)="onAddEventSubmited(addEvent)">
+    <input type="text" formControlName="eventImage" placeholder="Image">
+    <input type="text" formControlName="eventDescription" placeholder="Description">
+    <input type="text" formControlName="eventTitle" placeholder="Title">
+    <input type="text" formControlName="eventDate" placeholder="Date">
+    <input type="submit" value="Submit">
+</form>

@@ -1,0 +1,7 @@
+<form [formGroup]="addDiet" (ngSubmit)="onDietAdded(addDiet)" *ngIf="eventIdContext$ | async as eventId">
+    <input type="text" formControlName="dietName">
+    <input type="text" formControlName="eventId" hidden [ngModel]="eventId.selectedEventId">
+    <input type="submit" value="Submit">
+</form>
+
+
