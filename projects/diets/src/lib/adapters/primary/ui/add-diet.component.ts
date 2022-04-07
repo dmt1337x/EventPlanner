@@ -18,7 +18,7 @@ import {
 import { EventContextDTO } from 'projects/core/src/lib/application/ports/secondary/event-context.dto';
 
 @Component({
-  selector: 'lib-setup-diet',
+  selector: 'lib-add-diet',
   templateUrl: './add-diet.component.html',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
