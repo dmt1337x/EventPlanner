@@ -7,6 +7,8 @@ import { NavBarEventComponentModule } from 'projects/home/src/lib/adapters/prima
 import { EventIdResolverModule } from 'projects/core/src/lib/adapters/primary/ui/event-id.resolver-module';
 import { EventIdResolver } from 'projects/core/src/lib/adapters/primary/ui/event-id.resolver';
 import { EventDetailPageModule } from './event-detail.page-module';
+import { TransportPageModule } from './transport.page-module';
+import { AttractionsPageModule } from './attractions.page-module';
 
 @NgModule({
   imports: [
@@ -28,6 +30,14 @@ import { EventDetailPageModule } from './event-detail.page-module';
           {
             path: 'event-detail',
             loadChildren: () => EventDetailPageModule,
+          },
+          {
+            path: 'transport',
+            loadChildren: () => TransportPageModule,
+          },
+          {
+            path: 'attractions',
+            loadChildren: () => AttractionsPageModule,
           },
         ],
       },
