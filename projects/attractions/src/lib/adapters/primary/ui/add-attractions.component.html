@@ -1,0 +1,6 @@
+<form [formGroup]="addAttraction" (ngSubmit)="onAttractionAdded(addAttraction, eventId)" *ngIf="eventIdContext$ | async as eventId">
+    <input type="text" formControlName="attractionName">
+    <input type="submit" value="Submit">
+</form>
+
+

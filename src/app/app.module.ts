@@ -11,6 +11,7 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { InMemoryEventIdStorageModule } from '@core';
 import { InMemoryDietIdStorageModule } from '@diets';
 import { InMemoryTransportIdStorageModule } from '@transport';
+import { InMemoryAttractionsStorageModule } from '@attractions';
 
 @NgModule({
   declarations: [AppComponent],
@@ -24,6 +25,7 @@ import { InMemoryTransportIdStorageModule } from '@transport';
     InMemoryEventIdStorageModule,
     InMemoryDietIdStorageModule,
     InMemoryTransportIdStorageModule,
+    InMemoryAttractionsStorageModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
