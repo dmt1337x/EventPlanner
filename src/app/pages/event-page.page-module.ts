@@ -41,7 +41,7 @@ import { NavigationComponentModule } from '../../../projects/core/src/lib/adapte
             loadChildren: () => AttractionsPageModule,
           },
           {
-            path: 'event',
+            path: 'edit-event',
             loadChildren: () => EditEventPageModule,
           },
         ],

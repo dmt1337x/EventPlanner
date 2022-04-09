@@ -1,4 +1,8 @@
-<form [formGroup]="addTransport" (ngSubmit)="onTransportAdded(addTransport, eventId)" *ngIf="eventIdContext$ | async as eventId">
-    <input type="text" formControlName="transportName">
-    <input type="submit" value="Submit">
-</form>
+<div class="">
+    <h5 class="pb-3">Add yout transport option</h5>
+    <form [formGroup]="addTransport" (ngSubmit)="onTransportAdded(addTransport, eventId)"
+        *ngIf="eventIdContext$ | async as eventId">
+        <input type="text" formControlName="transportName" class="form-control">
+        <input type="submit" value="Save changes" class="btn btn-success mt-3 fw-bold">
+    </form>
+</div>

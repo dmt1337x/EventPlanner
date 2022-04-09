@@ -10,11 +10,10 @@ import {
   GETS_ALL_EVENT_DTO,
   GetsAllEventDtoPort,
 } from '../../../application/ports/secondary/gets-all-event.dto-port';
-import { Router } from '@angular/router';
 import {
-  EVENT_CONTEXT_DTO_STORAGE,
-  EventContextDtoStoragePort,
-} from 'projects/core/src/lib/application/ports/secondary/event-context-dto.storage-port';
+  REMOVES_EVENT_DTO,
+  RemovesEventDtoPort,
+} from '../../../application/ports/secondary/removes-event.dto-port';
 
 @Component({
   selector: 'lib-events-list',
@@ -28,8 +27,10 @@ export class EventsListComponent {
   constructor(
     @Inject(GETS_ALL_EVENT_DTO)
     private _getsAllEventDto: GetsAllEventDtoPort,
-    private router: Router,
-    @Inject(EVENT_CONTEXT_DTO_STORAGE)
-    private _eventContextDtoStorage: EventContextDtoStoragePort
+    @Inject(REMOVES_EVENT_DTO) private _removesEventDto: RemovesEventDtoPort
   ) {}
+
+  onEventDeleteed(events$: EventDTO): void {
+    this._removesEventDto.remove(events$.id);
+  }
 }

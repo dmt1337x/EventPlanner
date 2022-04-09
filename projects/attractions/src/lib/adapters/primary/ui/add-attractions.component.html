@@ -1,6 +1,8 @@
-<form [formGroup]="addAttraction" (ngSubmit)="onAttractionAdded(addAttraction, eventId)" *ngIf="eventIdContext$ | async as eventId">
-    <input type="text" formControlName="attractionName">
-    <input type="submit" value="Submit">
-</form>
-
-
+<div>
+    <h5 class="pb-3">Add your attractions</h5>
+    <form [formGroup]="addAttraction" (ngSubmit)="onAttractionAdded(addAttraction, eventId)"
+        *ngIf="eventIdContext$ | async as eventId">
+        <input type="text" formControlName="attractionName" class="form-control">
+        <input type="submit" value="Save changes" class="btn btn-success mt-3 fw-bold">
+    </form>
+</div>

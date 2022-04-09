@@ -7,10 +7,11 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { GetsAllEventDtoPort } from '../../../application/ports/secondary/gets-all-event.dto-port';
 import { filterByCriterion } from '@lowgular/shared';
+import { RemovesEventDtoPort } from '../../../application/ports/secondary/removes-event.dto-port';
 
 @Injectable()
 export class FirebaseEventService
-  implements AddsEventDtoPort, GetsAllEventDtoPort
+  implements AddsEventDtoPort, GetsAllEventDtoPort, RemovesEventDtoPort
 {
   constructor(private _client: AngularFirestore) {}
 
@@ -23,5 +24,9 @@ export class FirebaseEventService
       .collection<EventDTO>('events')
       .valueChanges({ idField: 'id' })
       .pipe(map((data: EventDTO[]) => filterByCriterion(data, criterion)));
+  }
+
+  remove(id: string): void {
+    this._client.doc('events/' + id).delete();
   }
 }
