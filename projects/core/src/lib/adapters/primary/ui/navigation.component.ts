@@ -5,9 +5,9 @@ import {
 } from '@angular/core';
 
 @Component({
-  selector: 'lib-home-page',
-  templateUrl: './home-page.component.html',
+  selector: 'lib-navigation',
+  templateUrl: './navigation.component.html',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class HomePageComponent {}
+export class NavigationComponent {}

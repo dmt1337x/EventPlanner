@@ -3,19 +3,19 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { EventPagePage } from './event-page.page';
 import { DietsPageModule } from './diets.page-module';
-import { NavBarEventComponentModule } from 'projects/home/src/lib/adapters/primary/ui/nav-bar-event.component-module';
 import { EventIdResolverModule } from 'projects/core/src/lib/adapters/primary/ui/event-id.resolver-module';
 import { EventIdResolver } from 'projects/core/src/lib/adapters/primary/ui/event-id.resolver';
 import { EventDetailPageModule } from './event-detail.page-module';
 import { TransportPageModule } from './transport.page-module';
 import { AttractionsPageModule } from './attractions.page-module';
 import { EditEventPageModule } from './edit-event.page-module';
+import { NavigationComponentModule } from '../../../projects/core/src/lib/adapters/primary/ui/navigation.component-module';
 
 @NgModule({
   imports: [
     CommonModule,
+    RouterModule,
     EventIdResolverModule,
-    NavBarEventComponentModule,
     RouterModule.forChild([
       {
         path: '',
@@ -47,6 +47,7 @@ import { EditEventPageModule } from './edit-event.page-module';
         ],
       },
     ]),
+    NavigationComponentModule,
   ],
   declarations: [EventPagePage],
   providers: [],

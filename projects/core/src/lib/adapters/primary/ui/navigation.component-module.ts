@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NavBarEventComponent } from './nav-bar-event.component';
+import { NavigationComponent } from './navigation.component';
 import { RouterModule } from '@angular/router';
 
 @NgModule({
   imports: [CommonModule, RouterModule],
-  declarations: [NavBarEventComponent],
+  declarations: [NavigationComponent],
   providers: [],
-  exports: [NavBarEventComponent],
+  exports: [NavigationComponent],
 })
-export class NavBarEventComponentModule {}
+export class NavigationComponentModule {}

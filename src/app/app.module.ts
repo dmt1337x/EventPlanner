@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { environment } from '../environments/environment';
 import { AngularFireModule } from '@angular/fire/compat';
-import { NavBarComponentModule } from '@home';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { InMemoryEventIdStorageModule } from '@core';
 import { InMemoryDietIdStorageModule } from '@diets';
@@ -22,7 +21,6 @@ import { RouterModule } from '@angular/router';
     AppRoutingModule,
     BrowserAnimationsModule,
     AngularFireModule.initializeApp(environment.firebase),
-    NavBarComponentModule,
     ModalModule.forRoot(),
     InMemoryEventIdStorageModule,
     InMemoryDietIdStorageModule,
