@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomePagePageModule } from './pages/home-page.page-module';
+import { HomePageModule } from './pages/home.page-module';
 import { EventPagePageModule } from './pages/event-page.page-module';
 
 const routes: Routes = [
   {
     path: '',
-    loadChildren: () => HomePagePageModule,
+    loadChildren: () => HomePageModule,
   },
   {
     path: 'events/:selectedEventId',

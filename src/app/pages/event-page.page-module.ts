@@ -9,6 +9,7 @@ import { EventIdResolver } from 'projects/core/src/lib/adapters/primary/ui/event
 import { EventDetailPageModule } from './event-detail.page-module';
 import { TransportPageModule } from './transport.page-module';
 import { AttractionsPageModule } from './attractions.page-module';
+import { EditEventPageModule } from './edit-event.page-module';
 
 @NgModule({
   imports: [
@@ -38,6 +39,10 @@ import { AttractionsPageModule } from './attractions.page-module';
           {
             path: 'attractions',
             loadChildren: () => AttractionsPageModule,
+          },
+          {
+            path: 'event',
+            loadChildren: () => EditEventPageModule,
           },
         ],
       },

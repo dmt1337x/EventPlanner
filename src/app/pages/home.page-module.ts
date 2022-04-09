@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { HomePagePage } from './home-page.page';
+import { HomePage } from './home.page';
 import { HomePageComponentModule } from '../../../projects/home/src/lib/adapters/primary/ui/home-page.component-module';
 import { NavBarComponentModule } from '../../../projects/home/src/lib/adapters/primary/ui/nav-bar.component-module';
 import { CreateEventComponentModule } from '../../../projects/events/src/lib/adapters/primary/ui/create-event.component-module';
@@ -15,7 +15,7 @@ import { NavBarEventComponentModule } from 'projects/home/src/lib/adapters/prima
     RouterModule.forChild([
       {
         path: '',
-        component: HomePagePage,
+        component: HomePage,
       },
     ]),
     HomePageComponentModule,
@@ -26,8 +26,8 @@ import { NavBarEventComponentModule } from 'projects/home/src/lib/adapters/prima
     NavBarComponentModule,
     NavBarEventComponentModule,
   ],
-  declarations: [HomePagePage],
+  declarations: [HomePage],
   providers: [],
   exports: [],
 })
-export class HomePagePageModule {}
+export class HomePageModule {}
