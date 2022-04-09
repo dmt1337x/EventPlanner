@@ -31,6 +31,7 @@ import {
   SETS_ATTRACTION_DTO,
 } from '../../../application/ports/secondary/sets-attraction.dto-port';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'lib-list-attractions',
@@ -44,14 +45,17 @@ export class ListAttractionsComponent {
 
   eventContext$: Observable<EventContextDTO> =
     this._eventContextDtoStorage.asObservable();
-
-  attractions$: Observable<AttractionDTO[]> =
-    this._getsAllAttractionDto.getAll();
-
   readonly editAttractionName: FormGroup = new FormGroup({
     name: new FormControl(),
     id: new FormControl(),
   });
+  attractions$: Observable<AttractionDTO[]> = this._eventContextDtoStorage
+    .asObservable()
+    .pipe(
+      switchMap((data) =>
+        this._getsAllAttractionDto.getAll({ eventId: data.selectedEventId })
+      )
+    );
 
   constructor(
     @Inject(GETS_ALL_ATTRACTION_DTO)

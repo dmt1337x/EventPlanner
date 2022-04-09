@@ -31,6 +31,7 @@ import {
   EventContextDtoStoragePort,
 } from 'projects/core/src/lib/application/ports/secondary/event-context-dto.storage-port';
 import { EventContextDTO } from 'projects/core/src/lib/application/ports/secondary/event-context.dto';
+import { switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'lib-list-diet',
@@ -43,13 +44,17 @@ export class ListDietComponent {
 
   eventContext$: Observable<EventContextDTO> =
     this._eventContextDtoStorage.asObservable();
-
-  diets$: Observable<DietDTO[]> = this._getsAllDietDto.getAll();
-
   readonly editDietName: FormGroup = new FormGroup({
     name: new FormControl(),
     id: new FormControl(),
   });
+  diets$: Observable<DietDTO[]> = this._eventContextDtoStorage
+    .asObservable()
+    .pipe(
+      switchMap((data) =>
+        this._getsAllDietDto.getAll({ eventId: data.selectedEventId })
+      )
+    );
 
   constructor(
     @Inject(GETS_ALL_DIET_DTO) private _getsAllDietDto: GetsAllDietDtoPort,

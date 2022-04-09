@@ -31,6 +31,7 @@ import {
 import { FormControl, FormGroup } from '@angular/forms';
 import { TransportIdDTO } from '../../../application/ports/secondary/transport-id.dto';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'lib-list-transport',
@@ -44,13 +45,17 @@ export class ListTransportComponent {
 
   eventContext$: Observable<EventContextDTO> =
     this._eventContextDtoStorage.asObservable();
-
-  transports$: Observable<TransportDTO[]> = this._getsAllTransportDto.getAll();
-
   readonly editTransportName: FormGroup = new FormGroup({
     name: new FormControl(),
     id: new FormControl(),
   });
+  transports$: Observable<TransportDTO[]> = this._eventContextDtoStorage
+    .asObservable()
+    .pipe(
+      switchMap((data) =>
+        this._getsAllTransportDto.getAll({ eventId: data.selectedEventId })
+      )
+    );
 
   constructor(
     @Inject(GETS_ALL_TRANSPORT_DTO)
