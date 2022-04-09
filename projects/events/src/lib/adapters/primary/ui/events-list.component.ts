@@ -32,11 +32,4 @@ export class EventsListComponent {
     @Inject(EVENT_CONTEXT_DTO_STORAGE)
     private _eventContextDtoStorage: EventContextDtoStoragePort
   ) {}
-
-  // onEventIdToStorageAdded(event: EventDTO): void {
-  //   this._eventContextDtoStorage.next({
-  //     selectedEventId: event.id,
-  //   });
-  //   this.router.navigate(['/events/' + event.id]);
-  // }
 }

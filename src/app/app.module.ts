@@ -12,11 +12,13 @@ import { InMemoryEventIdStorageModule } from '@core';
 import { InMemoryDietIdStorageModule } from '@diets';
 import { InMemoryTransportIdStorageModule } from '@transport';
 import { InMemoryAttractionsStorageModule } from '@attractions';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
     BrowserModule,
+    RouterModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     AngularFireModule.initializeApp(environment.firebase),
