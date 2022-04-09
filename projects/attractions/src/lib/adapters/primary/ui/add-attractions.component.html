@@ -1,4 +1,4 @@
-<div>
+<div class="w-50">
     <h5 class="pb-3">Add your attractions</h5>
     <form [formGroup]="addAttraction" (ngSubmit)="onAttractionAdded(addAttraction, eventId)"
         *ngIf="eventIdContext$ | async as eventId">
