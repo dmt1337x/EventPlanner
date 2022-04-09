@@ -1,0 +1,2 @@
+export * from './lib/adapters/secondary/infrastructure/firebase-event-detail.service-module';
+export * from './lib/adapters/primary/ui/event-detail.component-module';

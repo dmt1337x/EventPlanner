@@ -1,0 +1,12 @@
+<div *ngFor="let event of events$ | async">
+{{event.eventTitle}}
+</div>
+<div *ngFor="let transport of transport$ | async">
+{{transport.transportName}}
+</div>
+<div *ngFor="let diet of diets$ | async">
+{{diet.dietName}}
+</div>
+<div *ngFor="let attraction of attractions$ | async">
+{{attraction.attractionName}}
+</div>
