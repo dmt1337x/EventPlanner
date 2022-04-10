@@ -4,7 +4,7 @@ import {
   ChangeDetectionStrategy,
   Inject,
 } from '@angular/core';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { EventDTO } from '../../../application/ports/secondary/event.dto';
 import {
   GETS_ALL_EVENT_DTO,
@@ -22,7 +22,13 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EventsListComponent {
-  events$: Observable<EventDTO[]> = this._getsAllEventDto.getAll();
+  events$: Observable<EventDTO[]> = this._getsAllEventDto
+    .getAll()
+    .pipe(
+      map((events: EventDTO[]) =>
+        events.sort((a, b) => a.eventTitle.localeCompare(b.eventTitle))
+      )
+    );
 
   constructor(
     @Inject(GETS_ALL_EVENT_DTO)
