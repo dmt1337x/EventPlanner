@@ -1,5 +1,5 @@
-<div class="bg-light text-black p-5">
-  <div class="row bg-secondary rounded-3 p-3">
+<div class="bg-light text-black p-5 rounded-3">
+  <div class="row bg-secondary rounded-3 p-3 fw-bold">
     <span class="col">Event Title</span>
     <span class="col">Link</span>
     <span class="col">Date</span>
@@ -23,8 +23,7 @@
           {{ event.eventDate }}
         </div>
         <div class="col">
-          <button [routerLink]="'events/' + event.id + '/event-detail'"
-            class="bg-secondary fw-bold text-black border-0">
+          <button [routerLink]="'events/' + event.id + '/event-detail'" class="  btn-secondary text-black btn-sm">
             EDIT
           </button>
         </div>
