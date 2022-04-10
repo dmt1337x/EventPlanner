@@ -5,6 +5,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FirebaseEventServiceModule } from '../../secondary/infrastructure/firebase-event.service-module';
 import { RouterModule } from '@angular/router';
 import { EventsListComponentModule } from './events-list.component-module';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 @NgModule({
   imports: [
@@ -13,6 +14,7 @@ import { EventsListComponentModule } from './events-list.component-module';
     ReactiveFormsModule,
     FirebaseEventServiceModule,
     EventsListComponentModule,
+    BsDatepickerModule,
   ],
   declarations: [CreateEventComponent],
   providers: [],
