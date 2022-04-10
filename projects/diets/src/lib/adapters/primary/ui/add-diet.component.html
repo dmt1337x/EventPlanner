@@ -2,6 +2,11 @@
     <h5 class="pb-3">Add you diet</h5>
     <form [formGroup]="addDiet" (ngSubmit)="onDietAdded(addDiet, eventId)" *ngIf="eventIdContext$ | async as eventId">
         <input type="text" formControlName="dietName" class=" form-control">
-        <input type="submit" value="Save changes" class="btn btn-success mt-3 fw-bold">
+        <div class="row">
+            <div class="d-flex justify-content-between">
+                <div></div>
+                <input type="submit" value="Save changes" class="btn btn-success mt-3 fw-bold">
+            </div>
+        </div>
     </form>
 </div>

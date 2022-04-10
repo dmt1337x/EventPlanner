@@ -1,15 +1,20 @@
-<div class="w-100">
+<div class="w-75">
     <form [formGroup]="addEvent" (ngSubmit)="onAddEventSubmited(addEvent)">
-        <div class="d-flex justify-content-center px-5">
+        <div class="d-flex justify-content-center">
             <textarea type="text" formControlName="eventImage" placeholder="Image" class="form-control me-5"
                 rows="10"></textarea>
             <textarea formControlName="eventDescription" placeholder="Description" class="form-control ms-5"
                 rows="10"></textarea>
         </div>
-        <div class="d-flex justify-content-center p-5">
+        <div class="d-flex justify-content-center py-5">
             <input type="text" formControlName="eventTitle" placeholder="Title" class="form-control me-5">
             <input type="text" formControlName="eventDate" placeholder="Date" class="form-control ms-5">
         </div>
-        <input type="submit" value="Save changes" class="btn btn-success mt-5 fw-bold">
+        <div class="row">
+            <div class="d-flex justify-content-between">
+                <div></div>
+                <input type="submit" value="Save changes" class="btn btn-success mt-3 fw-bold">
+            </div>
+        </div>
     </form>
 </div>

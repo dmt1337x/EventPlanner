@@ -3,6 +3,11 @@
     <form [formGroup]="addAttraction" (ngSubmit)="onAttractionAdded(addAttraction, eventId)"
         *ngIf="eventIdContext$ | async as eventId">
         <input type="text" formControlName="attractionName" class="form-control">
-        <input type="submit" value="Save changes" class="btn btn-success mt-3 fw-bold">
+        <div class="row">
+            <div class="d-flex justify-content-between">
+                <div></div>
+                <input type="submit" value="Save changes" class="btn btn-success mt-3 fw-bold">
+            </div>
+        </div>
     </form>
 </div>
