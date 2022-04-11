@@ -23,7 +23,8 @@
       *ngIf="transportIdContext$ | async as id" class="p-3">
       <input type="text" formControlName="name" class="form-control">
       <input type="text" formControlName="id" [ngModel]="id.selectedTransportId" hidden>
-      <input type="submit" value="Save" class="btn btn-success mt-3 rounded rounded-3">
+      <input type="submit" value="Save" class="btn btn-success mt-3 rounded rounded-3"
+        [disabled]="!editTransportName.valid">
     </form>
   </ng-template>
 </div>

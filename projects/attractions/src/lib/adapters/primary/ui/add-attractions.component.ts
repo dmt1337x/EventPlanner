@@ -10,7 +10,7 @@ import {
   EventContextDtoStoragePort,
 } from 'projects/core/src/lib/application/ports/secondary/event-context-dto.storage-port';
 import { EventContextDTO } from 'projects/core/src/lib/application/ports/secondary/event-context.dto';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import {
   AddsAttractionDtoPort,
   ADDS_ATTRACTION_DTO,
@@ -27,7 +27,7 @@ export class AddAttractionsComponent {
     this._eventContextDtoStorage.asObservable();
 
   readonly addAttraction: FormGroup = new FormGroup({
-    attractionName: new FormControl(),
+    attractionName: new FormControl('', Validators.required),
     eventId: new FormControl(),
   });
 

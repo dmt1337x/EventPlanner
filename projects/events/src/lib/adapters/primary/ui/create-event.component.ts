@@ -1,4 +1,4 @@
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import {
   Component,
   ViewEncapsulation,
@@ -19,10 +19,10 @@ import { Router } from '@angular/router';
 })
 export class CreateEventComponent {
   readonly addEvent: FormGroup = new FormGroup({
-    eventImage: new FormControl(),
-    eventDescription: new FormControl(),
-    eventTitle: new FormControl(),
-    eventDate: new FormControl(),
+    eventImage: new FormControl('', Validators.required),
+    eventDescription: new FormControl('', Validators.required),
+    eventTitle: new FormControl('', Validators.required),
+    eventDate: new FormControl('', Validators.required),
   });
 
   constructor(

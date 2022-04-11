@@ -20,7 +20,7 @@ import {
   SETS_DIET_DTO,
   SetsDietDtoPort,
 } from '../../../application/ports/secondary/sets-diet.dto-port';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import {
   DIET_ID_DTO_STORAGE,
   DietIdDtoStoragePort,
@@ -45,7 +45,7 @@ export class ListDietComponent {
   eventContext$: Observable<EventContextDTO> =
     this._eventContextDtoStorage.asObservable();
   readonly editDietName: FormGroup = new FormGroup({
-    name: new FormControl(),
+    name: new FormControl('', Validators.required),
     id: new FormControl(),
   });
   diets$: Observable<DietDTO[]> = this._eventContextDtoStorage

@@ -28,7 +28,7 @@ import {
   TransportIdDtoStoragePort,
   TRANSPORT_ID_DTO_STORAGE,
 } from '../../../application/ports/secondary/transport-id-dto.storage-port';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { TransportIdDTO } from '../../../application/ports/secondary/transport-id.dto';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { switchMap } from 'rxjs/operators';
@@ -46,7 +46,7 @@ export class ListTransportComponent {
   eventContext$: Observable<EventContextDTO> =
     this._eventContextDtoStorage.asObservable();
   readonly editTransportName: FormGroup = new FormGroup({
-    name: new FormControl(),
+    name: new FormControl('', Validators.required),
     id: new FormControl(),
   });
   transports$: Observable<TransportDTO[]> = this._eventContextDtoStorage

@@ -5,7 +5,7 @@ import {
   TemplateRef,
   Inject,
 } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import {
   EVENT_CONTEXT_DTO_STORAGE,
   EventContextDtoStoragePort,
@@ -46,7 +46,7 @@ export class ListAttractionsComponent {
   eventContext$: Observable<EventContextDTO> =
     this._eventContextDtoStorage.asObservable();
   readonly editAttractionName: FormGroup = new FormGroup({
-    name: new FormControl(),
+    name: new FormControl('', Validators.required),
     id: new FormControl(),
   });
   attractions$: Observable<AttractionDTO[]> = this._eventContextDtoStorage

@@ -10,7 +10,7 @@ import {
   EventContextDtoStoragePort,
 } from 'projects/core/src/lib/application/ports/secondary/event-context-dto.storage-port';
 import { EventContextDTO } from 'projects/core/src/lib/application/ports/secondary/event-context.dto';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ADDS_TRANSPORT_DTO } from '../../../application/ports/secondary/adds-transport.dto-port';
 import { AddsTransportDtoPort } from '../../../application/ports/secondary/adds-transport.dto-port';
 
@@ -25,7 +25,7 @@ export class AddTransportComponent {
     this._eventContextDtoStorage.asObservable();
 
   readonly addTransport: FormGroup = new FormGroup({
-    transportName: new FormControl(),
+    transportName: new FormControl('', Validators.required),
     eventId: new FormControl(),
   });
 

@@ -1,4 +1,4 @@
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import {
   Component,
   ViewEncapsulation,
@@ -33,10 +33,10 @@ export class EditEventComponent {
   eventId$: Observable<EventContextDTO> = this._eventId.asObservable();
 
   readonly editEvent: FormGroup = new FormGroup({
-    eventImage: new FormControl(),
-    eventDescription: new FormControl(),
-    eventTitle: new FormControl(),
-    eventDate: new FormControl(),
+    eventImage: new FormControl('', Validators.required),
+    eventDescription: new FormControl('', Validators.required),
+    eventTitle: new FormControl('', Validators.required),
+    eventDate: new FormControl('', Validators.required),
     eventId: new FormControl(),
   });
   event$: Observable<EventDTO[]> = this._eventId

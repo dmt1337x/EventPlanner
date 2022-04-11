@@ -4,7 +4,7 @@ import {
   ChangeDetectionStrategy,
   Inject,
 } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { Observable } from 'rxjs';
 import {
@@ -28,7 +28,7 @@ export class AddDietComponent {
     this._eventContextDtoStorage.asObservable();
 
   readonly addDiet: FormGroup = new FormGroup({
-    dietName: new FormControl(),
+    dietName: new FormControl('', Validators.required),
     eventId: new FormControl(),
   });
 
