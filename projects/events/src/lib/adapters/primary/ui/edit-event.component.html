@@ -1,16 +1,17 @@
-<div class="w-75">
+<div class="w-75" *ngFor="let event of event$ | async">
     <form [formGroup]="editEvent" (ngSubmit)="onEventEdited(editEvent)" *ngIf="eventId$ | async as eventId">
         <div class="d-flex justify-content-center">
             <input formControlName="eventId" hidden [ngModel]="eventId.selectedEventId">
-            <textarea type="text" formControlName="eventImage" placeholder="Image" class="form-control me-5"
-                rows="10"></textarea>
-            <textarea formControlName="eventDescription" placeholder="Description" class="form-control ms-5"
-                rows="10"></textarea>
+            <textarea type="text" formControlName="eventImage" class="form-control me-5" rows="10"
+                [ngModel]="event.eventImage"></textarea>
+            <textarea formControlName="eventDescription" value="event.eventDescription" class="form-control ms-5"
+                [ngModel]="event.eventDescription" rows="10"></textarea>
         </div>
         <div class="d-flex justify-content-center py-5">
-            <input type="text" formControlName="eventTitle" placeholder="Title" class="form-control me-5">
-            <input type="text" formControlName="eventDate" placeholder="Daterangepicker" class="form-control ms-5"
-                bsDaterangepicker [bsConfig]="{ isAnimated: true }">
+            <input type="text" formControlName="eventTitle" placeholder="Title" class="form-control me-5"
+                [ngModel]="event.eventTitle">
+            <input type="text" [ngModel]="event.eventDate" formControlName="eventDate" placeholder="Daterangepicker"
+                class="form-control ms-5" bsDaterangepicker [bsConfig]="{ isAnimated: true }">
 
         </div>
         <div class="row">

@@ -25,13 +25,14 @@
 
   <ng-template #template>
     <div class="modal-body text-center">
-      <p>Edit diet: </p>
+      <span>Edit diet: </span>
 
     </div>
-    <form [formGroup]="editDietName" (ngSubmit)="onDietEdited(editDietName)" *ngIf="dietIdContext$ | async as id">
-      <input type="text" formControlName="name">
+    <form [formGroup]="editDietName" (ngSubmit)="onDietEdited(editDietName)" *ngIf="dietIdContext$ | async as id"
+      class="p-3">
+      <input type="text" formControlName="name" class="form-control">
       <input type="text" formControlName="id" [ngModel]="id.selectedDietId" hidden>
-      <input type="submit" value="Submit">
+      <input type="submit" value="Save" class="btn btn-success mt-3 rounded rounded-3">
     </form>
   </ng-template>
 </div>

@@ -16,6 +16,12 @@ import {
 import { Observable } from 'rxjs';
 import { EventContextDTO } from 'projects/core/src/lib/application/ports/secondary/event-context.dto';
 import { Router } from '@angular/router';
+import { EventDTO } from '../../../application/ports/secondary/event.dto';
+import {
+  GETS_ALL_EVENT_DTO,
+  GetsAllEventDtoPort,
+} from '../../../application/ports/secondary/gets-all-event.dto-port';
+import { switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'lib-edit-event',
@@ -33,12 +39,20 @@ export class EditEventComponent {
     eventDate: new FormControl(),
     eventId: new FormControl(),
   });
+  event$: Observable<EventDTO[]> = this._eventId
+    .asObservable()
+    .pipe(
+      switchMap((data) =>
+        this._getsAllEventDto.getAll({ id: data.selectedEventId })
+      )
+    );
 
   constructor(
     @Inject(SETS_EVENT_DTO) private _setsEventDto: SetsEventDtoPort,
     @Inject(EVENT_CONTEXT_DTO_STORAGE)
     private _eventId: EventContextDtoStoragePort,
-    private router: Router
+    private router: Router,
+    @Inject(GETS_ALL_EVENT_DTO) private _getsAllEventDto: GetsAllEventDtoPort
   ) {}
 
   onEventEdited(editEvent: FormGroup): void {
@@ -50,6 +64,5 @@ export class EditEventComponent {
       id: editEvent.get('eventId')?.value,
     });
     this.editEvent.reset();
-    // this.router.navigate([+'/event-detail']);
   }
 }
