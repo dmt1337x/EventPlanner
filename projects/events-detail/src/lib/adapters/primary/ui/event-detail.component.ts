@@ -30,6 +30,7 @@ import {
   GETS_ALL_ATTRACTION_DTO,
   GetsAllAttractionDtoPort,
 } from '../../../application/ports/secondary/gets-all-attraction.dto-port';
+import { EventContextDTO } from 'projects/core/src/lib/application/ports/secondary/event-context.dto';
 
 @Component({
   selector: 'lib-event-detail',
@@ -38,6 +39,8 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EventDetailComponent {
+  eventId$: Observable<EventContextDTO> =
+    this._eventContextDtoStorage.asObservable();
   events$: Observable<EventDTO[]> = this._eventContextDtoStoragePort
     .asObservable()
     .pipe(
@@ -79,6 +82,8 @@ export class EventDetailComponent {
     @Inject(GETS_ALL_TRANSPORT_DTO)
     private _getsAllTransportDto: GetsAllTransportDtoPort,
     @Inject(GETS_ALL_ATTRACTION_DTO)
-    private _getsAllAttractionDto: GetsAllAttractionDtoPort
+    private _getsAllAttractionDto: GetsAllAttractionDtoPort,
+    @Inject(EVENT_CONTEXT_DTO_STORAGE)
+    private _eventContextDtoStorage: EventContextDtoStoragePort
   ) {}
 }
