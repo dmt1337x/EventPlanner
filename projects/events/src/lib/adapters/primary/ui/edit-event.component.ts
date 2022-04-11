@@ -64,5 +64,6 @@ export class EditEventComponent {
       id: editEvent.get('eventId')?.value,
     });
     this.editEvent.reset();
+    this.router.navigate(['/']);
   }
 }
