@@ -9,6 +9,7 @@ import {
   ADDS_EVENT_DTO,
   AddsEventDtoPort,
 } from '../../../application/ports/secondary/adds-event.dto-port';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'lib-create-event',
@@ -25,7 +26,8 @@ export class CreateEventComponent {
   });
 
   constructor(
-    @Inject(ADDS_EVENT_DTO) private _addsAddEventDto: AddsEventDtoPort
+    @Inject(ADDS_EVENT_DTO) private _addsAddEventDto: AddsEventDtoPort,
+    private router: Router
   ) {}
 
   onAddEventSubmited(addEvent: FormGroup): void {
@@ -36,5 +38,6 @@ export class CreateEventComponent {
       eventDate: addEvent.get('eventDate')?.value,
     });
     this.addEvent.reset();
+    this.router.navigate(['/']);
   }
 }

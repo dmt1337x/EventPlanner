@@ -15,6 +15,7 @@ import {
 } from 'projects/core/src/lib/application/ports/secondary/event-context-dto.storage-port';
 import { Observable } from 'rxjs';
 import { EventContextDTO } from 'projects/core/src/lib/application/ports/secondary/event-context.dto';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'lib-edit-event',
@@ -36,7 +37,8 @@ export class EditEventComponent {
   constructor(
     @Inject(SETS_EVENT_DTO) private _setsEventDto: SetsEventDtoPort,
     @Inject(EVENT_CONTEXT_DTO_STORAGE)
-    private _eventId: EventContextDtoStoragePort
+    private _eventId: EventContextDtoStoragePort,
+    private router: Router
   ) {}
 
   onEventEdited(editEvent: FormGroup): void {
@@ -48,5 +50,6 @@ export class EditEventComponent {
       id: editEvent.get('eventId')?.value,
     });
     this.editEvent.reset();
+    // this.router.navigate([+'/event-detail']);
   }
 }
