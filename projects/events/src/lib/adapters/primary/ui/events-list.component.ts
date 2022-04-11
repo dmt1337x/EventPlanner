@@ -4,7 +4,7 @@ import {
   ChangeDetectionStrategy,
   Inject,
 } from '@angular/core';
-import { map, Observable } from 'rxjs';
+import { map, observable, Observable } from 'rxjs';
 import { EventDTO } from '../../../application/ports/secondary/event.dto';
 import {
   GETS_ALL_EVENT_DTO,
@@ -14,7 +14,7 @@ import {
   REMOVES_EVENT_DTO,
   RemovesEventDtoPort,
 } from '../../../application/ports/secondary/removes-event.dto-port';
-
+import { FormGroup, FormControl } from '@angular/forms';
 @Component({
   selector: 'lib-events-list',
   templateUrl: './events-list.component.html',
@@ -22,13 +22,9 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EventsListComponent {
-  events$: Observable<EventDTO[]> = this._getsAllEventDto
-    .getAll()
-    .pipe(
-      map((events: EventDTO[]) =>
-        events.sort((a, b) => a.eventTitle.localeCompare(b.eventTitle))
-      )
-    );
+  readonly search: FormGroup = new FormGroup({ eventTitle: new FormControl() });
+
+  events$: Observable<EventDTO[]> = this._getsAllEventDto.getAll();
 
   constructor(
     @Inject(GETS_ALL_EVENT_DTO)
@@ -39,4 +35,14 @@ export class EventsListComponent {
   onEventDeleteed(events$: EventDTO): void {
     this._removesEventDto.remove(events$.id);
   }
+
+  // // ****************** INNY KOMPONENT ******************
+  onSearchSubmited(search: FormGroup) {
+    this.events$ = this._getsAllEventDto.getAll(
+      search.get('eventTitle')?.value
+        ? { eventTitle: search.get('eventTitle')?.value }
+        : {}
+    );
+  }
+  // // ****************** INNY KOMPONENT ******************
 }
