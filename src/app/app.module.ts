@@ -13,6 +13,7 @@ import { InMemoryTransportIdStorageModule } from '@transport';
 import { InMemoryAttractionsStorageModule } from '@attractions';
 import { RouterModule } from '@angular/router';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { InMemorySearchEventStorageModule } from '@events';
 
 @NgModule({
   declarations: [AppComponent],
@@ -27,6 +28,7 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
     InMemoryDietIdStorageModule,
     InMemoryTransportIdStorageModule,
     InMemoryAttractionsStorageModule,
+    InMemorySearchEventStorageModule,
     BsDropdownModule.forRoot(),
   ],
   providers: [],

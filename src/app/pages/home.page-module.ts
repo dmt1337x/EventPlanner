@@ -5,6 +5,7 @@ import { HomePage } from './home.page';
 import { CreateEventComponentModule } from '../../../projects/events/src/lib/adapters/primary/ui/create-event.component-module';
 import { FirebaseEventServiceModule } from '../../../projects/events/src/lib/adapters/secondary/infrastructure/firebase-event.service-module';
 import { EventsListComponentModule } from '../../../projects/events/src/lib/adapters/primary/ui/events-list.component-module';
+import { SearchEventComponentModule } from '../../../projects/events/src/lib/adapters/primary/ui/search-event.component-module';
 
 @NgModule({
   imports: [
@@ -18,6 +19,7 @@ import { EventsListComponentModule } from '../../../projects/events/src/lib/adap
     CreateEventComponentModule,
     FirebaseEventServiceModule,
     EventsListComponentModule,
+    SearchEventComponentModule
   ],
   declarations: [HomePage],
   providers: [],

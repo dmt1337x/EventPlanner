@@ -14,7 +14,13 @@ import {
   REMOVES_EVENT_DTO,
   RemovesEventDtoPort,
 } from '../../../application/ports/secondary/removes-event.dto-port';
-import { FormGroup, FormControl } from '@angular/forms';
+import {
+  SearchEventDtoStoragePort,
+  SEARCH_EVENT_DTO_STORAGE,
+} from '../../../application/ports/secondary/search-event-dto.storage-port';
+import { SearchEventDTO } from '../../../application/ports/secondary/search-event.dto';
+import { switchMap } from 'rxjs/operators';
+
 @Component({
   selector: 'lib-events-list',
   templateUrl: './events-list.component.html',
@@ -22,27 +28,25 @@ import { FormGroup, FormControl } from '@angular/forms';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EventsListComponent {
-  readonly search: FormGroup = new FormGroup({ eventTitle: new FormControl() });
-
   events$: Observable<EventDTO[]> = this._getsAllEventDto.getAll();
+
+  // events$: Observable<EventDTO[]> = this._search
+  //   .asObservable()
+  //   .pipe(
+  //     switchMap((data) =>
+  //       this._getsAllEventDto.getAll({ eventTitle: data.eventTitle })
+  //     )
+  //   );
 
   constructor(
     @Inject(GETS_ALL_EVENT_DTO)
     private _getsAllEventDto: GetsAllEventDtoPort,
-    @Inject(REMOVES_EVENT_DTO) private _removesEventDto: RemovesEventDtoPort
+    @Inject(REMOVES_EVENT_DTO) private _removesEventDto: RemovesEventDtoPort,
+    @Inject(SEARCH_EVENT_DTO_STORAGE)
+    private _search: SearchEventDtoStoragePort
   ) {}
 
   onEventDeleteed(events$: EventDTO): void {
     this._removesEventDto.remove(events$.id);
   }
-
-  // // ****************** INNY KOMPONENT ******************
-  onSearchSubmited(search: FormGroup) {
-    this.events$ = this._getsAllEventDto.getAll(
-      search.get('eventTitle')?.value
-        ? { eventTitle: search.get('eventTitle')?.value }
-        : {}
-    );
-  }
-  // // ****************** INNY KOMPONENT ******************
 }

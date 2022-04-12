@@ -1,0 +1,8 @@
+<div>
+    <form [formGroup]="search" (ngSubmit)="onSearchSubmited(search)" class="w-50">
+        <div class="d-flex justify-content-between">
+            <input type="text" formControlName="eventTitle" class="form-control">
+            <input type="submit" value="Search" class="ms-5 btn btn-light fw-bold">
+        </div>
+    </form>
+</div>
