@@ -19,7 +19,7 @@ import {
   SEARCH_EVENT_DTO_STORAGE,
 } from '../../../application/ports/secondary/search-event-dto.storage-port';
 import { SearchEventDTO } from '../../../application/ports/secondary/search-event.dto';
-import { switchMap } from 'rxjs/operators';
+import { switchMap, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'lib-events-list',
@@ -28,15 +28,18 @@ import { switchMap } from 'rxjs/operators';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EventsListComponent {
-  events$: Observable<EventDTO[]> = this._getsAllEventDto.getAll();
+  // events$: Observable<EventDTO[]> = this._getsAllEventDto.getAll();
 
-  // events$: Observable<EventDTO[]> = this._search
-  //   .asObservable()
-  //   .pipe(
-  //     switchMap((data) =>
-  //       this._getsAllEventDto.getAll({ eventTitle: data.eventTitle })
-  //     )
-  //   );
+  events$: Observable<EventDTO[]> = this._search.asObservable().pipe(
+    tap(console.log),
+    switchMap((data) =>
+      this._getsAllEventDto.getAll(
+        data && data.eventTitle && data.eventTitle.length
+          ? { eventTitle: data.eventTitle }
+          : undefined
+      )
+    )
+  );
 
   constructor(
     @Inject(GETS_ALL_EVENT_DTO)
