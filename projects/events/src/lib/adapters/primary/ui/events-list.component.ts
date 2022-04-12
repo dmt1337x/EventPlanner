@@ -19,7 +19,7 @@ import {
   SearchEventDtoStoragePort,
   SEARCH_EVENT_DTO_STORAGE,
 } from '../../../application/ports/secondary/search-event-dto.storage-port';
-import { switchMap, tap } from 'rxjs/operators';
+import { switchMap } from 'rxjs/operators';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 
 @Component({
@@ -29,16 +29,17 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EventsListComponent {
-  events$: Observable<EventDTO[]> = this._search.asObservable().pipe(
-    tap(console.log),
-    switchMap((data) =>
-      this._getsAllEventDto.getAll(
-        data && data.eventTitle && data.eventTitle.length
-          ? { eventTitle: data.eventTitle }
-          : undefined
+  events$: Observable<EventDTO[]> = this._search
+    .asObservable()
+    .pipe(
+      switchMap((data) =>
+        this._getsAllEventDto.getAll(
+          data && data.eventTitle && data.eventTitle.length
+            ? { eventTitle: data.eventTitle }
+            : undefined
+        )
       )
-    )
-  );
+    );
 
   constructor(
     @Inject(GETS_ALL_EVENT_DTO)

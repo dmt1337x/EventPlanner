@@ -5,12 +5,10 @@ import {
   Inject,
 } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { Observable } from 'rxjs';
 import {
   SearchEventDtoStoragePort,
   SEARCH_EVENT_DTO_STORAGE,
 } from '../../../application/ports/secondary/search-event-dto.storage-port';
-import { SearchEventDTO } from '../../../application/ports/secondary/search-event.dto';
 
 @Component({
   selector: 'lib-search-event',
@@ -29,5 +27,8 @@ export class SearchEventComponent {
     this._search.next({ eventTitle: search.get('eventTitle')?.value });
   }
 
-  searchEvent$: Observable<SearchEventDTO> = this._search.asObservable();
+  clear() {
+    this._search.next({ eventTitle: '' });
+    this.search.reset();
+  }
 }
