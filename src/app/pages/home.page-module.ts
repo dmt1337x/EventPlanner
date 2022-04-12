@@ -2,10 +2,9 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { HomePage } from './home.page';
-import { CreateEventComponentModule } from '../../../projects/events/src/lib/adapters/primary/ui/create-event.component-module';
-import { FirebaseEventServiceModule } from '../../../projects/events/src/lib/adapters/secondary/infrastructure/firebase-event.service-module';
-import { EventsListComponentModule } from '../../../projects/events/src/lib/adapters/primary/ui/events-list.component-module';
-import { SearchEventComponentModule } from '../../../projects/events/src/lib/adapters/primary/ui/search-event.component-module';
+import { HomeComponentModule } from '../../../projects/core/src/lib/adapters/primary/ui/home.component-module';
+import { FirebaseCoreServiceModule } from 'projects/core/src/lib/adapters/secondary/infrastructure/firebase-core.service-module';
+import { FirebaseEventServiceModule } from '@events';
 
 @NgModule({
   imports: [
@@ -16,10 +15,9 @@ import { SearchEventComponentModule } from '../../../projects/events/src/lib/ada
         component: HomePage,
       },
     ]),
-    CreateEventComponentModule,
+    HomeComponentModule,
+    FirebaseCoreServiceModule,
     FirebaseEventServiceModule,
-    EventsListComponentModule,
-    SearchEventComponentModule
   ],
   declarations: [HomePage],
   providers: [],
