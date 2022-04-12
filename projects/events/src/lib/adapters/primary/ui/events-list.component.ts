@@ -3,8 +3,9 @@ import {
   ViewEncapsulation,
   ChangeDetectionStrategy,
   Inject,
+  TemplateRef,
 } from '@angular/core';
-import { map, observable, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { EventDTO } from '../../../application/ports/secondary/event.dto';
 import {
   GETS_ALL_EVENT_DTO,
@@ -18,8 +19,8 @@ import {
   SearchEventDtoStoragePort,
   SEARCH_EVENT_DTO_STORAGE,
 } from '../../../application/ports/secondary/search-event-dto.storage-port';
-import { SearchEventDTO } from '../../../application/ports/secondary/search-event.dto';
 import { switchMap, tap } from 'rxjs/operators';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'lib-events-list',
@@ -28,8 +29,6 @@ import { switchMap, tap } from 'rxjs/operators';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EventsListComponent {
-  // events$: Observable<EventDTO[]> = this._getsAllEventDto.getAll();
-
   events$: Observable<EventDTO[]> = this._search.asObservable().pipe(
     tap(console.log),
     switchMap((data) =>
@@ -46,10 +45,23 @@ export class EventsListComponent {
     private _getsAllEventDto: GetsAllEventDtoPort,
     @Inject(REMOVES_EVENT_DTO) private _removesEventDto: RemovesEventDtoPort,
     @Inject(SEARCH_EVENT_DTO_STORAGE)
-    private _search: SearchEventDtoStoragePort
+    private _search: SearchEventDtoStoragePort,
+    private modalService: BsModalService
   ) {}
 
   onEventDeleteed(events$: EventDTO): void {
     this._removesEventDto.remove(events$.id);
+    this.modalRef?.hide();
+  }
+
+  modalRef?: BsModalRef;
+  message?: string;
+
+  openModal(template: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(template, { class: 'modal-sm' });
+  }
+
+  decline(): void {
+    this.modalRef?.hide();
   }
 }

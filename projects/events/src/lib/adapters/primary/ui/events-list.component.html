@@ -23,9 +23,16 @@
           </button>
         </div>
         <div class="col">
-          <span class="bi-trash3" (click)="onEventDeleteed(event)"></span>
+          <span class="bi-trash3" (click)="openModal(template)"></span>
         </div>
       </div>
+      <ng-template #template>
+        <div class="modal-body text-center">
+          <p class="fw-bold">Are you sure you want to delete you event?</p>
+          <p><button class="btn btn-danger" (click)="onEventDeleteed(event)">Yes, I am sure</button></p>
+          <p><button class="btn btn-secondary" (click)="decline()">Cancel</button></p>
+        </div>
+      </ng-template>
     </div>
   </div>
 
