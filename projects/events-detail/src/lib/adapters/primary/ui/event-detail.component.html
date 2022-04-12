@@ -5,7 +5,11 @@
     <div class=" d-flex justify-content-between">
       <div>
         <h1>{{event.eventTitle}}</h1>
-        <h5>{{event.eventDate}}</h5>
+        <h5>
+          {{toDate(event.eventDate[0]) | date: 'dd.MM.YYYY'}}
+          <span> - </span>
+          {{toDate(event.eventDate[1]) | date: 'dd.MM.YYYY'}}
+        </h5>
       </div>
       <span class="bi-pen-fill" [routerLink]="'/events/' + eventId.selectedEventId + '/edit-event'"></span>
     </div>

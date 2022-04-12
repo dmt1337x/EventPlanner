@@ -86,4 +86,8 @@ export class EventDetailComponent {
     @Inject(EVENT_CONTEXT_DTO_STORAGE)
     private _eventContextDtoStorage: EventContextDtoStoragePort
   ) {}
+
+  toDate(event: any): Date {
+    return event.toDate();
+  }
 }

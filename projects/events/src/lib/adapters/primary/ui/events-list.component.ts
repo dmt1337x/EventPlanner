@@ -65,4 +65,7 @@ export class EventsListComponent {
   decline(): void {
     this.modalRef?.hide();
   }
+  toDate(event: any): Date {
+    return event.toDate();
+  }
 }
