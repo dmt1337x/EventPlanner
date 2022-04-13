@@ -39,8 +39,6 @@ import { EventContextDTO } from 'projects/core/src/lib/application/ports/seconda
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EventDetailComponent {
-  eventId$: Observable<EventContextDTO> =
-    this._eventContextDtoStorage.asObservable();
   events$: Observable<EventDTO[]> = this._eventContextDtoStoragePort
     .asObservable()
     .pipe(
