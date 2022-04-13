@@ -1,4 +1,4 @@
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import {
   Component,
   ViewEncapsulation,
@@ -18,9 +18,9 @@ import {
 })
 export class AddUserComponent {
   readonly addUser: FormGroup = new FormGroup({
-    userName: new FormControl(),
-    userLastName: new FormControl(),
-    userEmail: new FormControl(),
+    userName: new FormControl('', Validators.required),
+    userLastName: new FormControl('', Validators.required),
+    userEmail: new FormControl('', Validators.required),
   });
 
   constructor(@Inject(ADDS_USER_DTO) private _addsUserDto: AddsUserDtoPort) {}
