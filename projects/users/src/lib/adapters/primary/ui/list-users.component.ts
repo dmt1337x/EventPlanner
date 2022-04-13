@@ -26,6 +26,11 @@ import {
   RemovesUserDtoPort,
   REMOVES_USER_DTO,
 } from '../../../application/ports/secondary/removes-user.dto-port';
+import { switchMap } from 'rxjs/operators';
+import {
+  SEARCH_USER_DTO_STORAGE,
+  SearchUserDtoStoragePort,
+} from '../../../application/ports/secondary/search-user-dto.storage-port';
 
 @Component({
   selector: 'lib-list-users',
@@ -34,7 +39,6 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ListUsersComponent {
-  users$: Observable<UserDTO[]> = this._getsAllUserDto.getAll();
   userIdContext$: Observable<UserIdDTO> = this._userIdDtoStorage.asObservable();
 
   readonly editUser: FormGroup = new FormGroup({
@@ -43,6 +47,17 @@ export class ListUsersComponent {
     userEmail: new FormControl('', Validators.required),
     id: new FormControl(),
   });
+  users$: Observable<UserDTO[]> = this._searchUserDtoStoragePort
+    .asObservable()
+    .pipe(
+      switchMap((data) =>
+        this._getsAllUserDto.getAll(
+          data && data.userName && data.userName.length
+            ? { userName: data.userName }
+            : undefined
+        )
+      )
+    );
 
   constructor(
     @Inject(GETS_ALL_USER_DTO) private _getsAllUserDto: GetsAllUserDtoPort,
@@ -50,7 +65,9 @@ export class ListUsersComponent {
     @Inject(REMOVES_USER_DTO) private _removeUserDto: RemovesUserDtoPort,
     @Inject(USER_ID_DTO_STORAGE)
     private _userIdDtoStorage: UserIdDtoStoragePort,
-    private modalService: BsModalService
+    private modalService: BsModalService,
+    @Inject(SEARCH_USER_DTO_STORAGE)
+    private _searchUserDtoStoragePort: SearchUserDtoStoragePort
   ) {}
 
   modalRef?: BsModalRef;

@@ -13,7 +13,9 @@
           <span class="bi-star-fill"></span>
           {{ event.eventTitle }}
         </div>
-        <div class="col">LINK</div>
+        <div class="col"><span [routerLink]="'/events/' + event.id + '/event-detail'">{{"/events/" +
+            event.id +
+            "/event-detail"}}</span></div>
         <div class="col">
           <!-- {{ event.eventDate }} -->
           od {{toDate(event.eventDate[0]) | date: 'dd.MM.YYYY'}}<br>
