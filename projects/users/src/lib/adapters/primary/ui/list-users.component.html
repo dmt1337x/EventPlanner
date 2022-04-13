@@ -1,0 +1,45 @@
+<div class="w-50">
+    <div *ngFor="let user of users$ | async" class="mb-3">
+        <div class="d-flex justify-content-between">
+
+            <div class="fw-bold">
+                <div>
+                    <span class="bi-person-circle"></span>
+                    <span class="fs-5 ms-3">{{user.userName + " " + user.userLastName}}</span>
+                </div>
+                <div>
+                    <span class="fs-6 ms-5">{{user.userEmail}}</span>
+                </div>
+            </div>
+
+
+            <div class="d-flex">
+                <div class="me-3">
+                    <span class="bi-pencil-fill" (click)="openModal(template,user)"></span>
+                </div>
+                <div>
+                    <span class=" bi-trash3" (click)="onUserRemoveed(user)"></span>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+
+    <ng-template #template>
+        <div class="modal-body text-center">
+            <span>Edit diet: </span>
+
+        </div>
+        <form [formGroup]="editUser" (ngSubmit)="onUserEdited(editUser)" *ngIf="userIdContext$ | async as id"
+            class="p-3">
+            <input type="text" formControlName="userName" class="form-control">
+            <input type="text" formControlName="userLastName" class="form-control">
+            <input type="text" formControlName="userEmail" class="form-control">
+            <input type="text" formControlName="id" [ngModel]="id.selectedUserId" hidden>
+            <input type="submit" value="Save" class="btn btn-success mt-3 rounded rounded-3"
+                [disabled]="!editUser.valid">
+        </form>
+    </ng-template>
+</div>

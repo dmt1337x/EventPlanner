@@ -17,6 +17,7 @@ import {
   FirebaseEventServiceModule,
   InMemorySearchEventStorageModule,
 } from '@events';
+import { InMemoryUserIdStorageModule } from '@users';
 
 @NgModule({
   declarations: [AppComponent],
@@ -34,6 +35,7 @@ import {
     InMemorySearchEventStorageModule,
     FirebaseEventServiceModule,
     BsDropdownModule.forRoot(),
+    InMemoryUserIdStorageModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
