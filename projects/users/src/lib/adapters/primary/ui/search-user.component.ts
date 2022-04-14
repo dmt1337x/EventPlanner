@@ -20,15 +20,10 @@ export class SearchUserComponent {
   constructor(
     @Inject(SEARCH_USER_DTO_STORAGE)
     private _search: SearchUserDtoStoragePort
-  ) {}
+  ) {
+    this.search.valueChanges.subscribe((form) =>
+      this._search.next({ userName: form.userName })
+    );
+  }
   readonly search: FormGroup = new FormGroup({ userName: new FormControl() });
-
-  onSearchSubmited(search: FormGroup) {
-    this._search.next({ userName: search.get('userName')?.value });
-  }
-
-  clear() {
-    this._search.next({ userName: '' });
-    this.search.reset();
-  }
 }

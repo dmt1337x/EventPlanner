@@ -20,12 +20,12 @@ export class SearchEventComponent {
   constructor(
     @Inject(SEARCH_EVENT_DTO_STORAGE)
     private _search: SearchEventDtoStoragePort
-  ) {}
-  readonly search: FormGroup = new FormGroup({ eventTitle: new FormControl() });
-
-  onSearchSubmited(search: FormGroup) {
-    this._search.next({ eventTitle: search.get('eventTitle')?.value });
+  ) {
+    this.search.valueChanges.subscribe((form) =>
+      this._search.next({ eventTitle: form.eventTitle })
+    );
   }
+  readonly search: FormGroup = new FormGroup({ eventTitle: new FormControl() });
 
   clear() {
     this._search.next({ eventTitle: '' });
