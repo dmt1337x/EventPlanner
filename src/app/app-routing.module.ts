@@ -18,10 +18,6 @@ const routes: Routes = [
     path: 'create-event',
     loadChildren: () => CreateEventPageModule,
   },
-  {
-    path: 'users',
-    loadChildren: () => UsersPageModule,
-  },
 ];
 
 @NgModule({

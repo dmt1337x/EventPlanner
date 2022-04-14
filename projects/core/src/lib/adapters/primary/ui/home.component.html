@@ -12,7 +12,7 @@
 <div *ngIf="(isEmpty$ | async)?.length">
     <div class="container py-3 d-flex justify-content-between">
         <div>
-            <span class="fs-4 me-5  border-bottom border-success border-5 pb-4" [routerLink]="'/'">Events</span>
+            <span class="fs-4 me-5  border-bottom border-success border-5 pb-" [routerLink]="'/'">Events</span>
             <span class="fs-4" [routerLink]="'/users'">Users</span>
         </div>
         <button class="btn btn-success mt-3 fw-bold" routerLink="/create-event">Create new event</button>
