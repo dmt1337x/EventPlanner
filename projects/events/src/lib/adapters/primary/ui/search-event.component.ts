@@ -26,9 +26,4 @@ export class SearchEventComponent {
     );
   }
   readonly search: FormGroup = new FormGroup({ eventTitle: new FormControl() });
-
-  clear() {
-    this._search.next({ eventTitle: '' });
-    this.search.reset();
-  }
 }

@@ -2,9 +2,12 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { DietsPage } from './diets.page';
-import { FirebaseDietServiceModule } from '../../../projects/diets/src/lib/adapters/secondary/infrastructure/firebase-diet.service-module';
-import { ListDietComponentModule } from '../../../projects/diets/src/lib/adapters/primary/ui/list-diet.component-module';
-import { AddDietComponentModule } from '../../../projects/diets/src/lib/adapters/primary/ui/add-diet.component-module';
+import {
+  InMemoryDietIdStorageModule,
+  FirebaseDietServiceModule,
+  ListDietComponentModule,
+  AddDietComponentModule,
+} from '@diets';
 
 @NgModule({
   imports: [
@@ -18,6 +21,7 @@ import { AddDietComponentModule } from '../../../projects/diets/src/lib/adapters
     FirebaseDietServiceModule,
     ListDietComponentModule,
     AddDietComponentModule,
+    InMemoryDietIdStorageModule,
   ],
   declarations: [DietsPage],
   providers: [],

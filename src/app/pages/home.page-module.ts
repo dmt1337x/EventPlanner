@@ -2,9 +2,11 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { HomePage } from './home.page';
-import { HomeComponentModule } from '../../../projects/core/src/lib/adapters/primary/ui/home.component-module';
-import { FirebaseCoreServiceModule } from 'projects/core/src/lib/adapters/secondary/infrastructure/firebase-core.service-module';
-import { FirebaseEventServiceModule } from '@events';
+import { HomeComponentModule, FirebaseCoreServiceModule } from '@core';
+import {
+  FirebaseEventServiceModule,
+  InMemorySearchEventStorageModule,
+} from '@events';
 
 @NgModule({
   imports: [
@@ -18,6 +20,7 @@ import { FirebaseEventServiceModule } from '@events';
     HomeComponentModule,
     FirebaseCoreServiceModule,
     FirebaseEventServiceModule,
+    InMemorySearchEventStorageModule,
   ],
   declarations: [HomePage],
   providers: [],
