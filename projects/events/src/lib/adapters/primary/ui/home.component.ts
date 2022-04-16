@@ -5,11 +5,11 @@ import {
   Inject,
 } from '@angular/core';
 import { Observable } from 'rxjs';
-import { EventDTO } from 'projects/core/src/lib/application/ports/secondary/event.dto';
+import { EventDTO } from '../../../application/ports/secondary/event.dto';
 import {
   GETS_ALL_EVENT_DTO,
   GetsAllEventDtoPort,
-} from 'projects/core/src/lib/application/ports/secondary/gets-all-event.dto-port';
+} from '../../../application/ports/secondary/gets-all-event.dto-port';
 
 @Component({
   selector: 'lib-home',
