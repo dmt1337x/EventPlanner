@@ -15,6 +15,7 @@ import {
   ADDS_CREDENTIALS_DTO,
   AddsCredentialsDtoPort,
 } from '../../../application/ports/secondary/adds-credentials.dto-port';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'lib-home',
@@ -32,7 +33,8 @@ export class HomeComponent {
   constructor(
     @Inject(GETS_ONE_USER_DTO) private _getsOneUserDto: GetsOneUserDtoPort,
     @Inject(ADDS_CREDENTIALS_DTO)
-    private _addsCredentialsDto: AddsCredentialsDtoPort
+    private _addsCredentialsDto: AddsCredentialsDtoPort,
+    private router: Router
   ) {}
 
   onLoginSubmited(login: FormGroup): void {
@@ -40,5 +42,6 @@ export class HomeComponent {
       email: this.login.get('email')?.value,
       password: this.login.get('password')?.value,
     });
+    this.router.navigateByUrl('/registration');
   }
 }
