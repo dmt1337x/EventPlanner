@@ -23,4 +23,8 @@ export class FirebaseAuthService
       credentials.password
     );
   }
+
+  logout() {
+    this._client.signOut();
+  }
 }

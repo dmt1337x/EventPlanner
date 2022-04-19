@@ -3,6 +3,8 @@ import {
   ViewEncapsulation,
   ChangeDetectionStrategy,
 } from '@angular/core';
+import { Router } from '@angular/router';
+import { FirebaseAuthService } from '../../secondary/infrastructure/firebase-auth.service';
 
 @Component({
   selector: 'lib-registration',
@@ -10,4 +12,11 @@ import {
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class RegistrationComponent {}
+export class RegistrationComponent {
+  constructor(private _user: FirebaseAuthService, private router: Router) {}
+
+  logout(): void {
+    this._user.logout();
+    this.router.navigateByUrl('/');
+  }
+}

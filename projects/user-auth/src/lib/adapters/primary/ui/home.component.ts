@@ -16,6 +16,7 @@ import {
   AddsCredentialsDtoPort,
 } from '../../../application/ports/secondary/adds-credentials.dto-port';
 import { Router } from '@angular/router';
+import { FirebaseAuthService } from '../../secondary/infrastructure/firebase-auth.service';
 
 @Component({
   selector: 'lib-home',
@@ -34,7 +35,8 @@ export class HomeComponent {
     @Inject(GETS_ONE_USER_DTO) private _getsOneUserDto: GetsOneUserDtoPort,
     @Inject(ADDS_CREDENTIALS_DTO)
     private _addsCredentialsDto: AddsCredentialsDtoPort,
-    private router: Router
+    private router: Router,
+    private _user: FirebaseAuthService
   ) {}
 
   onLoginSubmited(login: FormGroup): void {
@@ -43,5 +45,9 @@ export class HomeComponent {
       password: this.login.get('password')?.value,
     });
     this.router.navigateByUrl('/registration');
+  }
+
+  logout(): void {
+    this._user.logout();
   }
 }
