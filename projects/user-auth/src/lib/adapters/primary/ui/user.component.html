@@ -1,0 +1,5 @@
+<form [formGroup]="login" (ngSubmit)="onLoginSubmited(login)"><input type="text" formControlName="email"
+        placeholder="Email"><input type="password" formControlName="password" placeholder="Password"><input
+        type="submit" value="Submit"></form>
+
+{{user$ | async | json}}
