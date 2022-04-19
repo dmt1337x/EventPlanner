@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { UserComponent } from './user.component';
+import { HomeComponent } from './home.component';
 import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [CommonModule, ReactiveFormsModule],
-  declarations: [UserComponent],
+  declarations: [HomeComponent],
   providers: [],
-  exports: [UserComponent],
+  exports: [HomeComponent],
 })
-export class UserComponentModule {}
+export class HomeComponentModule {}

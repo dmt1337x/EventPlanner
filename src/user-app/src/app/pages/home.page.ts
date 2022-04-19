@@ -3,7 +3,6 @@ import {
   ViewEncapsulation,
   ChangeDetectionStrategy,
 } from '@angular/core';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-home-page',

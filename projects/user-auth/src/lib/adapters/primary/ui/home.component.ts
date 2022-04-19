@@ -17,12 +17,12 @@ import {
 } from '../../../application/ports/secondary/adds-credentials.dto-port';
 
 @Component({
-  selector: 'lib-user',
-  templateUrl: './user.component.html',
+  selector: 'lib-home',
+  templateUrl: './home.component.html',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class UserComponent {
+export class HomeComponent {
   user$: Observable<UserDTO | null> = this._getsOneUserDto.getOne();
   readonly login: FormGroup = new FormGroup({
     email: new FormControl(),
