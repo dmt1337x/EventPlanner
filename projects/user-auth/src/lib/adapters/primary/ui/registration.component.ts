@@ -4,6 +4,7 @@ import {
   ChangeDetectionStrategy,
 } from '@angular/core';
 import { Router } from '@angular/router';
+import { getAuth } from 'firebase/auth';
 import { FirebaseAuthService } from '../../secondary/infrastructure/firebase-auth.service';
 
 @Component({
@@ -13,10 +14,14 @@ import { FirebaseAuthService } from '../../secondary/infrastructure/firebase-aut
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RegistrationComponent {
-  constructor(private _user: FirebaseAuthService, private router: Router) {}
+  constructor(private _client: FirebaseAuthService, private _router: Router) {}
 
   logout(): void {
-    this._user.logout();
-    this.router.navigateByUrl('/');
+    this._client.logout();
+    this._router.navigateByUrl('/');
+  }
+  displayEmail(): String | null | undefined {
+    const user = getAuth().currentUser;
+    return user?.email;
   }
 }

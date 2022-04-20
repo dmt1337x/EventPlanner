@@ -35,7 +35,7 @@ export class HomeComponent {
     @Inject(GETS_ONE_USER_DTO) private _getsOneUserDto: GetsOneUserDtoPort,
     @Inject(ADDS_CREDENTIALS_DTO)
     private _addsCredentialsDto: AddsCredentialsDtoPort,
-    private router: Router,
+    private _router: Router,
     private _user: FirebaseAuthService
   ) {}
 
@@ -44,7 +44,7 @@ export class HomeComponent {
       email: this.login.get('email')?.value,
       password: this.login.get('password')?.value,
     });
-    this.router.navigateByUrl('/registration');
+    this._router.navigateByUrl('/registration');
   }
 
   logout(): void {
