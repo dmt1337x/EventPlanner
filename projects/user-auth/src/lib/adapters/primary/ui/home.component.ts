@@ -44,7 +44,7 @@ export class HomeComponent {
       email: this.login.get('email')?.value,
       password: this.login.get('password')?.value,
     });
-    this._router.navigateByUrl('/registration');
+    this._router.navigate(['/registration']);
   }
 
   logout(): void {
