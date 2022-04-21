@@ -4,4 +4,5 @@ export interface UserDTO {
   readonly userLastName: string;
   readonly userEmail: string;
   readonly userPassword: string;
+  readonly eventId: string;
 }

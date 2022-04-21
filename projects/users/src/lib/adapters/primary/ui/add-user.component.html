@@ -1,5 +1,5 @@
-<div *ngIf="eventId$ | async as eventId">
-    <form [formGroup]="addUser" (ngSubmit)="onUserAdded(addUser)">
+<div>
+    <form [formGroup]="addUser" (ngSubmit)="onUserAdded(addUser, eventId)" *ngIf="eventId$ | async as eventId">
         <div class="d-flex justify-content-between">
             <input type="text" formControlName="userName" placeholder="Name" class="form-control mx-1">
             <input type="text" formControlName="userLastName" placeholder="Last name" class="form-control mx-1">

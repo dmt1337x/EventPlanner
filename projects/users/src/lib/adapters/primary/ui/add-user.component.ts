@@ -45,11 +45,12 @@ export class AddUserComponent {
   eventId$: Observable<EventContextDTO> =
     this._eventContextDtoStorage.asObservable();
 
-  onUserAdded(addUser: FormGroup): void {
+  onUserAdded(addUser: FormGroup, eventId: EventContextDTO): void {
     this._addsUserDto.add({
       userName: this.addUser.get('userName')?.value,
       userLastName: this.addUser.get('userLastName')?.value,
       userEmail: this.addUser.get('userEmail')?.value,
+      eventId: eventId.selectedEventId,
     });
     this._addsUserToAuthDto.addToAuth({
       userEmail: this.addUser.get('userEmail')?.value,
