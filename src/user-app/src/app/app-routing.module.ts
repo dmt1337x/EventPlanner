@@ -9,6 +9,8 @@ import {
   redirectUnauthorizedTo,
   redirectLoggedInTo,
 } from '@angular/fire/compat/auth-guard';
+import { NotFoundPage } from './pages/not-found.page';
+import { NotFoundPageModule } from './pages/not-found.page-module';
 
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['/']);
 
@@ -23,6 +25,14 @@ const routes: Routes = [
     // canActivate: [AuthGuard],
     canActivate: [AngularFireAuthGuard],
     data: { authGuardPipe: redirectUnauthorizedToLogin },
+  },
+  {
+    path: '404',
+    loadChildren: () => NotFoundPageModule,
+  },
+  {
+    path: '**',
+    redirectTo: '404',
   },
 ];
 

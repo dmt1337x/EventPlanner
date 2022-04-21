@@ -40,11 +40,12 @@ export class HomeComponent {
   ) {}
 
   onLoginSubmited(login: FormGroup): void {
-    this._addsCredentialsDto.add({
-      email: this.login.get('email')?.value,
-      password: this.login.get('password')?.value,
-    });
-    this._router.navigate(['/registration']);
+    this._addsCredentialsDto
+      .add({
+        email: this.login.get('email')?.value,
+        password: this.login.get('password')?.value,
+      })
+      .subscribe((_) => this._router.navigate(['/registration']));
   }
 
   logout(): void {
