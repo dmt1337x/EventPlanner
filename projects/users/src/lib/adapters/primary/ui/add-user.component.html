@@ -1,9 +1,10 @@
-<div class="">
+<div *ngIf="eventId$ | async as eventId">
     <form [formGroup]="addUser" (ngSubmit)="onUserAdded(addUser)">
         <div class="d-flex justify-content-between">
             <input type="text" formControlName="userName" placeholder="Name" class="form-control mx-1">
             <input type="text" formControlName="userLastName" placeholder="Last name" class="form-control mx-1">
             <input type="text" formControlName="userEmail" placeholder="Email" class="form-control mx-1">
+            <input type="password" formControlName="userPassword" placeholder="Password" class="form-control mx-1">
         </div>
         <div class="d-flex justify-content-end pt-2">
             <input type="submit" value="Add Member" class=" btn btn-success" [disabled]="!addUser.valid">

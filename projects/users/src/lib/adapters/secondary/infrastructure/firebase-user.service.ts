@@ -8,6 +8,7 @@ import { GetsAllUserDtoPort } from '../../../application/ports/secondary/gets-al
 import { filterByCriterion } from '@lowgular/shared';
 import { RemovesUserDtoPort } from '../../../application/ports/secondary/removes-user.dto-port';
 import { SetsUserDtoPort } from '../../../application/ports/secondary/sets-user.dto-port';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 
 @Injectable()
 export class FirebaseUserService
@@ -17,10 +18,20 @@ export class FirebaseUserService
     RemovesUserDtoPort,
     SetsUserDtoPort
 {
-  constructor(private _client: AngularFirestore) {}
+  constructor(
+    private _client: AngularFirestore,
+    private _auth: AngularFireAuth
+  ) {}
 
   add(user: Partial<UserDTO>): void {
     this._client.collection('users').add(user);
+  }
+
+  addToAuth(user: UserDTO): void {
+    this._auth.createUserWithEmailAndPassword(
+      user.userEmail,
+      user.userPassword
+    );
   }
 
   getAll(criterion: Partial<UserDTO>): Observable<UserDTO[]> {

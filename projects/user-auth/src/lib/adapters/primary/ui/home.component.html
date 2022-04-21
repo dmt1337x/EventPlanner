@@ -1,0 +1,14 @@
+<div class="d-flex justify-content-end min-vh-100">
+        <div></div>
+        <div class="w-50 d-flex justify-content-center align-items-center bg-light min-vh-100">
+                <form [formGroup]="login" (ngSubmit)="onLoginSubmited(login)">
+                        <input type="text" formControlName="email" placeholder="Email" class="form-control mb-1">
+                        <input type="password" formControlName="password" placeholder="Password"
+                                class="form-control mb-3">
+                        <input type="submit" value="Login" class="btn-success form-control mb-1">
+                        <input type="button" value="Logout" class="btn-danger form-control" (click)="logout()">
+                </form>
+        </div>
+</div>
+
+{{user$ | async | json}}

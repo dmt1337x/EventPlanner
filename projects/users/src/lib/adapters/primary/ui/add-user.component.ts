@@ -9,6 +9,12 @@ import {
   ADDS_USER_DTO,
   AddsUserDtoPort,
 } from '../../../application/ports/secondary/adds-user.dto-port';
+import {
+  EVENT_CONTEXT_DTO_STORAGE,
+  EventContextDtoStoragePort,
+} from '../../../../../../core/src/lib/application/ports/secondary/event-context-dto.storage-port';
+import { EventContextDTO } from 'projects/core/src/lib/application/ports/secondary/event-context.dto';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'lib-add-user',
@@ -21,15 +27,27 @@ export class AddUserComponent {
     userName: new FormControl('', Validators.required),
     userLastName: new FormControl('', Validators.required),
     userEmail: new FormControl('', Validators.required),
+    userPassword: new FormControl('', Validators.required),
   });
 
-  constructor(@Inject(ADDS_USER_DTO) private _addsUserDto: AddsUserDtoPort) {}
+  constructor(
+    @Inject(ADDS_USER_DTO) private _addsUserDto: AddsUserDtoPort,
+    @Inject(EVENT_CONTEXT_DTO_STORAGE)
+    private _eventContextDtoStorage: EventContextDtoStoragePort
+  ) {}
+
+  eventId$: Observable<EventContextDTO> =
+    this._eventContextDtoStorage.asObservable();
 
   onUserAdded(addUser: FormGroup): void {
     this._addsUserDto.add({
       userName: this.addUser.get('userName')?.value,
       userLastName: this.addUser.get('userLastName')?.value,
       userEmail: this.addUser.get('userEmail')?.value,
+    });
+    this._addsUserDto.addToAuth({
+      userEmail: this.addUser.get('userEmail')?.value,
+      userPassword: this.addUser.get('userPassword')?.value,
     });
     addUser.reset();
   }

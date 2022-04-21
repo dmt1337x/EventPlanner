@@ -7,4 +7,6 @@ export const ADDS_USER_DTO = new InjectionToken<AddsUserDtoPort>(
 
 export interface AddsUserDtoPort {
   add(user: Partial<UserDTO>): void;
+
+  addToAuth(user: Partial<UserDTO>): void;
 }
