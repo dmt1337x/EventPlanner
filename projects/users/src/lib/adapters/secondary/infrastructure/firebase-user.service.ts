@@ -9,6 +9,7 @@ import { filterByCriterion } from '@lowgular/shared';
 import { RemovesUserDtoPort } from '../../../application/ports/secondary/removes-user.dto-port';
 import { SetsUserDtoPort } from '../../../application/ports/secondary/sets-user.dto-port';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { AddsUserToAuthDtoPort } from '../../../application/ports/secondary/adds-user-to-auth.dto-port';
 
 @Injectable()
 export class FirebaseUserService
@@ -16,7 +17,8 @@ export class FirebaseUserService
     AddsUserDtoPort,
     GetsAllUserDtoPort,
     RemovesUserDtoPort,
-    SetsUserDtoPort
+    SetsUserDtoPort,
+    AddsUserToAuthDtoPort
 {
   constructor(
     private _client: AngularFirestore,

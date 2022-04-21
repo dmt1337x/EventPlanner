@@ -15,6 +15,10 @@ import {
 } from '../../../../../../core/src/lib/application/ports/secondary/event-context-dto.storage-port';
 import { EventContextDTO } from 'projects/core/src/lib/application/ports/secondary/event-context.dto';
 import { Observable } from 'rxjs';
+import {
+  AddsUserToAuthDtoPort,
+  ADDS_USER_TO_AUTH_DTO,
+} from '../../../application/ports/secondary/adds-user-to-auth.dto-port';
 
 @Component({
   selector: 'lib-add-user',
@@ -33,7 +37,9 @@ export class AddUserComponent {
   constructor(
     @Inject(ADDS_USER_DTO) private _addsUserDto: AddsUserDtoPort,
     @Inject(EVENT_CONTEXT_DTO_STORAGE)
-    private _eventContextDtoStorage: EventContextDtoStoragePort
+    private _eventContextDtoStorage: EventContextDtoStoragePort,
+    @Inject(ADDS_USER_TO_AUTH_DTO)
+    private _addsUserToAuthDto: AddsUserToAuthDtoPort
   ) {}
 
   eventId$: Observable<EventContextDTO> =
@@ -45,7 +51,7 @@ export class AddUserComponent {
       userLastName: this.addUser.get('userLastName')?.value,
       userEmail: this.addUser.get('userEmail')?.value,
     });
-    this._addsUserDto.addToAuth({
+    this._addsUserToAuthDto.addToAuth({
       userEmail: this.addUser.get('userEmail')?.value,
       userPassword: this.addUser.get('userPassword')?.value,
     });
