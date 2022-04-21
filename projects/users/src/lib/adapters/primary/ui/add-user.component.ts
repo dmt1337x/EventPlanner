@@ -28,7 +28,6 @@ export class AddUserComponent {
     userLastName: new FormControl('', Validators.required),
     userEmail: new FormControl('', Validators.required),
     userPassword: new FormControl('', Validators.required),
-    userEventId: new FormControl(),
   });
 
   constructor(
@@ -45,7 +44,6 @@ export class AddUserComponent {
       userName: this.addUser.get('userName')?.value,
       userLastName: this.addUser.get('userLastName')?.value,
       userEmail: this.addUser.get('userEmail')?.value,
-      userEventId: this.addUser.get('userEventId')?.value,
     });
     this._addsUserDto.addToAuth({
       userEmail: this.addUser.get('userEmail')?.value,
