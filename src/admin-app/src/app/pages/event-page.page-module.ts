@@ -10,7 +10,7 @@ import { TransportPageModule } from './transport.page-module';
 import { AttractionsPageModule } from './attractions.page-module';
 import { EditEventPageModule } from './edit-event.page-module';
 import { UsersPageModule } from './users.page-module';
-import { NavigationComponentModule } from '../../../projects/core/src/lib/adapters/primary/ui/navigation.component-module';
+import { NavigationComponentModule } from '@core';
 
 @NgModule({
   imports: [

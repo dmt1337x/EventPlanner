@@ -6,7 +6,7 @@ import {
   FirebaseEventServiceModule,
   InMemorySearchEventStorageModule,
 } from '@events';
-import { HomeComponentModule } from '../../../projects/events/src/lib/adapters/primary/ui/home.component-module';
+import { HomeComponentModule } from '@events';
 
 @NgModule({
   imports: [
