@@ -13,12 +13,12 @@
 <br>
 
 <div class="w-25">
-    <form [formGroup]="userReg" *ngFor="let user of currentUser$ | async">
-        <input type="text" formControlName="userName" [ngModel]="[user.userName]" class="form-control" readonly>
-        <input type="text" formControlName="userLastName" [ngModel]="[user.userLastName]" class="form-control" readonly>
-        <input type="text" formControlName="userEmail" [ngModel]="[user.userEmail]" class="form-control" readonly>
-        <input type="text" formControlName="id" [ngModel]="[user.id]" class="form-control" hidden readonly>
-        <input type="password" formControlName="password" class="form-control" placeholder="Password">
+    <form [formGroup]="userReg" *ngFor="let user of currentUser$ | async" (ngSubmit)="addParticipantAuth(userReg)">
+        <input type="text" formControlName="userName" [ngModel]="user.userName" class="form-control" readonly>
+        <input type="text" formControlName="userLastName" [ngModel]="user.userLastName" class="form-control" readonly>
+        <input type="text" formControlName="userEmail" [ngModel]="user.userEmail" class="form-control" readonly>
+        <input type="text" formControlName="id" [ngModel]="user.id" class="form-control" hidden readonly>
+        <input type="password" formControlName="userPassword" class="form-control" placeholder="Password">
         <input type="submit" value="Login" class="btn btn-success">
     </form>
 </div>

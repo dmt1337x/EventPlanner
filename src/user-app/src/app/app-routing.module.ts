@@ -23,8 +23,8 @@ const routes: Routes = [
     path: 'registration',
     loadChildren: () => RegistrationPageModule,
     // canActivate: [AuthGuard],
-    canActivate: [AngularFireAuthGuard],
-    data: { authGuardPipe: redirectUnauthorizedToLogin },
+    // canActivate: [AngularFireAuthGuard],
+    // data: { authGuardPipe: redirectUnauthorizedToLogin },
   },
   {
     path: '404',

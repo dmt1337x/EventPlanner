@@ -31,7 +31,7 @@ export class AddUserComponent {
     userName: new FormControl('', Validators.required),
     userLastName: new FormControl('', Validators.required),
     userEmail: new FormControl('', Validators.required),
-    userPassword: new FormControl('', Validators.required),
+    // userPassword: new FormControl('', Validators.required),
   });
 
   constructor(
