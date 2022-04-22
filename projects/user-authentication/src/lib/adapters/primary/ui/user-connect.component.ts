@@ -4,8 +4,6 @@ import {
   ChangeDetectionStrategy,
   Inject,
 } from '@angular/core';
-import { Observable } from 'rxjs';
-import { UserDetailDTO } from '../../../application/ports/secondary/user-detail.dto';
 import {
   GETS_ALL_USER_DETAIL_DTO,
   GetsAllUserDetailDtoPort,
@@ -31,13 +29,11 @@ export class UserConnectComponent {
     private _userDetailStorage: UserDetailDtoStoragePort,
     private _router: Router
   ) {}
+
   readonly userConnect: FormGroup = new FormGroup({
     userName: new FormControl(),
     userLastName: new FormControl(),
     userEmail: new FormControl(),
-  });
-  users$: Observable<UserDetailDTO[]> = this._getsAllUserDetailDto.getAll({
-    userEmail: this.userConnect.get('userEmail')?.value,
   });
 
   userLogin(userConnect: FormGroup) {

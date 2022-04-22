@@ -33,9 +33,6 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UserRegistrationComponent {
-  readonly userEmailForm: FormGroup = new FormGroup({
-    userEmail: new FormControl(),
-  });
   currentUser$: Observable<UserDetailDTO[]> = this._userDetailStorage
     .asObservable()
     .pipe(
@@ -56,7 +53,6 @@ export class UserRegistrationComponent {
     private _setsUserDetailDto: SetsUserDetailDtoPort
   ) {}
 
-  context$: Observable<UserDetailDTO> = this._userDetailStorage.asObservable();
   readonly userReg: FormGroup = new FormGroup({
     userName: new FormControl(),
     userLastName: new FormControl(),
@@ -65,6 +61,7 @@ export class UserRegistrationComponent {
     id: new FormControl(),
     eventId: new FormControl(),
   });
+
   addParticipantAuth(userReg: FormGroup, user: UserDetailDTO): void {
     this._setsUserDetailDto.set({
       userName: this.userReg.get('userName')?.value,

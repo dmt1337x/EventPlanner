@@ -41,6 +41,7 @@ export class UserSetupComponent {
         this._getsAllEventDataDto.getAllDiet({ eventId: data.eventId })
       )
     );
+
   transports$: Observable<EventDataDTO[]> = this._eventContextDtoStoragePort
     .asObservable()
     .pipe(
@@ -50,6 +51,7 @@ export class UserSetupComponent {
         })
       )
     );
+
   attractions$: Observable<EventDataDTO[]> = this._eventContextDtoStoragePort
     .asObservable()
     .pipe(
@@ -59,17 +61,9 @@ export class UserSetupComponent {
         })
       )
     );
+
   currentUser$: Observable<UserContextDTO> =
     this._userContextDtoStoragePort.asObservable();
-  currentEvent$: Observable<EventContextDTO> =
-    this._eventContextDtoStoragePort.asObservable();
-
-  readonly setupParticipant: FormGroup = new FormGroup({
-    dietId: new FormControl(),
-    transportId: new FormControl(),
-    attractionId: new FormControl(),
-    id: new FormControl(),
-  });
 
   constructor(
     @Inject(EVENT_CONTEXT_DTO_STORAGE)
@@ -81,6 +75,13 @@ export class UserSetupComponent {
     @Inject(SETS_PARTICIPANT_DTO)
     private _setsParticipantDto: SetsParticipantDtoPort
   ) {}
+
+  readonly setupParticipant: FormGroup = new FormGroup({
+    dietId: new FormControl(),
+    transportId: new FormControl(),
+    attractionId: new FormControl(),
+    id: new FormControl(),
+  });
 
   onSetupParticipantSubmited(setupParticipant: FormGroup): void {
     this._setsParticipantDto.set({
