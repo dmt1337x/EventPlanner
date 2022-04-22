@@ -70,7 +70,7 @@ export class UserRegistrationComponent {
       userLastName: this.userReg.get('userLastName')?.value,
       userEmail: this.userReg.get('userEmail')?.value,
       id: this.userReg.get('id')?.value,
-      eventId: this.userReg.get('id')?.value,
+      eventId: this.userReg.get('eventId')?.value,
     });
     this._addsToAuthDto.addToAuth({
       userPassword: this.userReg.get('userPassword')?.value,
