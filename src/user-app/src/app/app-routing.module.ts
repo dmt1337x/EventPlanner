@@ -8,8 +8,8 @@ import {
   redirectUnauthorizedTo,
   redirectLoggedInTo,
 } from '@angular/fire/compat/auth-guard';
-import { NotFoundPage } from './pages/not-found.page';
 import { NotFoundPageModule } from './pages/not-found.page-module';
+import { LoginPageModule } from './pages/login.page-module';
 
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['/']);
 
@@ -21,6 +21,10 @@ const routes: Routes = [
   {
     path: 'registration',
     loadChildren: () => RegistrationPageModule,
+  },
+  {
+    path: 'login',
+    loadChildren: () => LoginPageModule,
   },
   {
     path: '404',

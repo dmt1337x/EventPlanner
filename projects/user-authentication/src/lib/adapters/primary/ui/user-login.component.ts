@@ -9,6 +9,13 @@ import {
   LoginDtoPort,
   LOGIN_DTO,
 } from '../../../application/ports/secondary/login-dto-port';
+import {
+  GetCurrentUserDtoPort,
+  GET_CURRENT_USER_DTO,
+} from '../../../application/ports/secondary/gets-current-user.dto-port';
+import { CurrentUserDTO } from '../../../application/ports/secondary/current-user.dto';
+import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'lib-user-login',
@@ -22,7 +29,12 @@ export class UserLoginComponent {
     password: new FormControl(),
   });
 
-  constructor(@Inject(LOGIN_DTO) private _loginEmailPwd: LoginDtoPort) {}
+  constructor(
+    @Inject(LOGIN_DTO) private _loginEmailPwd: LoginDtoPort,
+    @Inject(GET_CURRENT_USER_DTO)
+    private _getCurrentUser: GetCurrentUserDtoPort,
+    private _router: Router
+  ) {}
 
   onLogined(userLogin: FormGroup): void {
     this._loginEmailPwd.login({
@@ -30,4 +42,6 @@ export class UserLoginComponent {
       userPassword: this.userLogin.get('password')?.value,
     });
   }
+  axx$: Observable<CurrentUserDTO | null> =
+    this._getCurrentUser.getCurrentUser();
 }

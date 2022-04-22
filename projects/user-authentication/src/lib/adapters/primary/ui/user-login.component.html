@@ -1,5 +1,9 @@
-<form [formGroup]="userLogin" (ngSubmit)="login(userLogin)">
-    <input type="text" formControlName="email" placeholder="Email">
-    <input type="text" formControlName="password" placeholder="Password">
-    <input type="submit" value="Submit">
-</form>
+<div class="w-25">
+    <form [formGroup]="userLogin" (ngSubmit)="onLogined(userLogin)">
+        <input type="text" formControlName="email" placeholder="Email" class="form-control">
+        <input type="password" formControlName="password" placeholder="Password" class="form-control">
+        <input type="submit" value="Login" class="btn btn-success">
+    </form>
+</div>
+
+{{axx$|async|json}}
