@@ -78,6 +78,6 @@ export class UserRegistrationComponent {
       userPassword: this.userReg.get('userPassword')?.value,
       userEmail: this.userReg.get('userEmail')?.value,
     });
-    this._router.navigate(['/user/' + user.id + '/setup']);
+    this._router.navigate(['/user/' + user.eventId + '/setup']);
   }
 }

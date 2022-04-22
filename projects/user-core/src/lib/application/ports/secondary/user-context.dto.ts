@@ -1,3 +1,3 @@
 export interface UserContextDTO {
-  readonly userId: string;
+  readonly eventId: string;
 }
