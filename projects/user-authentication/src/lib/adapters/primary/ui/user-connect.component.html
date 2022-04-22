@@ -1,0 +1,6 @@
+<form [formGroup]="userConnect" (ngSubmit)="userLogin(userConnect)">
+    <input type="text" formControlName="userName" placeholder="User Name">
+    <input type="text" formControlName="userLastName" placeholder="User Last Name">
+    <input type="text" formControlName="userEmail" placeholder=" User Email">
+    <input type="submit" value="Submit">
+</form>

@@ -6,9 +6,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FirebaseAuthServiceModule } from '@user-auth';
 import { AuthGuard } from 'projects/user-auth/src/lib/adapters/secondary/infrastructure/auth.guard';
 import { environment } from '../environments/environment';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { InMemoryUserLoginContextStorageModule } from 'projects/user-authentication/src/lib/adapters/secondary/infrastructure/in-memory-user-login-context.storage-module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -19,6 +19,7 @@ import { AppComponent } from './app.component';
     FirebaseAuthServiceModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
+    InMemoryUserLoginContextStorageModule,
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent],

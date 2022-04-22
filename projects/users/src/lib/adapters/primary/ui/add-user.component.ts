@@ -52,10 +52,10 @@ export class AddUserComponent {
       userEmail: this.addUser.get('userEmail')?.value,
       eventId: eventId.selectedEventId,
     });
-    this._addsUserToAuthDto.addToAuth({
-      userEmail: this.addUser.get('userEmail')?.value,
-      userPassword: this.addUser.get('userPassword')?.value,
-    });
+    // this._addsUserToAuthDto.addToAuth({
+    //   userEmail: this.addUser.get('userEmail')?.value,
+    //   userPassword: this.addUser.get('userPassword')?.value,
+    // });
     addUser.reset();
   }
 }

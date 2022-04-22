@@ -13,9 +13,10 @@ import { FirebaseAuthService } from 'projects/user-auth/src/lib/adapters/seconda
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RegistrationPage {
-  constructor(private _user: FirebaseAuthService, private _router: Router) {}
-  logout(): void {
-    this._user.logout();
-    this._router.navigate(['/']);
-  }
+  constructor() // private _user: FirebaseAuthService, private _router: Router
+  {}
+  // logout(): void {
+  //   this._user.logout();
+  //   this._router.navigate(['/']);
+  // }
 }
