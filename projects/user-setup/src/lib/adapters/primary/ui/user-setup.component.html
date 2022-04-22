@@ -1,15 +1,39 @@
 <ul>
-    <select>
-        <option [value]="diet.id" *ngFor="let diet of diets$ | async">{{ diet.dietName }}</option>
-    </select>
+
 </ul>
 <ul>
-    <select>
-        <option [value]="" *ngFor="let transport of transports$ | async">{{ transport.transportName }}</option>
-    </select>
+
 </ul>
 <ul>
-    <select>
-        <option [value]="" *ngFor="let atraction of attractions$ | async">{{ atraction.attractionName }}</option>
+
+</ul>
+
+<form [formGroup]="setupParticipant" *ngIf="currentUser$ | async as currentUser"
+    (ngSubmit)="onSetupParticipantSubmited(setupParticipant)">
+
+    <select formControlName="dietId">
+        <option [value]="diet.id" *ngFor="let diet of diets$ | async" [value]="diet.id">{{ diet.dietName }}</option>
     </select>
-</ul><form [formGroup]="setupParticipant"><input type="text" formControlName="dietId" placeholder="Diet Id"><input type="text" formControlName="transportId" placeholder="Transport Id"><input type="text" formControlName="attractionId" placeholder="Attraction Id"><input type="text" formControlName="id" placeholder="Id"><input type="submit" value="Submit"></form>
+
+
+    <select formControlName="transportId">
+        <option [value]="" *ngFor="let transport of transports$ | async" [value]="transport.id">{{
+            transport.transportName }}</option>
+    </select>
+
+
+    <select formControlName="attractionId">
+        <option [value]="" *ngFor="let atraction of attractions$ | async" [value]="atraction.id">{{
+            atraction.attractionName }}</option>
+    </select>
+
+
+    <input type="text" formControlName="id" placeholder="Id" [ngModel]="currentUser.userId" hidden>
+
+    <input type="submit" value="Submit">
+</form>
+
+
+
+{{currentUser$ | async | json}}
+{{currentEvent$ | async | json}}
