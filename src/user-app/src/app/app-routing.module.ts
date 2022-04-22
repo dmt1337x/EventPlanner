@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AuthGuard } from 'projects/user-auth/src/lib/adapters/secondary/infrastructure/auth.guard';
 import { HomePageModule } from './pages/home.page-module';
 import { RegistrationPageModule } from './pages/registration.page-module';
 import {
@@ -22,9 +21,6 @@ const routes: Routes = [
   {
     path: 'registration',
     loadChildren: () => RegistrationPageModule,
-    // canActivate: [AuthGuard],
-    // canActivate: [AngularFireAuthGuard],
-    // data: { authGuardPipe: redirectUnauthorizedToLogin },
   },
   {
     path: '404',
