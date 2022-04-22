@@ -29,12 +29,12 @@ export class FirebaseUserService
     this._client.collection('users').add(user);
   }
 
-  addToAuth(user: UserDTO): void {
-    this._auth.createUserWithEmailAndPassword(
-      user.userEmail,
-      user.userPassword
-    );
-  }
+  // addToAuth(user: UserDTO): void {
+  //   this._auth.createUserWithEmailAndPassword(
+  //     user.userEmail,
+  //     user.userPassword
+  //   );
+  // }
 
   getAll(criterion: Partial<UserDTO>): Observable<UserDTO[]> {
     return this._client

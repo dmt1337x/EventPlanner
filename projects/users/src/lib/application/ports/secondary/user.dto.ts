@@ -3,6 +3,6 @@ export interface UserDTO {
   readonly userName: string;
   readonly userLastName: string;
   readonly userEmail: string;
-  readonly userPassword: string;
+  // readonly userPassword: string;
   readonly eventId: string;
 }

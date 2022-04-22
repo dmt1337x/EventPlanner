@@ -3,12 +3,12 @@ import { FirebaseAppModule } from '@angular/fire/app';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { BrowserModule } from '@angular/platform-browser';
-import { FirebaseAuthServiceModule } from '@user-auth';
-import { AuthGuard } from 'projects/user-auth/src/lib/adapters/secondary/infrastructure/auth.guard';
 import { environment } from '../environments/environment';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { InMemoryUserLoginContextStorageModule } from 'projects/user-authentication/src/lib/adapters/secondary/infrastructure/in-memory-user-login-context.storage-module';
+import { InMemoryUserContextStorageModule } from 'projects/user-core/src/lib/adapters/secondary/infrastructure/in-memory-user-context.storage-module';
+import { InMemoryEventContextStorageModule } from 'projects/user-core/src/lib/adapters/secondary/infrastructure/in-memory-event-context.storage-module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -16,11 +16,13 @@ import { AppComponent } from './app.component';
     BrowserModule,
     AppRoutingModule,
     FirebaseAppModule,
-    FirebaseAuthServiceModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
+    InMemoryUserLoginContextStorageModule,
+    InMemoryUserContextStorageModule,
+    InMemoryEventContextStorageModule,
   ],
-  providers: [AuthGuard],
+  providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

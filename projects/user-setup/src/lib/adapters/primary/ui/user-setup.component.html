@@ -1,0 +1,39 @@
+<ul>
+
+</ul>
+<ul>
+
+</ul>
+<ul>
+
+</ul>
+
+<form [formGroup]="setupParticipant" *ngIf="currentUser$ | async as currentUser"
+    (ngSubmit)="onSetupParticipantSubmited(setupParticipant)">
+
+    <select formControlName="dietId">
+        <option [value]="diet.id" *ngFor="let diet of diets$ | async" [value]="diet.id">{{ diet.dietName }}</option>
+    </select>
+
+
+    <select formControlName="transportId">
+        <option [value]="" *ngFor="let transport of transports$ | async" [value]="transport.id">{{
+            transport.transportName }}</option>
+    </select>
+
+
+    <select formControlName="attractionId">
+        <option [value]="" *ngFor="let atraction of attractions$ | async" [value]="atraction.id">{{
+            atraction.attractionName }}</option>
+    </select>
+
+
+    <input type="text" formControlName="id" placeholder="Id" [ngModel]="currentUser.userId" hidden>
+
+    <input type="submit" value="Submit">
+</form>
+
+
+
+{{currentUser$ | async | json}}
+{{currentEvent$ | async | json}}

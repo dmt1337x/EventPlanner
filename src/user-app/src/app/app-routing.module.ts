@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AuthGuard } from 'projects/user-auth/src/lib/adapters/secondary/infrastructure/auth.guard';
 import { HomePageModule } from './pages/home.page-module';
 import { RegistrationPageModule } from './pages/registration.page-module';
 import {
@@ -9,8 +8,9 @@ import {
   redirectUnauthorizedTo,
   redirectLoggedInTo,
 } from '@angular/fire/compat/auth-guard';
-import { NotFoundPage } from './pages/not-found.page';
 import { NotFoundPageModule } from './pages/not-found.page-module';
+import { LoginPageModule } from './pages/login.page-module';
+import { UserPageModule } from './pages/user.page-module';
 
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['/']);
 
@@ -22,9 +22,14 @@ const routes: Routes = [
   {
     path: 'registration',
     loadChildren: () => RegistrationPageModule,
-    // canActivate: [AuthGuard],
-    canActivate: [AngularFireAuthGuard],
-    data: { authGuardPipe: redirectUnauthorizedToLogin },
+  },
+  // {
+  //   path: 'login',
+  //   loadChildren: () => LoginPageModule,
+  // },
+  {
+    path: 'user/:userId/:eventId',
+    loadChildren: () => UserPageModule,
   },
   {
     path: '404',
