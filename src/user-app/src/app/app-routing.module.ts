@@ -28,7 +28,7 @@ const routes: Routes = [
   //   loadChildren: () => LoginPageModule,
   // },
   {
-    path: 'user/:eventId',
+    path: 'user/:uderId/:eventId',
     loadChildren: () => UserPageModule,
   },
   {

@@ -1,1 +1,15 @@
-{{axx$|async|json}}
+<ul>
+    <select>
+        <option [value]="diet.id" *ngFor="let diet of diets$ | async">{{ diet.dietName }}</option>
+    </select>
+</ul>
+<ul>
+    <select>
+        <option [value]="" *ngFor="let transport of transports$ | async">{{ transport.transportName }}</option>
+    </select>
+</ul>
+<ul>
+    <select>
+        <option [value]="" *ngFor="let atraction of attractions$ | async">{{ atraction.attractionName }}</option>
+    </select>
+</ul><form [formGroup]="setupParticipant"><input type="text" formControlName="dietId" placeholder="Diet Id"><input type="text" formControlName="transportId" placeholder="Transport Id"><input type="text" formControlName="attractionId" placeholder="Attraction Id"><input type="text" formControlName="id" placeholder="Id"><input type="submit" value="Submit"></form>

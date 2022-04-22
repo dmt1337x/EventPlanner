@@ -7,10 +7,16 @@ import {
 import { Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import {
-  USER_CONTEXT_DTO_STORAGE,
-  UserContextDtoStoragePort,
-} from 'projects/user-core/src/lib/application/ports/secondary/user-context-dto.storage-port';
-import { UserContextDTO } from 'projects/user-core/src/lib/application/ports/secondary/user-context.dto';
+  EVENT_CONTEXT_DTO_STORAGE,
+  EventContextDtoStoragePort,
+} from 'projects/user-core/src/lib/application/ports/secondary/event-context-dto.storage-port';
+import { EventContextDTO } from 'projects/user-core/src/lib/application/ports/secondary/event-context.dto';
+import { EventDataDTO } from '../../../application/ports/secondary/event-data.dto';
+import {
+  GETS_ALL_EVENT_DATA_DTO,
+  GetsAllEventDataDtoPort,
+} from '../../../application/ports/secondary/gets-all-event-data.dto-port';
+import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'lib-user-setup',
@@ -19,11 +25,42 @@ import { UserContextDTO } from 'projects/user-core/src/lib/application/ports/sec
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UserSetupComponent {
-  constructor(
-    @Inject(USER_CONTEXT_DTO_STORAGE)
-    private _userContextDtoStoragePort: UserContextDtoStoragePort
-  ) {}
+  diets$: Observable<EventDataDTO[]> = this._eventContextDtoStoragePort
+    .asObservable()
+    .pipe(
+      switchMap((data) =>
+        this._getsAllEventDataDto.getAllDiet({ eventId: data.eventId })
+      )
+    );
+  transports$: Observable<EventDataDTO[]> = this._eventContextDtoStoragePort
+    .asObservable()
+    .pipe(
+      switchMap((data) =>
+        this._getsAllEventDataDto.getAllTransport({
+          eventId: data.eventId,
+        })
+      )
+    );
+  attractions$: Observable<EventDataDTO[]> = this._eventContextDtoStoragePort
+    .asObservable()
+    .pipe(
+      switchMap((data) =>
+        this._getsAllEventDataDto.getAllAttraction({
+          eventId: data.eventId,
+        })
+      )
+    );
+  readonly setupParticipant: FormGroup = new FormGroup({
+    dietId: new FormControl(),
+    transportId: new FormControl(),
+    attractionId: new FormControl(),
+    id: new FormControl(),
+  });
 
-  axx$: Observable<UserContextDTO> =
-    this._userContextDtoStoragePort.asObservable();
+  constructor(
+    @Inject(EVENT_CONTEXT_DTO_STORAGE)
+    private _eventContextDtoStoragePort: EventContextDtoStoragePort,
+    @Inject(GETS_ALL_EVENT_DATA_DTO)
+    private _getsAllEventDataDto: GetsAllEventDataDtoPort
+  ) {}
 }

@@ -5,18 +5,23 @@ import { UserPage } from './user.page';
 import { SetupPageModule } from './setup.page-module';
 import { UserContextResolverModule } from 'projects/user-core/src/lib/adapters/primary/ui/user-context.resolver-module';
 import { UserContextResolver } from 'projects/user-core/src/lib/adapters/primary/ui/user-context.resolver';
+import { EventContextResolver } from 'projects/user-core/src/lib/adapters/primary/ui/event-context.resolver';
+import { EventContextResolverModule } from '@user-core';
 
 @NgModule({
   imports: [
     CommonModule,
     UserContextResolverModule,
+    EventContextResolverModule,
     RouterModule.forChild([
       {
         path: '',
         component: UserPage,
         resolve: {
-          id: UserContextResolver,
+          userId: UserContextResolver,
+          eventId: EventContextResolver,
         },
+
         children: [
           {
             path: 'setup',

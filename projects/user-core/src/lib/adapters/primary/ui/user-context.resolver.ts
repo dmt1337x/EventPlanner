@@ -21,7 +21,7 @@ export class UserContextResolver implements Resolve<boolean> {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<boolean> {
-    this._userContextDtoStorage.next({ eventId: route.params['eventId'] });
+    this._userContextDtoStorage.next({ userId: route.params['userId'] });
     return of(true);
   }
 }

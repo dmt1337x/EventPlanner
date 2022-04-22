@@ -8,6 +8,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { InMemoryUserLoginContextStorageModule } from 'projects/user-authentication/src/lib/adapters/secondary/infrastructure/in-memory-user-login-context.storage-module';
 import { InMemoryUserContextStorageModule } from 'projects/user-core/src/lib/adapters/secondary/infrastructure/in-memory-user-context.storage-module';
+import { InMemoryEventContextStorageModule } from 'projects/user-core/src/lib/adapters/secondary/infrastructure/in-memory-event-context.storage-module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -19,6 +20,7 @@ import { InMemoryUserContextStorageModule } from 'projects/user-core/src/lib/ada
     AngularFireAuthModule,
     InMemoryUserLoginContextStorageModule,
     InMemoryUserContextStorageModule,
+    InMemoryEventContextStorageModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
