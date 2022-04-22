@@ -7,6 +7,7 @@ import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { InMemoryUserLoginContextStorageModule } from 'projects/user-authentication/src/lib/adapters/secondary/infrastructure/in-memory-user-login-context.storage-module';
+import { InMemoryUserContextStorageModule } from 'projects/user-core/src/lib/adapters/secondary/infrastructure/in-memory-user-context.storage-module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -17,6 +18,7 @@ import { InMemoryUserLoginContextStorageModule } from 'projects/user-authenticat
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     InMemoryUserLoginContextStorageModule,
+    InMemoryUserContextStorageModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

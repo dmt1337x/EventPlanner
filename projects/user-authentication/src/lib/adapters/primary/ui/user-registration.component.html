@@ -1,5 +1,5 @@
 <div class="w-25">
-    <form [formGroup]="userReg" *ngFor="let user of currentUser$ | async" (ngSubmit)="addParticipantAuth(userReg)">
+    <form [formGroup]="userReg" *ngFor="let user of currentUser$ | async" (ngSubmit)="addParticipantAuth(userReg,user)">
         <input type="text" formControlName="userName" [ngModel]="user.userName" class="form-control" readonly>
         <input type="text" formControlName="userLastName" [ngModel]="user.userLastName" class="form-control" readonly>
         <input type="text" formControlName="userEmail" [ngModel]="user.userEmail" class="form-control" readonly>

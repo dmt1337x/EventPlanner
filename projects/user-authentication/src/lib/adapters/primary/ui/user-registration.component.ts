@@ -24,6 +24,7 @@ import {
   AddsToAuthDtoPort,
   ADDS_TO_AUTH_DTO,
 } from '../../../application/ports/secondary/adds-to-auth.dto-port';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'lib-user-registration',
@@ -51,7 +52,8 @@ export class UserRegistrationComponent {
     @Inject(ADDS_PARTICIPANT_DTO)
     private _addsParticipantDto: AddsParticipantDtoPort,
     @Inject(ADDS_TO_AUTH_DTO)
-    private _addsToAuthDto: AddsToAuthDtoPort
+    private _addsToAuthDto: AddsToAuthDtoPort,
+    private _router: Router
   ) {}
 
   context$: Observable<UserDetailDTO> = this._userDetailStorage.asObservable();
@@ -64,7 +66,7 @@ export class UserRegistrationComponent {
     eventId: new FormControl(),
   });
 
-  addParticipantAuth(userReg: FormGroup): void {
+  addParticipantAuth(userReg: FormGroup, user: UserDetailDTO): void {
     this._addsParticipantDto.addParticipant({
       userName: this.userReg.get('userName')?.value,
       userLastName: this.userReg.get('userLastName')?.value,
@@ -76,5 +78,6 @@ export class UserRegistrationComponent {
       userPassword: this.userReg.get('userPassword')?.value,
       userEmail: this.userReg.get('userEmail')?.value,
     });
+    this._router.navigate(['/user/' + user.id + '/setup']);
   }
 }
