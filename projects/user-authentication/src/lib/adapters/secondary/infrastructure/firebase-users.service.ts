@@ -8,13 +8,18 @@ import { filterByCriterion } from '@lowgular/shared';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AddsParticipantDtoPort } from '../../../application/ports/secondary/adds-participant.dto-port';
 import { AddsToAuthDtoPort } from '../../../application/ports/secondary/adds-to-auth.dto-port';
+import { LoginDtoPort } from '../../../application/ports/secondary/login-dto-port';
+import { GetCurrentUserDtoPort } from '../../../application/ports/secondary/gets-current-user.dto-port';
+import { CurrentUserDTO } from '../../../application/ports/secondary/current-user.dto';
 
 @Injectable()
 export class FirebaseUsersService
   implements
     GetsAllUserDetailDtoPort,
     AddsParticipantDtoPort,
-    AddsToAuthDtoPort
+    AddsToAuthDtoPort,
+    LoginDtoPort,
+    GetCurrentUserDtoPort
 {
   constructor(
     private _client: AngularFirestore,
@@ -36,5 +41,14 @@ export class FirebaseUsersService
       userDetail.userEmail,
       userDetail.userPassword
     );
+  }
+  login(userDetail: UserDetailDTO): void {
+    this._auth_client.signInWithEmailAndPassword(
+      userDetail.userEmail,
+      userDetail.userPassword
+    );
+  }
+  getCurrentUser(): Observable<CurrentUserDTO | null> {
+    return this._auth_client.user;
   }
 }
