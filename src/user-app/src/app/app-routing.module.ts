@@ -27,6 +27,10 @@ const routes: Routes = [
     loadChildren: () => LoginPageModule,
   },
   {
+    path: 'user/:userId',
+    loadChildren: () => LoginPageModule,
+  },
+  {
     path: '404',
     loadChildren: () => NotFoundPageModule,
   },
