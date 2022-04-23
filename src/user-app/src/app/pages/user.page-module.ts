@@ -7,6 +7,7 @@ import { UserContextResolverModule } from 'projects/user-core/src/lib/adapters/p
 import { UserContextResolver } from 'projects/user-core/src/lib/adapters/primary/ui/user-context.resolver';
 import { EventContextResolver } from 'projects/user-core/src/lib/adapters/primary/ui/event-context.resolver';
 import { EventContextResolverModule } from '@user-core';
+import { CompletePageModule } from './complete.page-module';
 
 @NgModule({
   imports: [
@@ -27,6 +28,10 @@ import { EventContextResolverModule } from '@user-core';
             path: 'setup',
             loadChildren: () => SetupPageModule,
           },
+          // {
+          //   path: 'complete',
+          //   loadChildren: () => CompletePageModule,
+          // },
         ],
       },
     ]),

@@ -1,19 +1,23 @@
-<div>
-    <form [formGroup]="setupParticipant" *ngIf="currentUser$ | async as currentUser"
-        (ngSubmit)="onSetupParticipantSubmited(setupParticipant)">
+<div class=" bg-light rounded-3 p-3 min-vh-100">
+    <h1 class="my-5 fw-bolder ms-5">Complete your registration</h1>
 
-        <select formControlName="dietId">
+    <form [formGroup]="setupParticipant" *ngIf="currentUser$ | async as currentUser"
+        (ngSubmit)="onSetupParticipantSubmited(setupParticipant)" class="w-50 mt-5 ms-5">
+
+        <label for="" class=" form-label fw-bold fs-5">Diet</label>
+        <select formControlName="dietId" class=" form-select mb-5">
+
             <option [value]="diet.id" *ngFor="let diet of diets$ | async" [value]="diet.id">{{ diet.dietName }}</option>
         </select>
 
-
-        <select formControlName="transportId">
+        <label for="" class=" form-label fw-bold fs-5">Transport</label>
+        <select formControlName="transportId" class="form-select mb-5">
             <option [value]="" *ngFor="let transport of transports$ | async" [value]="transport.id">{{
                 transport.transportName }}</option>
         </select>
 
-
-        <select formControlName="attractionId">
+        <label for="" class=" form-label fw-bold fs-5">Attraction</label>
+        <select formControlName="attractionId" class=" form-select mb-5">
             <option [value]="" *ngFor="let atraction of attractions$ | async" [value]="atraction.id">{{
                 atraction.attractionName }}</option>
         </select>
@@ -21,6 +25,8 @@
 
         <input type="text" formControlName="id" placeholder="Id" [ngModel]="currentUser.userId" hidden>
 
-        <input type="submit" value="Submit">
+        <div class=" d-flex justify-content-center"><input type="submit" value="Confirm registration"
+                class="btn btn-primary fw-bolder w-100">
+        </div>
     </form>
 </div>

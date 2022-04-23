@@ -26,6 +26,7 @@ import {
   SETS_PARTICIPANT_DTO,
   SetsParticipantDtoPort,
 } from '../../../application/ports/secondary/sets-participant.dto-port';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'lib-user-setup',
@@ -73,7 +74,8 @@ export class UserSetupComponent {
     @Inject(GETS_ALL_EVENT_DATA_DTO)
     private _getsAllEventDataDto: GetsAllEventDataDtoPort,
     @Inject(SETS_PARTICIPANT_DTO)
-    private _setsParticipantDto: SetsParticipantDtoPort
+    private _setsParticipantDto: SetsParticipantDtoPort,
+    private _router: Router
   ) {}
 
   readonly setupParticipant: FormGroup = new FormGroup({
@@ -90,5 +92,6 @@ export class UserSetupComponent {
       attractionId: this.setupParticipant.get('attractionId')?.value,
       id: this.setupParticipant.get('id')?.value,
     });
+    this._router.navigate(['/complete']);
   }
 }

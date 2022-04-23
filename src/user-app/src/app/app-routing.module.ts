@@ -10,6 +10,7 @@ import {
 } from '@angular/fire/compat/auth-guard';
 import { NotFoundPageModule } from './pages/not-found.page-module';
 import { UserPageModule } from './pages/user.page-module';
+import { CompletePageModule } from './pages/complete.page-module';
 
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['/']);
 
@@ -21,6 +22,10 @@ const routes: Routes = [
   {
     path: 'registration',
     loadChildren: () => RegistrationPageModule,
+  },
+  {
+    path: 'complete',
+    loadChildren: () => CompletePageModule,
   },
 
   {
