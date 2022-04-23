@@ -1,11 +1,14 @@
 <div class="w-50">
     <div *ngFor="let user of users$ | async" class="mb-3">
-        <div class="d-flex justify-content-between">
+        <div class="d-flex justify-content-between text-su">
 
-            <div class="fw-bold">
+            <div class="fw-bold"
+                [ngClass]=" {'text-success' : user.confirmed==true,'text-danger' : user.confirmed==false}">
                 <div>
                     <span class="bi-person-circle"></span>
-                    <span class="fs-5 ms-3">{{user.userName + " " + user.userLastName}}</span>
+                    <span class="fs-5 ms-3">{{user.userName
+                        + " " +
+                        user.userLastName}}</span>
                 </div>
                 <div>
                     <span class="fs-6 ms-5">{{user.userEmail}}</span>

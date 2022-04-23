@@ -91,6 +91,7 @@ export class UserSetupComponent {
       transportId: this.setupParticipant.get('transportId')?.value,
       attractionId: this.setupParticipant.get('attractionId')?.value,
       id: this.setupParticipant.get('id')?.value,
+      confirmed: true,
     });
     this._router.navigate(['/complete']);
   }

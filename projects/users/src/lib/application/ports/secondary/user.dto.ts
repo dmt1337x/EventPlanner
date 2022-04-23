@@ -5,4 +5,5 @@ export interface UserDTO {
   readonly userEmail: string;
   // readonly userPassword: string;
   readonly eventId: string;
+  readonly confirmed: boolean;
 }
