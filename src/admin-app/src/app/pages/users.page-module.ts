@@ -2,14 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { UsersPage } from './users.page';
-import {
-  InMemorySearchStorageModule,
-  InMemoryUserIdStorageModule,
-  AddUserComponentModule,
-  FirebaseUserServiceModule,
-  ListUsersComponentModule,
-  SearchUserComponentModule,
-} from '@users';
+import { AddUserComponentModule } from '../../../../../projects/users/src/lib/adapters/primary/ui/add-user.component-module';
+import { FirebaseUserServiceModule } from '../../../../../projects/users/src/lib/adapters/secondary/infrastructure/firebase-user.service-module';
 
 @NgModule({
   imports: [
@@ -22,10 +16,6 @@ import {
     ]),
     AddUserComponentModule,
     FirebaseUserServiceModule,
-    ListUsersComponentModule,
-    SearchUserComponentModule,
-    InMemoryUserIdStorageModule,
-    InMemorySearchStorageModule,
   ],
   declarations: [UsersPage],
   providers: [],

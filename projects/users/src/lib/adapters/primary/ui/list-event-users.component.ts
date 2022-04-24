@@ -31,14 +31,19 @@ import {
   SEARCH_USER_DTO_STORAGE,
   SearchUserDtoStoragePort,
 } from '../../../application/ports/secondary/search-user-dto.storage-port';
+import {
+  EVENT_CONTEXT_DTO_STORAGE,
+  EventContextDtoStoragePort,
+} from 'projects/core/src/lib/application/ports/secondary/event-context-dto.storage-port';
+import { EventDTO } from '../../../application/ports/secondary/event.dto';
 
 @Component({
-  selector: 'lib-list-users',
-  templateUrl: './list-users.component.html',
+  selector: 'lib-list-event-users',
+  templateUrl: './list-event-users.component.html',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ListUsersComponent {
+export class ListEventUsersComponent {
   userIdContext$: Observable<UserIdDTO> = this._userIdDtoStorage.asObservable();
 
   readonly editUser: FormGroup = new FormGroup({
@@ -58,6 +63,13 @@ export class ListUsersComponent {
         )
       )
     );
+  users2$: Observable<UserDTO[]> = this._eventContextDtoStorage
+    .asObservable()
+    .pipe(
+      switchMap((data) =>
+        this._getsAllUserDto.getAll({ eventId: data.selectedEventId })
+      )
+    );
 
   constructor(
     @Inject(GETS_ALL_USER_DTO) private _getsAllUserDto: GetsAllUserDtoPort,
@@ -67,7 +79,9 @@ export class ListUsersComponent {
     private _userIdDtoStorage: UserIdDtoStoragePort,
     private modalService: BsModalService,
     @Inject(SEARCH_USER_DTO_STORAGE)
-    private _searchUserDtoStoragePort: SearchUserDtoStoragePort
+    private _searchUserDtoStoragePort: SearchUserDtoStoragePort,
+    @Inject(EVENT_CONTEXT_DTO_STORAGE)
+    private _eventContextDtoStorage: EventContextDtoStoragePort
   ) {}
 
   modalRef?: BsModalRef;

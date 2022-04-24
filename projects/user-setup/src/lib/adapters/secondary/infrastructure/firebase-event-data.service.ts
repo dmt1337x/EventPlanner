@@ -38,6 +38,6 @@ export class FirebaseEventDataService
   }
 
   set(participant: Partial<ParticipantDTO>): void {
-    this._client.doc('users/' + participant.id).update(participant);
+    this._client.doc('participants/' + participant.id).update(participant);
   }
 }

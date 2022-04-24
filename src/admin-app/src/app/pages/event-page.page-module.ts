@@ -9,7 +9,7 @@ import { EventDetailPageModule } from './event-detail.page-module';
 import { TransportPageModule } from './transport.page-module';
 import { AttractionsPageModule } from './attractions.page-module';
 import { EditEventPageModule } from './edit-event.page-module';
-import { UsersPageModule } from './users.page-module';
+import { EventUsersPageModule } from './event-users.page-module';
 import { NavigationComponentModule } from '@core';
 
 @NgModule({
@@ -46,8 +46,8 @@ import { NavigationComponentModule } from '@core';
             loadChildren: () => EditEventPageModule,
           },
           {
-            path: 'users',
-            loadChildren: () => UsersPageModule,
+            path: 'event-users',
+            loadChildren: () => EventUsersPageModule,
           },
         ],
       },

@@ -22,9 +22,10 @@ import {
 } from '../../../application/ports/secondary/adds-to-auth.dto-port';
 import { Router } from '@angular/router';
 import {
-  SETS_USER_DETAIL_DTO,
-  SetsUserDetailDtoPort,
-} from '../../../application/ports/secondary/sets-user-detail.dto-port';
+  ADDS_PARTICIPANT_DTO,
+  AddsParticipantDtoPort,
+} from '../../../application/ports/secondary/adds-participant.dto-port';
+import { GetsAllParticipantDtoPort } from '../../../application/ports/secondary/gets-all-participant.dto-port';
 
 @Component({
   selector: 'lib-user-registration',
@@ -40,6 +41,15 @@ export class UserRegistrationComponent {
         this._getsAllUserDetailDto.getAll({ userEmail: data.userEmail })
       )
     );
+  participant$: Observable<UserDetailDTO[]> = this._userDetailStorage
+    .asObservable()
+    .pipe(
+      switchMap((data) =>
+        this._getsAllParticipantDto.getAllParticipant({
+          userEmail: data.userEmail,
+        })
+      )
+    );
 
   constructor(
     @Inject(GETS_ALL_USER_DETAIL_DTO)
@@ -48,9 +58,11 @@ export class UserRegistrationComponent {
     private _userDetailStorage: UserDetailDtoStoragePort,
     @Inject(ADDS_TO_AUTH_DTO)
     private _addsToAuthDto: AddsToAuthDtoPort,
+    @Inject(ADDS_PARTICIPANT_DTO)
+    private _addsParticipantDto: AddsParticipantDtoPort,
     private _router: Router,
-    @Inject(SETS_USER_DETAIL_DTO)
-    private _setsUserDetailDto: SetsUserDetailDtoPort
+    @Inject(GETS_ALL_USER_DETAIL_DTO)
+    private _getsAllParticipantDto: GetsAllParticipantDtoPort
   ) {}
 
   readonly userReg: FormGroup = new FormGroup({
@@ -63,17 +75,21 @@ export class UserRegistrationComponent {
   });
 
   addParticipantAuth(userReg: FormGroup, user: UserDetailDTO): void {
-    this._setsUserDetailDto.set({
+    this._addsParticipantDto.addParticipant({
       userName: this.userReg.get('userName')?.value,
       userLastName: this.userReg.get('userLastName')?.value,
       userEmail: this.userReg.get('userEmail')?.value,
-      id: this.userReg.get('id')?.value,
       eventId: this.userReg.get('eventId')?.value,
     });
     this._addsToAuthDto.addToAuth({
       userPassword: this.userReg.get('userPassword')?.value,
       userEmail: this.userReg.get('userEmail')?.value,
     });
-    this._router.navigate(['/user/' + user.id + '/' + user.eventId + '/setup']);
+  }
+
+  axx(participant: UserDetailDTO, user: UserDetailDTO) {
+    this._router.navigate([
+      '/user/' + participant.id + '/' + user.eventId + '/setup',
+    ]);
   }
 }

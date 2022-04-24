@@ -7,11 +7,16 @@ import { UserDetailDTO } from '../../../application/ports/secondary/user-detail.
 import { filterByCriterion } from '@lowgular/shared';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AddsToAuthDtoPort } from '../../../application/ports/secondary/adds-to-auth.dto-port';
-import { SetsUserDetailDtoPort } from '../../../application/ports/secondary/sets-user-detail.dto-port';
+import { AddsParticipantDtoPort } from '../../../application/ports/secondary/adds-participant.dto-port';
+import { GetsAllParticipantDtoPort } from '../../../application/ports/secondary/gets-all-participant.dto-port';
 
 @Injectable()
 export class FirebaseUsersService
-  implements GetsAllUserDetailDtoPort, AddsToAuthDtoPort, SetsUserDetailDtoPort
+  implements
+    GetsAllUserDetailDtoPort,
+    AddsToAuthDtoPort,
+    AddsParticipantDtoPort,
+    GetsAllParticipantDtoPort
 {
   constructor(
     private _client: AngularFirestore,
@@ -25,6 +30,15 @@ export class FirebaseUsersService
       .pipe(map((data: UserDetailDTO[]) => filterByCriterion(data, criterion)));
   }
 
+  getAllParticipant(
+    criterion: Partial<UserDetailDTO>
+  ): Observable<UserDetailDTO[]> {
+    return this._client
+      .collection<UserDetailDTO>('participants')
+      .valueChanges({ idField: 'id' })
+      .pipe(map((data: UserDetailDTO[]) => filterByCriterion(data, criterion)));
+  }
+
   addToAuth(userDetail: UserDetailDTO): void {
     this._auth_client.createUserWithEmailAndPassword(
       userDetail.userEmail,
@@ -32,7 +46,7 @@ export class FirebaseUsersService
     );
   }
 
-  set(userDetail: Partial<UserDetailDTO>): void {
-    this._client.doc('user-details/' + userDetail.id).update(userDetail);
+  addParticipant(userDetail: Partial<UserDetailDTO>): void {
+    this._client.collection('participants').add(userDetail);
   }
 }

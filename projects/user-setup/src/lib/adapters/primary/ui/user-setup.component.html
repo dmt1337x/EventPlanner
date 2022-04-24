@@ -7,18 +7,18 @@
         <label for="" class=" form-label fw-bold fs-5">Diet</label>
         <select formControlName="dietId" class=" form-select mb-5">
 
-            <option [value]="diet.id" *ngFor="let diet of diets$ | async" [value]="diet.id">{{ diet.dietName }}</option>
+            <option *ngFor="let diet of diets$ | async" [value]="diet.id">{{ diet.dietName }}</option>
         </select>
 
         <label for="" class=" form-label fw-bold fs-5">Transport</label>
         <select formControlName="transportId" class="form-select mb-5">
-            <option [value]="" *ngFor="let transport of transports$ | async" [value]="transport.id">{{
+            <option *ngFor="let transport of transports$ | async" [value]="transport.id">{{
                 transport.transportName }}</option>
         </select>
 
         <label for="" class=" form-label fw-bold fs-5">Attraction</label>
         <select formControlName="attractionId" class=" form-select mb-5">
-            <option [value]="" *ngFor="let atraction of attractions$ | async" [value]="atraction.id">{{
+            <option *ngFor="let atraction of attractions$ | async" [value]="atraction.id">{{
                 atraction.attractionName }}</option>
         </select>
 

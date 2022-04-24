@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ListUsersComponent } from './list-users.component';
+import { ListEventUsersComponent } from './list-event-users.component';
 import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [CommonModule, ReactiveFormsModule],
-  declarations: [ListUsersComponent],
+  declarations: [ListEventUsersComponent],
   providers: [],
-  exports: [ListUsersComponent],
+  exports: [ListEventUsersComponent],
 })
-export class ListUsersComponentModule {}
+export class ListEventUsersComponentModule {}

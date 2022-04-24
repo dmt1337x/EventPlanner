@@ -23,8 +23,6 @@ import { Router } from '@angular/router';
 })
 export class UserConnectComponent {
   constructor(
-    @Inject(GETS_ALL_USER_DETAIL_DTO)
-    private _getsAllUserDetailDto: GetsAllUserDetailDtoPort,
     @Inject(USER_DETAIL_DTO_STORAGE)
     private _userDetailStorage: UserDetailDtoStoragePort,
     private _router: Router

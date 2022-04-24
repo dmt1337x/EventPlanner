@@ -9,6 +9,7 @@
         <input type="text" formControlName="eventId" [ngModel]="user.eventId" class="form-control" hidden readonly>
         <input type="password" formControlName="userPassword" class="form-control mb-4" placeholder="Password">
         <div class=" d-flex justify-content-center"><input type="submit" value="Update"
-                class="btn btn-primary fw-bolder w-75"></div>
+                class="btn btn-primary fw-bolder w-75">
+            <button *ngFor="let participant of participant$ | async" (click)="axx(participant,user)"> LOGIN</button>
+        </div>
     </form>
-</div>

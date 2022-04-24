@@ -8,8 +8,8 @@ import { GetsAllUserDtoPort } from '../../../application/ports/secondary/gets-al
 import { filterByCriterion } from '@lowgular/shared';
 import { RemovesUserDtoPort } from '../../../application/ports/secondary/removes-user.dto-port';
 import { SetsUserDtoPort } from '../../../application/ports/secondary/sets-user.dto-port';
-import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { AddsUserToAuthDtoPort } from '../../../application/ports/secondary/adds-user-to-auth.dto-port';
+import { GetsAllEventDtoPort } from '../../../application/ports/secondary/gets-all-event.dto-port';
+import { EventDTO } from '../../../application/ports/secondary/event.dto';
 
 @Injectable()
 export class FirebaseUserService
@@ -18,23 +18,13 @@ export class FirebaseUserService
     GetsAllUserDtoPort,
     RemovesUserDtoPort,
     SetsUserDtoPort,
-    AddsUserToAuthDtoPort
+    GetsAllEventDtoPort
 {
-  constructor(
-    private _client: AngularFirestore,
-    private _auth: AngularFireAuth
-  ) {}
+  constructor(private _client: AngularFirestore) {}
 
   add(user: Partial<UserDTO>): void {
     this._client.collection('users').add(user);
   }
-
-  // addToAuth(user: UserDTO): void {
-  //   this._auth.createUserWithEmailAndPassword(
-  //     user.userEmail,
-  //     user.userPassword
-  //   );
-  // }
 
   getAll(criterion: Partial<UserDTO>): Observable<UserDTO[]> {
     return this._client
@@ -44,10 +34,17 @@ export class FirebaseUserService
   }
 
   remove(id: string): void {
-    this._client.doc('users/' + id).delete();
+    this._client.doc('participants/' + id).delete();
   }
 
   set(user: Partial<UserDTO>): void {
-    this._client.doc('users/' + user.id).update(user);
+    this._client.doc('participants/' + user.id).update(user);
+  }
+
+  getAllEvent(criterion: Partial<EventDTO>): Observable<EventDTO[]> {
+    return this._client
+      .collection<EventDTO>('events')
+      .valueChanges({ idField: 'id' })
+      .pipe(map((data: EventDTO[]) => filterByCriterion(data, criterion)));
   }
 }
