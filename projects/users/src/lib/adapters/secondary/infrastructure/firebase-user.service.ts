@@ -28,7 +28,7 @@ export class FirebaseUserService
 
   getAll(criterion: Partial<UserDTO>): Observable<UserDTO[]> {
     return this._client
-      .collection<UserDTO>('users')
+      .collection<UserDTO>('participants')
       .valueChanges({ idField: 'id' })
       .pipe(map((data: UserDTO[]) => filterByCriterion(data, criterion)));
   }
