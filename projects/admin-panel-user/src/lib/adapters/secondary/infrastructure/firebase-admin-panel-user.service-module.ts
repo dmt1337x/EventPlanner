@@ -5,6 +5,7 @@ import { GETS_ALL_EVENT_DTO } from '../../../application/ports/secondary/gets-al
 import { ADDS_USER_DTO } from '../../../application/ports/secondary/adds-user.dto-port';
 import { GETS_ALL_USER_DTO } from '../../../application/ports/secondary/gets-all-user.dto-port';
 import { SETS_USER_DTO } from '../../../application/ports/secondary/sets-user.dto-port';
+import { REMOVES_USER_DTO } from '../../../application/ports/secondary/removes-user.dto-port';
 
 @NgModule({
   imports: [AngularFirestoreModule],
@@ -15,6 +16,7 @@ import { SETS_USER_DTO } from '../../../application/ports/secondary/sets-user.dt
     { provide: ADDS_USER_DTO, useExisting: FirebaseAdminPanelUserService },
     { provide: GETS_ALL_USER_DTO, useExisting: FirebaseAdminPanelUserService },
     { provide: SETS_USER_DTO, useExisting: FirebaseAdminPanelUserService },
+    { provide: REMOVES_USER_DTO, useExisting: FirebaseAdminPanelUserService },
   ],
   exports: [],
 })

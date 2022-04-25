@@ -22,7 +22,8 @@
           do {{toDate(event.eventDate[1]) | date: 'dd.MM.YYYY'}}
         </div>
         <div class="col">
-          <button [routerLink]="'events/' + event.id + '/event-detail'" class="  btn-secondary text-black btn-sm">
+          <button [routerLink]="'events/' + event.id + '/event-detail'"
+            class="  btn-secondary text-black btn-sm fw-bold">
             EDIT
           </button>
         </div>

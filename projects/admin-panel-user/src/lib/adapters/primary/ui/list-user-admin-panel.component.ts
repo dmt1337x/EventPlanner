@@ -22,6 +22,10 @@ import {
 } from '../../../application/ports/secondary/sets-user.dto-port';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import {
+  REMOVES_USER_DTO,
+  RemovesUserDtoPort,
+} from '../../../application/ports/secondary/removes-user.dto-port';
 
 @Component({
   selector: 'lib-list-user-admin-panel',
@@ -46,7 +50,8 @@ export class ListUserAdminPanelComponent {
     @Inject(USER_ID_DTO_STORAGE)
     private _userIdDtoStorage: UserIdDtoStoragePort,
     @Inject(SETS_USER_DTO) private _setsUserDto: SetsUserDtoPort,
-    private modalService: BsModalService
+    private modalService: BsModalService,
+    @Inject(REMOVES_USER_DTO) private _removesUserDto: RemovesUserDtoPort
   ) {}
 
   modalRef?: BsModalRef;
@@ -65,5 +70,9 @@ export class ListUserAdminPanelComponent {
       id: editUser.get('id')?.value,
     });
     this.modalRef?.hide();
+  }
+
+  onUserRemoveed(user: UserDTO): void {
+    this._removesUserDto.remove(user.id);
   }
 }

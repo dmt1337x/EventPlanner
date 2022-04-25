@@ -9,6 +9,7 @@ import { AddsUserDtoPort } from '../../../application/ports/secondary/adds-user.
 import { UserDTO } from '../../../application/ports/secondary/user.dto';
 import { GetsAllUserDtoPort } from '../../../application/ports/secondary/gets-all-user.dto-port';
 import { SetsUserDtoPort } from '../../../application/ports/secondary/sets-user.dto-port';
+import { RemovesUserDtoPort } from '../../../application/ports/secondary/removes-user.dto-port';
 
 @Injectable()
 export class FirebaseAdminPanelUserService
@@ -16,7 +17,8 @@ export class FirebaseAdminPanelUserService
     GetsAllEventDtoPort,
     AddsUserDtoPort,
     GetsAllUserDtoPort,
-    SetsUserDtoPort
+    SetsUserDtoPort,
+    RemovesUserDtoPort
 {
   constructor(private _client: AngularFirestore) {}
 
@@ -40,5 +42,9 @@ export class FirebaseAdminPanelUserService
 
   set(user: Partial<UserDTO>): void {
     this._client.doc('users/' + user.id).update(user);
+  }
+
+  remove(id: string): void {
+    this._client.doc('users/' + id).delete();
   }
 }

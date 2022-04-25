@@ -27,8 +27,7 @@ export class AddUserAdminPanelComponent {
     userName: new FormControl('', Validators.required),
     userLastName: new FormControl('', Validators.required),
     userEmail: new FormControl('', Validators.required),
-    eventId: new FormControl('', Validators.required),
-    confirmed: new FormControl(),
+    eventId: new FormControl(),
   });
   events$: Observable<EventDTO[]> = this._getsAllEventDto.getAllEvents();
 
