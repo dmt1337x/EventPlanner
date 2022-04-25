@@ -9,7 +9,7 @@ import {
   FirebaseUserServiceModule,
   ListEventUsersComponentModule,
   SearchUserComponentModule,
-} from '@users';
+} from '@event-users';
 
 @NgModule({
   imports: [

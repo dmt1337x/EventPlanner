@@ -35,7 +35,6 @@ import {
   EVENT_CONTEXT_DTO_STORAGE,
   EventContextDtoStoragePort,
 } from 'projects/core/src/lib/application/ports/secondary/event-context-dto.storage-port';
-import { EventDTO } from '../../../application/ports/secondary/event.dto';
 
 @Component({
   selector: 'lib-list-event-users',

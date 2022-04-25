@@ -26,7 +26,7 @@
       "@transport": ["projects/transport/src/index.ts"],
       "@attractions": ["projects/attractions/src/index.ts"],
       "@events-detail": ["projects/events-detail/src/index.ts"],
-      "@users": ["projects/users/src/index.ts"],
+      "@event-users": ["projects/event-users/src/index.ts"],
       "@user-auth": ["projects/user-auth/src/index.ts"],
       "@user-events-reg": ["projects/user-events-reg/src/index.ts"],
       "@user-authentication": ["projects/user-authentication/src/index.ts"],

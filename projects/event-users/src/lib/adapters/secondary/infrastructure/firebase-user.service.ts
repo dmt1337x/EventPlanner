@@ -8,8 +8,6 @@ import { GetsAllUserDtoPort } from '../../../application/ports/secondary/gets-al
 import { filterByCriterion } from '@lowgular/shared';
 import { RemovesUserDtoPort } from '../../../application/ports/secondary/removes-user.dto-port';
 import { SetsUserDtoPort } from '../../../application/ports/secondary/sets-user.dto-port';
-import { GetsAllEventDtoPort } from '../../../application/ports/secondary/gets-all-event.dto-port';
-import { EventDTO } from '../../../application/ports/secondary/event.dto';
 
 @Injectable()
 export class FirebaseUserService
@@ -17,8 +15,7 @@ export class FirebaseUserService
     AddsUserDtoPort,
     GetsAllUserDtoPort,
     RemovesUserDtoPort,
-    SetsUserDtoPort,
-    GetsAllEventDtoPort
+    SetsUserDtoPort
 {
   constructor(private _client: AngularFirestore) {}
 
@@ -39,12 +36,5 @@ export class FirebaseUserService
 
   set(user: Partial<UserDTO>): void {
     this._client.doc('participants/' + user.id).update(user);
-  }
-
-  getAllEvent(criterion: Partial<EventDTO>): Observable<EventDTO[]> {
-    return this._client
-      .collection<EventDTO>('events')
-      .valueChanges({ idField: 'id' })
-      .pipe(map((data: EventDTO[]) => filterByCriterion(data, criterion)));
   }
 }
