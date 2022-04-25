@@ -5,6 +5,7 @@ import { UsersPage } from './users.page';
 import { AddUserAdminPanelComponentModule } from '../../../../../projects/admin-panel-user/src/lib/adapters/primary/ui/add-user-admin-panel.component-module';
 import { FirebaseAdminPanelUserServiceModule } from '../../../../../projects/admin-panel-user/src/lib/adapters/secondary/infrastructure/firebase-admin-panel-user.service-module';
 import { ListUserAdminPanelComponentModule } from '../../../../../projects/admin-panel-user/src/lib/adapters/primary/ui/list-user-admin-panel.component-module';
+import { InMemoryUserIdStorageModule } from '@admin-panel-user';
 
 @NgModule({
   imports: [
@@ -17,7 +18,8 @@ import { ListUserAdminPanelComponentModule } from '../../../../../projects/admin
     ]),
     AddUserAdminPanelComponentModule,
     FirebaseAdminPanelUserServiceModule,
-    ListUserAdminPanelComponentModule
+    ListUserAdminPanelComponentModule,
+    InMemoryUserIdStorageModule,
   ],
   declarations: [UsersPage],
   providers: [],

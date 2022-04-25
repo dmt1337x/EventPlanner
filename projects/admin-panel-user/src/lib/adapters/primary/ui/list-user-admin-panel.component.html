@@ -15,14 +15,37 @@
             </div>
 
 
+
             <div class="d-flex">
                 <div class="me-3">
-                    <span class="bi-pencil-fill"></span>
+                    <span class="bi-pencil-fill" (click)="openModal(template,user)"></span>
                 </div>
-                <div>
-                    <span class=" bi-trash3"></span>
-                </div>
+                <!-- <div>
+                    <span class=" bi-trash3" (click)="onUserRemoveed(user)"></span>
+                </div> -->
             </div>
 
 
         </div>
+
+
+
+        <ng-template #template>
+            <div *ngIf="userIdContext$ | async as id ">
+                <div class="modal-body text-center">
+                    <span>Edit user: </span>
+                </div>
+                <form [formGroup]="editUser" (ngSubmit)="onUserEdited(editUser)" class="p-3">
+                    <input type="text" formControlName="userName" placeholder="Name" class="form-control mb-1"
+                        [ngModel]="user.userName">
+                    <input type="text" formControlName="userLastName" placeholder="Last name" class="form-control mb-1"
+                        [ngModel]="user.userLastName">
+                    <input type="text" formControlName="userEmail" placeholder="Email" class="form-control"
+                        [ngModel]="user.userEmail">
+                    <input type="text" formControlName="id" [ngModel]="id.selectedUserId" hidden>
+                    <input type="submit" value="Save" class="btn btn-success mt-3 rounded rounded-3"
+                        [disabled]="!editUser.valid">
+                </form>
+            </div>
+        </ng-template>
+    </div>
