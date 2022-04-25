@@ -85,13 +85,20 @@ export class UserSetupComponent {
     id: new FormControl(),
   });
 
-  onSetupParticipantSubmited(setupParticipant: FormGroup): void {
+  attend(setupParticipant: FormGroup): void {
     this._setsParticipantDto.set({
       dietId: this.setupParticipant.get('dietId')?.value,
       transportId: this.setupParticipant.get('transportId')?.value,
       attractionId: this.setupParticipant.get('attractionId')?.value,
       id: this.setupParticipant.get('id')?.value,
       confirmed: true,
+    });
+    this._router.navigate(['/complete']);
+  }
+  cantAttend(setupParticipant: FormGroup): void {
+    this._setsParticipantDto.set({
+      id: this.setupParticipant.get('id')?.value,
+      confirmed: false,
     });
     this._router.navigate(['/complete']);
   }
