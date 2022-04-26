@@ -5,9 +5,9 @@ import {
 } from '@angular/core';
 
 @Component({
-  selector: 'app-user-page',
-  templateUrl: './user.page.html',
+  selector: 'lib-user-login',
+  templateUrl: './user-login.component.html',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class UserPage {}
+export class UserLoginComponent {}

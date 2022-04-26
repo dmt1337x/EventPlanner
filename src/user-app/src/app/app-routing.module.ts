@@ -9,8 +9,8 @@ import {
   redirectLoggedInTo,
 } from '@angular/fire/compat/auth-guard';
 import { NotFoundPageModule } from './pages/not-found.page-module';
-import { UserPageModule } from './pages/user.page-module';
 import { CompletePageModule } from './pages/complete.page-module';
+import { LoginPageModule } from './pages/login.page-module';
 
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['/']);
 
@@ -27,14 +27,13 @@ const routes: Routes = [
     path: 'complete',
     loadChildren: () => CompletePageModule,
   },
-
-  {
-    path: 'user/:userId/:eventId',
-    loadChildren: () => UserPageModule,
-  },
   {
     path: '404',
     loadChildren: () => NotFoundPageModule,
+  },
+  {
+    path: 'login',
+    loadChildren: () => LoginPageModule,
   },
   {
     path: '**',

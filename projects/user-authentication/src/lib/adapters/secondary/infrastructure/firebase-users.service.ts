@@ -8,15 +8,13 @@ import { filterByCriterion } from '@lowgular/shared';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AddsToAuthDtoPort } from '../../../application/ports/secondary/adds-to-auth.dto-port';
 import { AddsParticipantDtoPort } from '../../../application/ports/secondary/adds-participant.dto-port';
-import { GetsAllParticipantDtoPort } from '../../../application/ports/secondary/gets-all-participant.dto-port';
 
 @Injectable()
 export class FirebaseUsersService
   implements
     GetsAllUserDetailDtoPort,
     AddsToAuthDtoPort,
-    AddsParticipantDtoPort,
-    GetsAllParticipantDtoPort
+    AddsParticipantDtoPort
 {
   constructor(
     private _client: AngularFirestore,
@@ -26,15 +24,6 @@ export class FirebaseUsersService
   getAll(criterion: Partial<UserDetailDTO>): Observable<UserDetailDTO[]> {
     return this._client
       .collection<UserDetailDTO>('users')
-      .valueChanges({ idField: 'id' })
-      .pipe(map((data: UserDetailDTO[]) => filterByCriterion(data, criterion)));
-  }
-
-  getAllParticipant(
-    criterion: Partial<UserDetailDTO>
-  ): Observable<UserDetailDTO[]> {
-    return this._client
-      .collection<UserDetailDTO>('participants')
       .valueChanges({ idField: 'id' })
       .pipe(map((data: UserDetailDTO[]) => filterByCriterion(data, criterion)));
   }

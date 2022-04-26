@@ -4,7 +4,7 @@ import {
   ChangeDetectionStrategy,
   Inject,
 } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import {
   AddsUserDtoPort,
@@ -23,13 +23,15 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AddUserAdminPanelComponent {
-  readonly addUser: FormGroup = new FormGroup({
+  events$: Observable<EventDTO[]> = this._getsAllEventDto.getAllEvents();
+
+  addUser: FormGroup = new FormGroup({
     userName: new FormControl('', Validators.required),
     userLastName: new FormControl('', Validators.required),
     userEmail: new FormControl('', Validators.required),
     eventId: new FormControl(),
+    // eventId: new FormArray([new FormControl()]),
   });
-  events$: Observable<EventDTO[]> = this._getsAllEventDto.getAllEvents();
 
   constructor(
     @Inject(ADDS_USER_DTO) private _addsUserDto: AddsUserDtoPort,
@@ -37,6 +39,7 @@ export class AddUserAdminPanelComponent {
   ) {}
 
   onUserAdded(addUser: FormGroup): void {
+    // console.log(addUser.getRawValue());
     this._addsUserDto.add({
       userName: this.addUser.get('userName')?.value,
       userLastName: this.addUser.get('userLastName')?.value,

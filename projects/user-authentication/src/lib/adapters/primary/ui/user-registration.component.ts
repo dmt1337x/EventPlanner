@@ -25,7 +25,6 @@ import {
   ADDS_PARTICIPANT_DTO,
   AddsParticipantDtoPort,
 } from '../../../application/ports/secondary/adds-participant.dto-port';
-import { GetsAllParticipantDtoPort } from '../../../application/ports/secondary/gets-all-participant.dto-port';
 
 @Component({
   selector: 'lib-user-registration',
@@ -41,15 +40,6 @@ export class UserRegistrationComponent {
         this._getsAllUserDetailDto.getAll({ userEmail: data.userEmail })
       )
     );
-  participant$: Observable<UserDetailDTO[]> = this._userDetailStorage
-    .asObservable()
-    .pipe(
-      switchMap((data) =>
-        this._getsAllParticipantDto.getAllParticipant({
-          userEmail: data.userEmail,
-        })
-      )
-    );
 
   constructor(
     @Inject(GETS_ALL_USER_DETAIL_DTO)
@@ -60,9 +50,7 @@ export class UserRegistrationComponent {
     private _addsToAuthDto: AddsToAuthDtoPort,
     @Inject(ADDS_PARTICIPANT_DTO)
     private _addsParticipantDto: AddsParticipantDtoPort,
-    private _router: Router,
-    @Inject(GETS_ALL_USER_DETAIL_DTO)
-    private _getsAllParticipantDto: GetsAllParticipantDtoPort
+    private _router: Router
   ) {}
 
   readonly userReg: FormGroup = new FormGroup({
@@ -85,11 +73,7 @@ export class UserRegistrationComponent {
       userPassword: this.userReg.get('userPassword')?.value,
       userEmail: this.userReg.get('userEmail')?.value,
     });
-  }
-
-  axx(participant: UserDetailDTO, user: UserDetailDTO) {
-    this._router.navigate([
-      '/user/' + participant.id + '/' + user.eventId + '/setup',
-    ]);
+    this.userReg.reset();
+    this._router.navigateByUrl('login');
   }
 }
