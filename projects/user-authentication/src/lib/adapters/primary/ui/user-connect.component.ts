@@ -5,10 +5,6 @@ import {
   Inject,
 } from '@angular/core';
 import {
-  GETS_ALL_USER_DETAIL_DTO,
-  GetsAllUserDetailDtoPort,
-} from '../../../application/ports/secondary/gets-all-user-detail.dto-port';
-import {
   USER_DETAIL_DTO_STORAGE,
   UserDetailDtoStoragePort,
 } from '../../../application/ports/secondary/user-detail-dto.storage-port';
@@ -28,15 +24,15 @@ export class UserConnectComponent {
     private _router: Router
   ) {}
 
-  readonly userConnect: FormGroup = new FormGroup({
+  readonly userConnectForm: FormGroup = new FormGroup({
     userName: new FormControl(),
     userLastName: new FormControl(),
     userEmail: new FormControl(),
   });
 
-  userLogin(userConnect: FormGroup) {
+  onUserConnected(userConnectForm: FormGroup) {
     this._userDetailStorage.next({
-      userEmail: this.userConnect.get('userEmail')?.value,
+      userEmail: this.userConnectForm.get('userEmail')?.value,
     });
     this._router.navigateByUrl('/registration');
   }

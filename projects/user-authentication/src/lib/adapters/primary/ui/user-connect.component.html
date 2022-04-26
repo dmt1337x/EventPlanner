@@ -1,6 +1,6 @@
 <div class=" bg-light rounded-3 p-3 min-vh-100 d-flex justify-content-center align-items-center">
 
-    <form [formGroup]="userConnect" (ngSubmit)="userLogin(userConnect)">
+    <form [formGroup]="userConnectForm" (ngSubmit)="onUserConnected(userConnectForm)">
         <label for="userName" class="form-label fw-bold">First name</label>
         <input type="text" id="userName" formControlName="userName" class="form-control mb-4">
         <label for="userName" class="form-label fw-bold">Last name</label>
@@ -11,4 +11,3 @@
                 class="btn btn-primary fw-bolder w-75">
         </div>
     </form>
-</div>

@@ -8,13 +8,16 @@ import { filterByCriterion } from '@lowgular/shared';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AddsToAuthDtoPort } from '../../../application/ports/secondary/adds-to-auth.dto-port';
 import { AddsParticipantDtoPort } from '../../../application/ports/secondary/adds-participant.dto-port';
+import { AddsCredentialsDtoPort } from '../../../application/ports/secondary/adds-credentials.dto-port';
+import { CredentialsDTO } from '../../../application/ports/secondary/credentials.dto';
 
 @Injectable()
 export class FirebaseUsersService
   implements
     GetsAllUserDetailDtoPort,
     AddsToAuthDtoPort,
-    AddsParticipantDtoPort
+    AddsParticipantDtoPort,
+    AddsCredentialsDtoPort
 {
   constructor(
     private _client: AngularFirestore,
@@ -37,5 +40,12 @@ export class FirebaseUsersService
 
   addParticipant(userDetail: Partial<UserDetailDTO>): void {
     this._client.collection('participants').add(userDetail);
+  }
+
+  addCredentials(credentials: CredentialsDTO): void {
+    this._auth_client.signInWithEmailAndPassword(
+      credentials.email,
+      credentials.password
+    );
   }
 }

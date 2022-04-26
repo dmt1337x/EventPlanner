@@ -1,0 +1,17 @@
+<div class=" bg-light rounded-3 p-3 min-vh-100 d-flex justify-content-center align-items-center">
+
+    <form [formGroup]="loginForm" (ngSubmit)="onLogined(loginForm)">
+        <input type="text" formControlName="email" placeholder="Email" class="form-control mb-2">
+        <input type="password" formControlName="password" placeholder="Password" class="form-control mb-4">
+        <div class=" d-flex justify-content-center">
+            <input type="submit" value="Login" class="btn btn-primary fw-bolder w-75">
+        </div>
+    </form>
+
+
+</div>
+
+<div class="container bg-danger">
+    <h5>Email: {{test()}}</h5>
+    <button (click)="logoutTest()">LOGOUT</button>
+</div>
