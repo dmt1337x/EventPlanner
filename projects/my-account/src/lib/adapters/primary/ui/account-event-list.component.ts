@@ -5,7 +5,7 @@ import {
   ChangeDetectionStrategy,
   Inject,
 } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, pipe } from 'rxjs';
 import { ParticipantDTO } from '../../../application/ports/secondary/participant.dto';
 import {
   GETS_ALL_PARTICIPANT_DTO,
@@ -63,7 +63,7 @@ export class AccountEventListComponent {
     this._userContextStorage.asObservable();
 
   logout() {
-    return getAuth().signOut();
+    return getAuth().signOut(), this._router.navigate(['/login']);
   }
 
   constructor(
