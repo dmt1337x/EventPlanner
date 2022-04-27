@@ -1,7 +1,7 @@
 <div class=" bg-light rounded-3 p-3 min-vh-100">
     <h1 class="my-5 fw-bolder ms-5">Complete your registration</h1>
 
-    <form [formGroup]="setupParticipant" *ngIf="currentUser$ | async as currentUser" class="w-50 mt-5 ms-5">
+    <form [formGroup]="setupParticipant" class="w-50 mt-5 ms-5" *ngIf="participantId$|async as participant">
 
         <label for="" class=" form-label fw-bold fs-5">Diet</label>
         <select formControlName="dietId" class=" form-select mb-5">
@@ -22,10 +22,11 @@
         </select>
 
 
-        <input type="text" formControlName="id" placeholder="Id" [ngModel]="currentUser.userId" hidden>
+        <input type="text" formControlName="id" placeholder="Id" [ngModel]="participant.participantId" hidden>
 
         <div class=" justify-content-center">
-            <button (click)="attend(setupParticipant)" class="btn btn-primary fw-bolder w-100 mb-2">I confirm my
+            <button (click)="attend(setupParticipant,participant)" class="btn btn-primary fw-bolder w-100 mb-2">I
+                confirm my
                 attendance</button>
             <div class=" d-flex justify-content-center">
                 <button (click)="cantAttend(setupParticipant)" class="btn btn-danger fw-bolder w-100">I can't
@@ -33,4 +34,9 @@
             </div>
         </div>
     </form>
+    {{x}}
+
 </div>
+<ul>
+    <li *ngFor="let item of participantTest$ | async">{{ item | json }}</li>
+</ul>

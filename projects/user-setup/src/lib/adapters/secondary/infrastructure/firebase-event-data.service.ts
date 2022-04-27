@@ -7,10 +7,14 @@ import { map } from 'rxjs/operators';
 import { filterByCriterion } from '@lowgular/shared';
 import { SetsParticipantDtoPort } from '../../../application/ports/secondary/sets-participant.dto-port';
 import { ParticipantDTO } from '../../../application/ports/secondary/participant.dto';
+import { GetsAllParticipantDtoPort } from '../../../application/ports/secondary/gets-all-participant.dto-port';
 
 @Injectable()
 export class FirebaseEventDataService
-  implements GetsAllEventDataDtoPort, SetsParticipantDtoPort
+  implements
+    GetsAllEventDataDtoPort,
+    SetsParticipantDtoPort,
+    GetsAllParticipantDtoPort
 {
   constructor(private _client: AngularFirestore) {}
 
@@ -39,5 +43,14 @@ export class FirebaseEventDataService
 
   set(participant: Partial<ParticipantDTO>): void {
     this._client.doc('participants/' + participant.id).update(participant);
+  }
+
+  getAll(criterion: Partial<ParticipantDTO>): Observable<ParticipantDTO[]> {
+    return this._client
+      .collection<ParticipantDTO>('participants')
+      .valueChanges({ idField: 'id' })
+      .pipe(
+        map((data: ParticipantDTO[]) => filterByCriterion(data, criterion))
+      );
   }
 }

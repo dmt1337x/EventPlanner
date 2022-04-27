@@ -4,4 +4,5 @@ export interface ParticipantDTO {
   readonly transportId: string;
   readonly attractionId: string;
   readonly confirmed: boolean;
+  readonly userEmail: string;
 }

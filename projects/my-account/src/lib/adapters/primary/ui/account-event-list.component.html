@@ -1,0 +1,10 @@
+<div *ngFor="let currentParticipant of currentParticipant$ | async">
+    <button (click)="eventListDownloaded(currentParticipant)">Pobierz listę eventów</button>
+</div>
+
+{{aaa$ | async | json}}
+{{bbb$ | async | json}}
+
+<div *ngIf="participantId$ | async as participant">
+    <button *ngIf="eventId$|async as event" (click)="goTo(participant, event)"> AAAA</button>
+</div>

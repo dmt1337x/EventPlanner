@@ -11,6 +11,9 @@ import {
 import { NotFoundPageModule } from './pages/not-found.page-module';
 import { CompletePageModule } from './pages/complete.page-module';
 import { LoginPageModule } from './pages/login.page-module';
+import { MyAccountPageModule } from './pages/my-account.page-module';
+import { EventsPageModule } from './pages/events.page-module';
+import { SetupPageModule } from './pages/setup.page-module';
 
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['/']);
 
@@ -22,6 +25,14 @@ const routes: Routes = [
   {
     path: 'registration',
     loadChildren: () => RegistrationPageModule,
+  },
+  {
+    path: 'my-account',
+    loadChildren: () => MyAccountPageModule,
+  },
+  {
+    path: 'my-account/:participantId/:eventId/setup',
+    loadChildren: () => SetupPageModule,
   },
   {
     path: 'complete',

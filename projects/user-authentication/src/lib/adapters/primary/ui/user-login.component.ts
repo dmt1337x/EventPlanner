@@ -10,6 +10,11 @@ import {
 } from '../../../application/ports/secondary/adds-credentials.dto-port';
 import { FormGroup, FormControl } from '@angular/forms';
 import { getAuth } from 'firebase/auth';
+import { Router } from '@angular/router';
+import {
+  UserContextDtoStoragePort,
+  USER_CONTEXT_DTO_STORAGE,
+} from 'projects/user-core/src/lib/application/ports/secondary/user-context-dto.storage-port';
 
 @Component({
   selector: 'lib-user-login',
@@ -25,7 +30,10 @@ export class UserLoginComponent {
 
   constructor(
     @Inject(ADDS_CREDENTIALS_DTO)
-    private _addsCredentialsDto: AddsCredentialsDtoPort
+    private _addsCredentialsDto: AddsCredentialsDtoPort,
+    @Inject(USER_CONTEXT_DTO_STORAGE)
+    private _userContextStorage: UserContextDtoStoragePort,
+    private _router: Router
   ) {}
 
   onLogined(loginForm: FormGroup): void {
@@ -33,6 +41,10 @@ export class UserLoginComponent {
       email: this.loginForm.get('email')?.value,
       password: this.loginForm.get('password')?.value,
     });
+    this._userContextStorage.next({
+      userEmail: this.loginForm.get('email')?.value,
+    });
+    this._router.navigateByUrl('my-account');
   }
   test(): any {
     return getAuth().currentUser?.email;
