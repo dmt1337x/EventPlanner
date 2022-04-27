@@ -69,12 +69,6 @@ export class UserSetupComponent {
       )
     );
 
-  x = getAuth().currentUser?.email;
-
-  // participantTest$: Observable<ParticipantDTO[]> =
-  //   this._getsAllParticipantDto.getAll(
-  //     this.x !== null ? { userEmail: this.x } : undefined
-  //   );
   participantTest$: Observable<ParticipantDTO[]> =
     this._getsAllParticipantDto.getAll({ userEmail: 'd@r.pl' });
 

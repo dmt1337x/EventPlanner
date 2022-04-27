@@ -28,6 +28,7 @@ import {
 import { EventContextDTO } from 'projects/user-core/src/lib/application/ports/secondary/event-context.dto';
 import { switchMap } from 'rxjs/operators';
 import { Router } from '@angular/router';
+
 @Component({
   selector: 'lib-account-event-list',
   templateUrl: './account-event-list.component.html',
@@ -35,31 +36,46 @@ import { Router } from '@angular/router';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AccountEventListComponent {
-  currentParticipant$: Observable<ParticipantDTO[]> = this._userContextStorage
-    .asObservable()
-    .pipe(
-      switchMap((data) =>
-        this._getsAllParticipantDto.getParticipant({
-          userEmail: data.userEmail,
-        })
-      )
+  // currentParticipant$: Observable<ParticipantDTO[]> = this._userContextStorage
+  //   .asObservable()
+  //   .pipe(
+  //     switchMap((data) =>
+  //       this._getsAllParticipantDto.getParticipant({
+  //         userEmail: data.userEmail,
+  //       })
+  //     )
+  //   );
+
+  emailAuth = getAuth().currentUser?.email;
+
+  currentParticipant2$: Observable<ParticipantDTO[]> =
+    this._getsAllParticipantDto.getParticipant(
+      this.emailAuth !== null ? { userEmail: this.emailAuth } : {}
     );
 
   eventListDownloaded(currentParticipant$: ParticipantDTO) {
     this._eventContextStorage.next({ eventId: currentParticipant$.eventId });
     this._userContextStorage.next({ participantId: currentParticipant$.id });
   }
-
+  // TEST
   aaa$: Observable<EventContextDTO> = this._eventContextStorage.asObservable();
   bbb$: Observable<UserContextDTO> = this._userContextStorage.asObservable();
+  event$: Observable<EventDTO[]> = this._eventContextStorage
+    .asObservable()
+    .pipe(
+      switchMap((data) =>
+        this._getsAllEventDto.getEvents({ id: data.eventId[0] })
+      )
+    );
+  // TEST
 
   eventId$: Observable<EventContextDTO> =
     this._eventContextStorage.asObservable();
   participantId$: Observable<UserContextDTO> =
     this._userContextStorage.asObservable();
 
-  goTo(participant: UserContextDTO, event: EventContextDTO) {
-    console.log(participant.participantId, event.eventId);
+  goToSetup(participant: UserContextDTO, event: EventContextDTO) {
+    // console.log(participant.participantId, event.eventId);
     this._router.navigate([
       'my-account/' +
         participant.participantId +
