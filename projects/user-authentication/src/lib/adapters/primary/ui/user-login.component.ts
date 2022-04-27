@@ -9,7 +9,6 @@ import {
   AddsCredentialsDtoPort,
 } from '../../../application/ports/secondary/adds-credentials.dto-port';
 import { FormGroup, FormControl } from '@angular/forms';
-import { getAuth } from 'firebase/auth';
 import { Router } from '@angular/router';
 import {
   UserContextDtoStoragePort,
@@ -41,9 +40,9 @@ export class UserLoginComponent {
       email: this.loginForm.get('email')?.value,
       password: this.loginForm.get('password')?.value,
     });
-    // this._userContextStorage.next({
-    //   userEmail: this.loginForm.get('email')?.value,
-    // });
+    this._userContextStorage.next({
+      userEmail: this.loginForm.get('email')?.value,
+    });
     this._router.navigateByUrl('my-account');
   }
 }

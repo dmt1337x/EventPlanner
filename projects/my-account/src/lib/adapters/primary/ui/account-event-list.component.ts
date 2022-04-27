@@ -36,53 +36,34 @@ import { Router } from '@angular/router';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AccountEventListComponent {
-  // currentParticipant$: Observable<ParticipantDTO[]> = this._userContextStorage
-  //   .asObservable()
-  //   .pipe(
-  //     switchMap((data) =>
-  //       this._getsAllParticipantDto.getParticipant({
-  //         userEmail: data.userEmail,
-  //       })
-  //     )
-  //   );
-
-  emailAuth = getAuth().currentUser?.email;
-
-  currentParticipant2$: Observable<ParticipantDTO[]> =
-    this._getsAllParticipantDto.getParticipant(
-      this.emailAuth !== null ? { userEmail: this.emailAuth } : {}
-    );
-
-  eventListDownloaded(currentParticipant$: ParticipantDTO) {
-    this._eventContextStorage.next({ eventId: currentParticipant$.eventId });
-    this._userContextStorage.next({ participantId: currentParticipant$.id });
-  }
-  // TEST
-  aaa$: Observable<EventContextDTO> = this._eventContextStorage.asObservable();
-  bbb$: Observable<UserContextDTO> = this._userContextStorage.asObservable();
-  event$: Observable<EventDTO[]> = this._eventContextStorage
+  currentParticipant$: Observable<ParticipantDTO[]> = this._userContextStorage
     .asObservable()
     .pipe(
       switchMap((data) =>
-        this._getsAllEventDto.getEvents({ id: data.eventId[0] })
+        this._getsAllParticipantDto.getParticipant({
+          userEmail: data.userEmail,
+        })
       )
     );
-  // TEST
+
+  eventListDownloaded(currentParticipant: ParticipantDTO) {
+    this._eventContextStorage.next({ eventId: currentParticipant.eventId });
+    this._userContextStorage.next({ participantId: currentParticipant.id });
+  }
+
+  events$: Observable<EventDTO[]> = this._eventContextStorage
+    .asObservable()
+    .pipe(
+      switchMap((data) => this._getsAllEventDto.getEvents({ id: data.eventId }))
+    );
 
   eventId$: Observable<EventContextDTO> =
     this._eventContextStorage.asObservable();
   participantId$: Observable<UserContextDTO> =
     this._userContextStorage.asObservable();
 
-  goToSetup(participant: UserContextDTO, event: EventContextDTO) {
-    // console.log(participant.participantId, event.eventId);
-    this._router.navigate([
-      'my-account/' +
-        participant.participantId +
-        '/' +
-        event.eventId +
-        '/setup',
-    ]);
+  logout() {
+    return getAuth().signOut();
   }
 
   constructor(
@@ -95,4 +76,22 @@ export class AccountEventListComponent {
     @Inject(GETS_ALL_EVENT_DTO) private _getsAllEventDto: GetsAllEventDtoPort,
     private _router: Router
   ) {}
+
+  // emailAuth = getAuth().currentUser?.email;
+
+  // currentParticipant2$: Observable<ParticipantDTO[]> =
+  //   this._getsAllParticipantDto.getParticipant(
+  //     this.emailAuth !== null ? { userEmail: this.emailAuth } : {}
+  //   );
+
+  // goToSetup(participant: UserContextDTO, event: EventContextDTO) {
+  //   // console.log(participant.participantId, event.eventId);
+  //   this._router.navigate([
+  //     'my-account/' +
+  //       participant.participantId +
+  //       '/' +
+  //       event.eventId +
+  //       '/setup',
+  //   ]);
+  // }
 }
