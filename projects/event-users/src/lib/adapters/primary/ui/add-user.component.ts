@@ -44,7 +44,7 @@ export class AddUserComponent {
       userName: this.addUser.get('userName')?.value,
       userLastName: this.addUser.get('userLastName')?.value,
       userEmail: this.addUser.get('userEmail')?.value,
-      eventId: eventId.selectedEventId,
+      confirmed: false,
     });
     addUser.reset();
   }

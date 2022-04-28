@@ -51,22 +51,15 @@ export class ListEventUsersComponent {
     userEmail: new FormControl('', Validators.required),
     id: new FormControl(),
   });
-  // users$: Observable<UserDTO[]> = this._searchUserDtoStoragePort
-  //   .asObservable()
-  //   .pipe(
-  //     switchMap((data) =>
-  //       this._getsAllUserDto.getAll(
-  //         data && data.userName && data.userName.length
-  //           ? { userName: data.userName }
-  //           : undefined
-  //       )
-  //     )
-  //   );
-  users2$: Observable<UserDTO[]> = this._eventContextDtoStorage
+  users$: Observable<UserDTO[]> = this._searchUserDtoStoragePort
     .asObservable()
     .pipe(
       switchMap((data) =>
-        this._getsAllUserDto.getAll({ eventId: data.selectedEventId })
+        this._getsAllUserDto.getAll(
+          data && data.userName && data.userName.length
+            ? { userName: data.userName }
+            : undefined
+        )
       )
     );
 

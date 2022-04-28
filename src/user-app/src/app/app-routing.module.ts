@@ -22,22 +22,7 @@ const routes: Routes = [
     path: '',
     loadChildren: () => HomePageModule,
   },
-  {
-    path: 'registration',
-    loadChildren: () => RegistrationPageModule,
-  },
-  {
-    path: 'my-account',
-    loadChildren: () => MyAccountPageModule,
-  },
-  {
-    path: 'my-account/:participantId/:eventId/setup',
-    loadChildren: () => SetupPageModule,
-  },
-  {
-    path: 'complete',
-    loadChildren: () => CompletePageModule,
-  },
+
   {
     path: '404',
     loadChildren: () => NotFoundPageModule,
