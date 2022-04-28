@@ -2,11 +2,17 @@
     <div class="d-flex justify-content-between">
         <select formControlName="email" class="form-select me-5">
             <option *ngFor="let user of users$ | async" [value]="user.email">
-                {{user.name + " " + user.lastName}}</option>
+
+                {{user.name + " " + user.lastName}}
+                <!-- <input type="text" name="name" formControlName="name" [ngModel]="user.name">
+                <input type="text" name="lastName" formControlName="lastName" [ngModel]="user.lastName"> -->
+            </option>
         </select>
         <select formControlName="eventId" class="form-select me-5">
             <option *ngFor="let event of events$ | async" [value]="event.id">
                 {{event.eventTitle}}</option>
         </select>
+
         <input type="submit" value="Invite to event" class="btn btn-success fw-bold" [disabled]="!connectUser.valid">
     </div>
+</form>

@@ -31,6 +31,8 @@ export class ConnectUserComponent {
   readonly connectUser: FormGroup = new FormGroup({
     eventId: new FormControl(),
     email: new FormControl(),
+    name: new FormControl(),
+    lastName: new FormControl(),
   });
   users$: Observable<UserDTO[]> = this._getsAllUsersDto.getAllUsers();
   events$: Observable<EventDTO[]> = this._getsAllEventsDto.getAllEvents();
@@ -44,9 +46,12 @@ export class ConnectUserComponent {
   ) {}
 
   onConnectUsered(connectUser: FormGroup): void {
+    console.log(connectUser.getRawValue());
     this._addsParticipantDto.addParticipant({
       email: this.connectUser.get('email')?.value,
       eventId: this.connectUser.get('eventId')?.value,
+      // name: this.connectUser.get('name')?.value,
+      // lastName: this.connectUser.get('lastName')?.value,
     });
   }
 }

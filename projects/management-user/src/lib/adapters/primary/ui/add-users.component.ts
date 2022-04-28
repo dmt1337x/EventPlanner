@@ -53,6 +53,8 @@ export class AddUsersComponent {
           ? {
               eventId: this.addUser.get('eventId')?.value,
               email: this.addUser.get('email')?.value,
+              name: this.addUser.get('name')?.value,
+              lastName: this.addUser.get('lastName')?.value,
             }
           : {}
       ),
