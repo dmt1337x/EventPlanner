@@ -1,0 +1,9 @@
+<ul>
+    <li *ngFor="let item of user$ | async">{{ item | json }}</li>
+</ul>
+<ul>
+    <li *ngFor="let item of participant$ | async">{{ item | json }}</li>
+</ul>
+<ul>
+    <li *ngFor="let item of events$ | async">{{ item.eventTitle }}</li>
+</ul>
