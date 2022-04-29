@@ -1,44 +1,51 @@
-<div class="container bg-light text-black p-5 rounded-3 ">
-  <div class=" row text-center  bg-secondary rounded-3 p-3 fw-bold">
-    <span class="col">Event Title</span>
-    <span class="col">Link</span>
-    <span class="col">Date</span>
-    <span class="col">Manage</span>
-    <span class="col">Delete</span>
-  </div>
-  <div class="mt-3">
-    <div *ngFor="let event of events$ | async" class="my-5">
-      <div class="row text-center">
-        <div class="col">
+<div class="container-fluid mx-auto ">
+  <table class="table table-borderless text-center bg-light text-black p-5 rounded ">
+    <thead class="bg-secondary rounded-3 p-3 fw-bold mb-5">
+      <tr class="">
+        <th class="d-flex justify-content-start ms-5">Event Title</th>
+        <th>Link</th>
+        <th>Date</th>
+        <th>Manage</th>
+        <th class="me-5">Settings</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let event of events$ | async">
+        <td class=" d-flex justify-content-start ms-5">
           <span class="bi-star-fill"></span>
           {{ event.eventTitle }}
-        </div>
-        <div class="col"><span [routerLink]="'/events/' + event.id + '/event-detail'">{{"/events/" +
+        </td>
+        <td>
+          <!-- <span [routerLink]="'/events/' + event.id + '/event-detail'">{{"/events/" +
             event.id +
-            "/event-detail"}}</span></div>
-        <div class="col">
-          <!-- {{ event.eventDate }} -->
-          od {{toDate(event.eventDate[0]) | date: 'dd.MM.YYYY'}}<br>
-          do {{toDate(event.eventDate[1]) | date: 'dd.MM.YYYY'}}
-        </div>
-        <div class="col">
+            "/event-detail"}}</span> -->
+          <span>...in progress...</span>
+        </td>
+        <td>
+          {{toDate(event.eventDate[0]) | date: 'dd.MM.YYYY'}} -
+          {{toDate(event.eventDate[1]) | date: 'dd.MM.YYYY'}}
+        </td>
+        <td>
           <button [routerLink]="'events/' + event.id + '/event-detail'"
             class="  btn-secondary text-black btn-sm fw-bold">
-            EDIT
+            Manage
           </button>
-        </div>
-        <div class="col">
+        </td>
+        <td>
           <span class="bi-trash3" (click)="openModal(template)"></span>
-        </div>
-      </div>
-      <ng-template #template>
-        <div class="modal-body text-center">
-          <p class="fw-bold">Are you sure you want to delete you event?</p>
-          <p><button class="btn btn-danger" (click)="onEventDeleteed(event)">Yes, I am sure</button></p>
-          <p><button class="btn btn-secondary" (click)="decline()">Cancel</button></p>
-        </div>
-      </ng-template>
-    </div>
-  </div>
+          <span class="bi-pencil-fill ms-3" [routerLink]="'events/' + event.id + '/edit-event'"></span>
+
+        </td>
+        <ng-template #template>
+          <div class="modal-body text-center">
+            <p class="fw-bold">Are you sure you want to delete your event?</p>
+            <p><button class="btn btn-danger" (click)="onEventDeleteed(event)">Yes, I am sure</button></p>
+            <p><button class="btn btn-secondary" (click)="decline()">Cancel</button></p>
+          </div>
+        </ng-template>
+      </tr>
+    </tbody>
+  </table>
 
 </div>
