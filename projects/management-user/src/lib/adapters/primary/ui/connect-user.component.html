@@ -4,8 +4,6 @@
             <option *ngFor="let user of users$ | async" [value]="user.email">
 
                 {{user.name + " " + user.lastName}}
-                <!-- <input type="text" name="name" formControlName="name" [ngModel]="user.name">
-                <input type="text" name="lastName" formControlName="lastName" [ngModel]="user.lastName"> -->
             </option>
         </select>
         <select formControlName="eventId" class="form-select me-5">

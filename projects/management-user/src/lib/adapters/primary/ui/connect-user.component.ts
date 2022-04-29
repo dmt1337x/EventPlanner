@@ -46,12 +46,9 @@ export class ConnectUserComponent {
   ) {}
 
   onConnectUsered(connectUser: FormGroup): void {
-    console.log(connectUser.getRawValue());
     this._addsParticipantDto.addParticipant({
       email: this.connectUser.get('email')?.value,
       eventId: this.connectUser.get('eventId')?.value,
-      // name: this.connectUser.get('name')?.value,
-      // lastName: this.connectUser.get('lastName')?.value,
     });
   }
 }
