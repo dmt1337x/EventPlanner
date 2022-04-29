@@ -30,7 +30,7 @@ export class UserRegistrationComponent {
   ) {}
 
   onUserRegistrationed(registrationForm: FormGroup): void {
-    this._addsRegistrationDto.add({
+    this._addsRegistrationDto.addUserToAuth({
       email: this.registrationForm.get('email')?.value,
       password: this.registrationForm.get('password')?.value,
     });

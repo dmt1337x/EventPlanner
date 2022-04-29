@@ -1,8 +1,9 @@
 import { InjectionToken } from '@angular/core';
-import { RegistrationDTO } from './registration.dto';
+import { AuthDTO } from './auth.dto';
 
-export const ADDS_REGISTRATION_DTO = new InjectionToken<AddsRegistrationDtoPort>('ADDS_REGISTRATION_DTO');
+export const ADDS_REGISTRATION_DTO =
+  new InjectionToken<AddsRegistrationDtoPort>('ADDS_REGISTRATION_DTO');
 
 export interface AddsRegistrationDtoPort {
-  add(registration: Partial<RegistrationDTO>): void;
+  addUserToAuth(registration: Partial<AuthDTO>): void;
 }
