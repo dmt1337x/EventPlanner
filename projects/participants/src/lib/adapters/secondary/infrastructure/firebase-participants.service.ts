@@ -8,13 +8,15 @@ import { filterByCriterion } from '@lowgular/shared';
 import { GetsAllUserDtoPort } from '../../../application/ports/secondary/gets-all-user.dto-port';
 import { UserDTO } from '../../../application/ports/secondary/user.dto';
 import { AddsParticipantDtoPort } from '../../../application/ports/secondary/adds-participant.dto-port';
+import { RemovesParticipantDtoPort } from '../../../application/ports/secondary/removes-participant.dto-port';
 
 @Injectable()
 export class FirebaseParticipantsService
   implements
     GetsAllParticipantDtoPort,
     GetsAllUserDtoPort,
-    AddsParticipantDtoPort
+    AddsParticipantDtoPort,
+    RemovesParticipantDtoPort
 {
   constructor(private _client: AngularFirestore) {}
 
@@ -38,5 +40,9 @@ export class FirebaseParticipantsService
 
   addParticipant(participant: Partial<ParticipantDTO>): void {
     this._client.collection('participants').add(participant);
+  }
+
+  remove(id: string): void {
+    this._client.doc('participants/' + id).delete();
   }
 }

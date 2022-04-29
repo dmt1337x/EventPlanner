@@ -16,6 +16,11 @@ import {
   EventContextDtoStoragePort,
 } from 'projects/core/src/lib/application/ports/secondary/event-context-dto.storage-port';
 
+import {
+  REMOVES_PARTICIPANT_DTO,
+  RemovesParticipantDtoPort,
+} from '../../../application/ports/secondary/removes-participant.dto-port';
+
 @Component({
   selector: 'lib-list-participants',
   templateUrl: './list-participants.component.html',
@@ -37,6 +42,12 @@ export class ListParticipantsComponent {
     @Inject(GETS_ALL_PARTICIPANT_DTO)
     private _getsAllParticipantDto: GetsAllParticipantDtoPort,
     @Inject(EVENT_CONTEXT_DTO_STORAGE)
-    private _eventContextDtoStoragePort: EventContextDtoStoragePort
+    private _eventContextDtoStoragePort: EventContextDtoStoragePort,
+    @Inject(REMOVES_PARTICIPANT_DTO)
+    private _removesParticipantDto: RemovesParticipantDtoPort
   ) {}
+
+  onParticipantRemoveed(participant: ParticipantDTO): void {
+    this._removesParticipantDto.remove(participant.id);
+  }
 }
