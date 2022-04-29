@@ -40,7 +40,7 @@ const routes: Routes = [
     loadChildren: () => MyAccountPageModule,
   },
   {
-    path: 'my-account/event/:eventId',
+    path: 'event/:eventId',
     loadChildren: () => EventPageModule,
   },
   {

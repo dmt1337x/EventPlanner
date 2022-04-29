@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 import { EventPage } from './event.page';
 import { SetupPageModule } from './setup.page-module';
 import { CompletePageModule } from './complete.page-module';
+import { EventDetailPageModule } from './event-detail.page-module';
 
 @NgModule({
   imports: [
@@ -20,6 +21,10 @@ import { CompletePageModule } from './complete.page-module';
           {
             path: 'complete',
             loadChildren: () => CompletePageModule,
+          },
+          {
+            path: 'detail',
+            loadChildren: () => EventDetailPageModule,
           },
         ],
       },

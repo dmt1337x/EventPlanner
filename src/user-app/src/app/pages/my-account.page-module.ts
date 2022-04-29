@@ -5,6 +5,7 @@ import { MyAccountPage } from './my-account.page';
 import { ReactiveFormsModule } from '@angular/forms';
 import { UserDataComponentModule } from '../../../../../projects/my-account/src/lib/adapters/primary/ui/user-data.component-module';
 import { FirebaseMyAccountServiceModule } from '../../../../../projects/my-account/src/lib/adapters/secondary/infrastructure/firebase-my-account.service-module';
+import { EventPageModule } from './event.page-module';
 
 @NgModule({
   imports: [
@@ -17,7 +18,7 @@ import { FirebaseMyAccountServiceModule } from '../../../../../projects/my-accou
       },
     ]),
     UserDataComponentModule,
-    FirebaseMyAccountServiceModule
+    FirebaseMyAccountServiceModule,
   ],
   declarations: [MyAccountPage],
   providers: [],
