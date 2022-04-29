@@ -36,6 +36,10 @@ const routes: Routes = [
     loadChildren: () => RegistrationPageModule,
   },
   {
+    path: 'my-account',
+    loadChildren: () => MyAccountPageModule,
+  },
+  {
     path: '**',
     redirectTo: '404',
   },

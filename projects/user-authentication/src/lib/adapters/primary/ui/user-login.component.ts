@@ -9,6 +9,7 @@ import {
   AddsCredentialsDtoPort,
 } from '../../../application/ports/secondary/adds-credentials.dto-port';
 import { FormGroup, FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'lib-user-login',
@@ -24,7 +25,8 @@ export class UserLoginComponent {
 
   constructor(
     @Inject(ADDS_CREDENTIALS_DTO)
-    private _addsCredentialsDto: AddsCredentialsDtoPort
+    private _addsCredentialsDto: AddsCredentialsDtoPort,
+    private _router: Router
   ) {}
 
   onUserLogined(userLoginForm: FormGroup): void {
@@ -32,5 +34,7 @@ export class UserLoginComponent {
       email: this.userLoginForm.get('email')?.value,
       password: this.userLoginForm.get('password')?.value,
     });
+    this.userLoginForm.reset();
+    this._router.navigate(['/my-account']);
   }
 }
