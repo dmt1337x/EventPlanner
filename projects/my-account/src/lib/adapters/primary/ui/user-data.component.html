@@ -7,3 +7,6 @@
 <ul>
     <li *ngFor="let item of events$ | async">{{ item.eventTitle }}</li>
 </ul>
+STATUS: {{status()}}
+
+<button (click)="logout()" class="bt btn-danger">Logout</button>

@@ -26,6 +26,8 @@ import {
   GETS_ALL_EVENT_DTO,
   GetsAllEventDtoPort,
 } from '../../../application/ports/secondary/gets-all-event.dto-port';
+import { getAuth } from 'firebase/auth';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'lib-user-data',
@@ -60,6 +62,15 @@ export class UserDataComponent {
     private _currentUserDtoStoragePort: CurrentUserDtoStoragePort,
     @Inject(GETS_ALL_PARTICIPANT_DTO)
     private _getsAllParticipantDto: GetsAllParticipantDtoPort,
-    @Inject(GETS_ALL_EVENT_DTO) private _getsAllEventDto: GetsAllEventDtoPort
+    @Inject(GETS_ALL_EVENT_DTO) private _getsAllEventDto: GetsAllEventDtoPort,
+    private _router: Router
   ) {}
+
+  status() {
+    return getAuth().currentUser?.email;
+  }
+
+  logout() {
+    return getAuth().signOut();
+  }
 }
