@@ -6,6 +6,7 @@ import { ListParticipantsComponentModule } from '../../../../../projects/partici
 import { FirebaseParticipantsServiceModule } from '@participants';
 import { ConnectUserComponentModule } from '../../../../../projects/management-user/src/lib/adapters/primary/ui/connect-user.component-module';
 import { FirebaseManagementUsersServiceModule } from '@management-user';
+import { InviteUserComponentModule } from '../../../../../projects/participants/src/lib/adapters/primary/ui/invite-user.component-module';
 
 @NgModule({
   imports: [
@@ -21,6 +22,7 @@ import { FirebaseManagementUsersServiceModule } from '@management-user';
     ConnectUserComponentModule,
     FirebaseParticipantsServiceModule,
     FirebaseManagementUsersServiceModule,
+    InviteUserComponentModule,
   ],
   declarations: [ParticipantsPage],
   providers: [],

@@ -27,7 +27,9 @@ export class ListParticipantsComponent {
     .asObservable()
     .pipe(
       switchMap((data) =>
-        this._getsAllParticipantDto.getAll({ eventId: data.selectedEventId })
+        this._getsAllParticipantDto.getAllParticipants({
+          eventId: data.selectedEventId,
+        })
       )
     );
 

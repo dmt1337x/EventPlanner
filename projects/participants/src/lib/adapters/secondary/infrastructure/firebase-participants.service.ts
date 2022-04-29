@@ -5,17 +5,38 @@ import { map } from 'rxjs/operators';
 import { GetsAllParticipantDtoPort } from '../../../application/ports/secondary/gets-all-participant.dto-port';
 import { ParticipantDTO } from '../../../application/ports/secondary/participant.dto';
 import { filterByCriterion } from '@lowgular/shared';
+import { GetsAllUserDtoPort } from '../../../application/ports/secondary/gets-all-user.dto-port';
+import { UserDTO } from '../../../application/ports/secondary/user.dto';
+import { AddsParticipantDtoPort } from '../../../application/ports/secondary/adds-participant.dto-port';
 
 @Injectable()
-export class FirebaseParticipantsService implements GetsAllParticipantDtoPort {
+export class FirebaseParticipantsService
+  implements
+    GetsAllParticipantDtoPort,
+    GetsAllUserDtoPort,
+    AddsParticipantDtoPort
+{
   constructor(private _client: AngularFirestore) {}
 
-  getAll(criterion: Partial<ParticipantDTO>): Observable<ParticipantDTO[]> {
+  getAllParticipants(
+    criterion: Partial<ParticipantDTO>
+  ): Observable<ParticipantDTO[]> {
     return this._client
       .collection<ParticipantDTO>('participants')
       .valueChanges({ idField: 'id' })
       .pipe(
         map((data: ParticipantDTO[]) => filterByCriterion(data, criterion))
       );
+  }
+
+  getAllUsers(criterion: Partial<UserDTO>): Observable<UserDTO[]> {
+    return this._client
+      .collection<UserDTO>('users')
+      .valueChanges({ idField: 'id' })
+      .pipe(map((data: UserDTO[]) => filterByCriterion(data, criterion)));
+  }
+
+  addParticipant(participant: Partial<ParticipantDTO>): void {
+    this._client.collection('participants').add(participant);
   }
 }

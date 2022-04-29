@@ -1,0 +1,15 @@
+<form [formGroup]="inviteUser" (ngSubmit)="onUserInviteed(inviteUser)">
+    <div class="d-flex justify-content-between">
+        <select formControlName="email" class="form-select me-5">
+            <option *ngFor="let user of users$ | async" [value]="user.email">
+
+                {{user.name + " " + user.lastName}}
+            </option>
+        </select>
+        <input type="text" formControlName="eventId" *ngIf="event$ | async as event" [ngModel]="event.selectedEventId"
+            class="form-select me-5" hidden>
+
+
+        <input type="submit" value="Invite to event" class="btn btn-success fw-bold">
+    </div>
+</form>
