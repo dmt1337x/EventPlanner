@@ -1,5 +1,15 @@
 {
-  "projects": {
-    "default": "eventplanner-adb48"
+  "projects": {},
+  "targets": {
+    "eventplanner-adb48": {
+      "hosting": {
+        "admin-app": [
+          "ep-admin-app"
+        ],
+        "user-app": [
+          "ep-user-app"
+        ]
+      }
+    }
   }
 }
