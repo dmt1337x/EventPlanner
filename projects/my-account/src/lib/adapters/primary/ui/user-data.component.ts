@@ -71,6 +71,6 @@ export class UserDataComponent {
   }
 
   logout() {
-    return getAuth().signOut();
+    return getAuth().signOut(), this._router.navigate(['/']);
   }
 }

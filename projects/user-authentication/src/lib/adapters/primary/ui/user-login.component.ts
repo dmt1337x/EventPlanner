@@ -43,7 +43,6 @@ export class UserLoginComponent {
     this._currentUserDtoStorage.next({
       email: this.userLoginForm.get('email')?.value,
     });
-    this.userLoginForm.reset();
     this._router.navigate(['/my-account']);
   }
 }
