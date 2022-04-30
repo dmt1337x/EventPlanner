@@ -11,7 +11,7 @@ import { LoginPageModule } from './pages/login.page-module';
 import { MyAccountPageModule } from './pages/my-account.page-module';
 import { EventPageModule } from './pages/event.page-module';
 
-const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['/login']);
+const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['/']);
 
 const routes: Routes = [
   {
