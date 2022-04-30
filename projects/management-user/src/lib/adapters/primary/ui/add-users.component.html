@@ -1,0 +1,11 @@
+<form [formGroup]="addUser" (ngSubmit)="onUserAdded(addUser)">
+    <div class="d-flex justify-content-between">
+        <input type="text" formControlName="name" placeholder="Name" class="form-control me-2">
+        <input type="text" formControlName="lastName" placeholder="Last name" class="form-control me-2">
+        <input type="text" formControlName="email" placeholder="Email" class="form-control me-2">
+        <select formControlName="eventId" class="form-select me-5">
+            <option *ngFor="let event of events$ | async" [value]="event.id">
+                {{event.eventTitle}}</option>
+        </select>
+        <input type="submit" value="Add member" class="btn btn-success fw-bold" [disabled]="!addUser.valid">
+    </div>

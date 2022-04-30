@@ -2,14 +2,11 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { UsersPage } from './users.page';
-import {
-  InMemorySearchStorageModule,
-  InMemoryUserIdStorageModule,
-  AddUserComponentModule,
-  FirebaseUserServiceModule,
-  ListUsersComponentModule,
-  SearchUserComponentModule,
-} from '@users';
+import { AddUsersComponentModule } from '../../../../../projects/management-user/src/lib/adapters/primary/ui/add-users.component-module';
+import { FirebaseManagementUsersServiceModule } from '../../../../../projects/management-user/src/lib/adapters/secondary/infrastructure/firebase-management-users.service-module';
+import { ListUsersComponentModule } from '../../../../../projects/management-user/src/lib/adapters/primary/ui/list-users.component-module';
+import { ConnectUserComponentModule } from '../../../../../projects/management-user/src/lib/adapters/primary/ui/connect-user.component-module';
+import { SearchEventComponentModule } from '../../../../../projects/events/src/lib/adapters/primary/ui/search-event.component-module';
 
 @NgModule({
   imports: [
@@ -20,12 +17,11 @@ import {
         component: UsersPage,
       },
     ]),
-    AddUserComponentModule,
-    FirebaseUserServiceModule,
+    AddUsersComponentModule,
+    FirebaseManagementUsersServiceModule,
     ListUsersComponentModule,
-    SearchUserComponentModule,
-    InMemoryUserIdStorageModule,
-    InMemorySearchStorageModule,
+    ConnectUserComponentModule,
+    SearchEventComponentModule
   ],
   declarations: [UsersPage],
   providers: [],

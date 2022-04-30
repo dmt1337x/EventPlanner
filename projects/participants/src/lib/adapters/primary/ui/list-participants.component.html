@@ -1,0 +1,24 @@
+<div class="w-50">
+    <div *ngFor="let participant of participants$ | async" class="mb-3">
+        <div class="d-flex justify-content-between">
+
+            <div class="fw-bold"
+                [ngClass]=" {'text-success' : participant.confirmed==true,'text-danger' : participant.confirmed==false}">
+                <div>
+                    <span class="bi-person-circle"></span>
+                    <span class="fs-5 ms-3">{{participant.name
+                        + " " +
+                        participant.lastName}}</span>
+                </div>
+                <div>
+                    <span class="fs-6 ms-5">{{participant.email}}</span>
+                </div>
+            </div>
+            <div class="d-flex">
+                <!-- <div class="me-3">
+                    <span class="bi-pencil-fill" ></span>
+                </div> -->
+                <div>
+                    <span class=" bi-trash3" (click)="onParticipantRemoveed(participant)"></span>
+                </div>
+            </div>
