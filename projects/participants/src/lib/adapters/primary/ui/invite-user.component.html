@@ -10,6 +10,6 @@
             class="form-select me-5" hidden>
 
 
-        <input type="submit" value="Invite to event" class="btn btn-success fw-bold">
+        <input type="submit" value="Invite to event" class="btn btn-success fw-bold" [disabled]="!inviteUser.valid">
     </div>
 </form>

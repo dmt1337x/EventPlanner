@@ -29,8 +29,8 @@ import {
 })
 export class ConnectUserComponent {
   readonly connectUser: FormGroup = new FormGroup({
-    eventId: new FormControl(),
-    email: new FormControl(),
+    eventId: new FormControl('', Validators.required),
+    email: new FormControl('', Validators.required),
     name: new FormControl(),
     lastName: new FormControl(),
   });

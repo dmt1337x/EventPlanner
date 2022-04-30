@@ -18,7 +18,7 @@ import {
   ADDS_PARTICIPANT_DTO,
   AddsParticipantDtoPort,
 } from '../../../application/ports/secondary/adds-participant.dto-port';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { EventContextDTO } from 'projects/core/src/lib/application/ports/secondary/event-context.dto';
 
 @Component({
@@ -33,7 +33,7 @@ export class InviteUserComponent {
     this._eventContextDtoStoragePort.asObservable();
 
   readonly inviteUser: FormGroup = new FormGroup({
-    email: new FormControl(),
+    email: new FormControl('', Validators.required),
     eventId: new FormControl(),
   });
 
