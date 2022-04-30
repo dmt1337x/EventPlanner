@@ -28,7 +28,7 @@ import { EventContextDTO } from 'projects/core/src/lib/application/ports/seconda
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class InviteUserComponent {
-  users$: Observable<UserDTO[]> = this._getsAllUserDto.getAllUsers();
+  users$: Observable<UserDTO[]> = this._getsAllUserDto.getAllUser();
   event$: Observable<EventContextDTO> =
     this._eventContextDtoStoragePort.asObservable();
 

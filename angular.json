@@ -3,7 +3,7 @@
     "version": 1,
     "newProjectRoot": "projects",
     "projects": {
-        "EventPlanner": {
+        "admin-app": {
             "projectType": "application",
             "schematics": {
                 "@schematics/angular:component": {
@@ -509,5 +509,5 @@
             }
         }
     },
-    "defaultProject": "EventPlanner"
+    "defaultProject": "admin-app"
 }

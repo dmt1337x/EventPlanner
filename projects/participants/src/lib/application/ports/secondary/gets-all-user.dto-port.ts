@@ -7,5 +7,5 @@ export const GETS_ALL_USER_DTO = new InjectionToken<GetsAllUserDtoPort>(
 );
 
 export interface GetsAllUserDtoPort {
-  getAllUsers(criterion?: Partial<UserDTO>): Observable<UserDTO[]>;
+  getAllUser(criterion?: Partial<UserDTO>): Observable<UserDTO[]>;
 }

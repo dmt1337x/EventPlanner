@@ -31,7 +31,7 @@ export class FirebaseParticipantsService
       );
   }
 
-  getAllUsers(criterion: Partial<UserDTO>): Observable<UserDTO[]> {
+  getAllUser(criterion: Partial<UserDTO>): Observable<UserDTO[]> {
     return this._client
       .collection<UserDTO>('users')
       .valueChanges({ idField: 'id' })
