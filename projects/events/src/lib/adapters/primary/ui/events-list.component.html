@@ -1,8 +1,8 @@
 <div class="container-fluid mx-auto ">
-  <table class="table table-borderless text-center bg-light text-black p-5 rounded ">
+  <table class="table table-borderless text-center bg-light text-black p-5 rounded table-hover">
     <thead class="bg-secondary rounded-3 p-3 fw-bold mb-5">
       <tr class="">
-        <th class="d-flex justify-content-start ms-5">Event Title</th>
+        <th class="text-start ps-5">Event Title</th>
         <th>Link</th>
         <th>Date</th>
         <th>Manage</th>
@@ -12,7 +12,7 @@
 
     <tbody>
       <tr *ngFor="let event of events$ | async">
-        <td class=" d-flex justify-content-start ms-5">
+        <td class="text-start ps-5 ">
           <span class="bi-star-fill me-2"></span>
           {{ event.eventTitle }}
         </td>
