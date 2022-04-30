@@ -50,5 +50,6 @@ export class ConnectUserComponent {
       email: this.connectUser.get('email')?.value,
       eventId: this.connectUser.get('eventId')?.value,
     });
+    connectUser.reset();
   }
 }
