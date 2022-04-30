@@ -10,6 +10,7 @@ import { AddsParticipantDtoPort } from '../../../application/ports/secondary/add
 import { ParticipantDTO } from '../../../application/ports/secondary/participant.dto';
 import { GetsAllEventsDtoPort } from '../../../application/ports/secondary/gets-all-events.dto-port';
 import { EventDTO } from '../../../application/ports/secondary/event.dto';
+import { RemovesUserDtoPort } from '../../../application/ports/secondary/removes-user.dto-port';
 
 @Injectable()
 export class FirebaseManagementUsersService
@@ -17,7 +18,8 @@ export class FirebaseManagementUsersService
     AddsUserDtoPort,
     GetsAllUsersDtoPort,
     AddsParticipantDtoPort,
-    GetsAllEventsDtoPort
+    GetsAllEventsDtoPort,
+    RemovesUserDtoPort
 {
   constructor(private _client: AngularFirestore) {}
 
@@ -41,5 +43,9 @@ export class FirebaseManagementUsersService
       .collection<EventDTO>('events')
       .valueChanges({ idField: 'id' })
       .pipe(map((data: EventDTO[]) => filterByCriterion(data, criterion)));
+  }
+
+  remove(id: string): void {
+    this._client.doc('users/' + id).delete();
   }
 }

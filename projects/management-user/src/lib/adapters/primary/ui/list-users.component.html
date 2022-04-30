@@ -1,9 +1,9 @@
-<div class="w-50">
+<!-- <div class="w-50">
     <div *ngFor="let user of users$ | async" class="mb-3">
         <div class="d-flex justify-content-between">
             <div>
-                <!-- <div class="fw-bold"
-                [ngClass]=" {'text-success' : user.confirmed==true,'text-danger' : user.confirmed==false}"> -->
+                <div class="fw-bold"
+                [ngClass]=" {'text-success' : user.confirmed==true,'text-danger' : user.confirmed==false}">
                 <div>
                     <span class="bi-person-circle"></span>
                     <span class="fs-5 ms-3">{{user.name
@@ -24,4 +24,59 @@
             </div>
 
 
-        </div>
+        </div> -->
+
+
+<div class="container-fluid mx-auto ">
+    <table class="table table-borderless text-center bg-light text-black p-5 rounded ">
+        <thead class="bg-secondary rounded-3 p-3 fw-bold mb-5">
+            <tr class="">
+                <th class="d-flex justify-content-start ms-5">Name</th>
+                <th>E-mail</th>
+                <th>User details</th>
+                <th>Number of events</th>
+                <th class="me-5">Delete</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr *ngFor="let user of users$ | async">
+                <td class=" d-flex justify-content-start ms-5">
+                    <span class="bi-person-circle me-2"></span>
+                    {{ user.name + " " + user.lastName }}
+                </td>
+
+                <td>
+                    {{user.email}}
+                </td>
+                <td>
+                    <button routerLink="" class="  btn-secondary text-black btn-sm fw-bold">
+                        Manage
+                    </button>
+                </td>
+                <td>
+                    <span>...in progress...</span>
+                </td>
+                <td>
+                    <span class="bi-trash3" (click)="onUserRemoveed(user)"></span>
+                    <!-- <span class="bi-pencil-fill ms-3"></span> -->
+
+                </td>
+                <!-- <ng-template #template>
+                    <div class="modal-body text-center">
+                        <span>Edit user details: </span>
+
+                    </div>
+                    <form [formGroup]="editDietName" (ngSubmit)="onDietEdited(editDietName)"
+                        *ngIf="dietIdContext$ | async as id" class="p-3">
+                        <input type="text" formControlName="name" class="form-control" [ngModel]="diet.dietName">
+                        <input type="text" formControlName="id" [ngModel]="id.selectedDietId" hidden>
+                        <input type="submit" value="Save" class="btn btn-success mt-3 rounded rounded-3"
+                            [disabled]="!editDietName.valid">
+                    </form>
+                </ng-template> -->
+            </tr>
+        </tbody>
+    </table>
+
+</div>

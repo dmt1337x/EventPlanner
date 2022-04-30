@@ -6,6 +6,7 @@ import { AddUsersComponentModule } from '../../../../../projects/management-user
 import { FirebaseManagementUsersServiceModule } from '../../../../../projects/management-user/src/lib/adapters/secondary/infrastructure/firebase-management-users.service-module';
 import { ListUsersComponentModule } from '../../../../../projects/management-user/src/lib/adapters/primary/ui/list-users.component-module';
 import { ConnectUserComponentModule } from '../../../../../projects/management-user/src/lib/adapters/primary/ui/connect-user.component-module';
+import { SearchEventComponentModule } from '../../../../../projects/events/src/lib/adapters/primary/ui/search-event.component-module';
 
 @NgModule({
   imports: [
@@ -19,7 +20,8 @@ import { ConnectUserComponentModule } from '../../../../../projects/management-u
     AddUsersComponentModule,
     FirebaseManagementUsersServiceModule,
     ListUsersComponentModule,
-    ConnectUserComponentModule
+    ConnectUserComponentModule,
+    SearchEventComponentModule
   ],
   declarations: [UsersPage],
   providers: [],
