@@ -7,6 +7,7 @@ import { FirebaseManagementUsersServiceModule } from '../../../../../projects/ma
 import { ListUsersComponentModule } from '../../../../../projects/management-user/src/lib/adapters/primary/ui/list-users.component-module';
 import { ConnectUserComponentModule } from '../../../../../projects/management-user/src/lib/adapters/primary/ui/connect-user.component-module';
 import { SearchEventComponentModule } from '../../../../../projects/events/src/lib/adapters/primary/ui/search-event.component-module';
+import { InMemoryUserContextStorageModule } from 'projects/management-user/src/lib/adapters/secondary/infrastructure/in-memory-user-context.storage-module';
 
 @NgModule({
   imports: [
@@ -21,7 +22,8 @@ import { SearchEventComponentModule } from '../../../../../projects/events/src/l
     FirebaseManagementUsersServiceModule,
     ListUsersComponentModule,
     ConnectUserComponentModule,
-    SearchEventComponentModule
+    SearchEventComponentModule,
+    InMemoryUserContextStorageModule,
   ],
   declarations: [UsersPage],
   providers: [],
