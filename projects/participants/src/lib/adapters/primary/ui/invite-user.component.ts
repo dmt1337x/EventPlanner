@@ -50,6 +50,5 @@ export class InviteUserComponent {
       email: this.inviteUser.get('email')?.value,
       eventId: this.inviteUser.get('eventId')?.value,
     });
-    inviteUser.reset();
   }
 }
