@@ -1,7 +1,8 @@
-<div class=" bg-light rounded-3 p-3 min-vh-100">
+<div class=" bg-light rounded-3 p-3 min-vh-100" *ngIf="event$ | async as event">
     <h1 class="my-5 fw-bolder ms-5">Complete your registration</h1>
 
-    <form [formGroup]="setupParticipant" class="w-50 mt-5 ms-5" *ngFor="let participant of participant$|async  ">
+    <form [formGroup]="setupParticipant" class="w-50 mt-5 ms-5" *ngFor="let participant of participant$|async"
+        (ngSubmit)="attend(setupParticipant,event)">
 
         <label for="" class=" form-label fw-bold fs-5">Diet</label>
         <select formControlName="dietId" class=" form-select mb-5">
@@ -24,10 +25,8 @@
 
         <input type="text" formControlName="id" placeholder="Id" [ngModel]="participant.id" hidden>
 
-        <div class=" justify-content-center" *ngIf="event$ | async as event">
-            <button (click)="attend(setupParticipant,event)" class="btn btn-primary fw-bolder w-100 mb-2">I confirm my
-                attendance</button>
+        <input type="submit" value="I confirm my attendance" class="btn btn-primary fw-bolder w-100 mb-2"
+            [disabled]="!setupParticipant.valid">
 
-        </div>
     </form>
 </div>

@@ -15,7 +15,7 @@ import {
   CURRENT_USER_DTO_STORAGE,
   CurrentUserDtoStoragePort,
 } from 'projects/user-core/src/lib/application/ports/secondary/current-user-dto.storage-port';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
@@ -33,7 +33,7 @@ export class AccountEventListComponent {
       )
     );
   readonly selectedEventForm: FormGroup = new FormGroup({
-    eventId: new FormControl(),
+    eventId: new FormControl('', Validators.required),
     eventName: new FormControl(),
   });
 

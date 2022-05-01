@@ -25,7 +25,7 @@ import {
   EVENT_CONTEXT_DTO_STORAGE,
   EventContextDtoStoragePort,
 } from 'projects/user-core/src/lib/application/ports/secondary/event-context-dto.storage-port';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import {
   CURRENT_USER_DTO_STORAGE,
   CurrentUserDtoStoragePort,
@@ -89,9 +89,9 @@ export class SetupFormComponent {
     this._eventContextDtoStoragePort.asObservable();
 
   readonly setupParticipant: FormGroup = new FormGroup({
-    dietId: new FormControl(),
-    transportId: new FormControl(),
-    attractionId: new FormControl(),
+    dietId: new FormControl('', Validators.required),
+    transportId: new FormControl('', Validators.required),
+    attractionId: new FormControl('', Validators.required),
     confirmed: new FormControl(),
     id: new FormControl(),
   });

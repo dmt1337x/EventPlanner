@@ -7,6 +7,6 @@
         </select>
         <!-- <input type="text" formControlName="eventName" placeholder="Event Name"> -->
 
-        <input type="submit" value="Setup" class="btn btn-success fw-bold">
+        <input type="submit" value="Setup" class="btn btn-success fw-bold" [disabled]="!selectedEventForm.valid">
     </form>
 </div>
