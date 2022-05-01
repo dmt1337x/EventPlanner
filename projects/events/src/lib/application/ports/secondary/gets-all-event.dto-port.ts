@@ -8,4 +8,6 @@ export const GETS_ALL_EVENT_DTO = new InjectionToken<GetsAllEventDtoPort>(
 
 export interface GetsAllEventDtoPort {
   getAll(criterion?: Partial<EventDTO>): Observable<EventDTO[]>;
+
+  getAllToEdit(criterion: Partial<EventDTO>): Observable<EventDTO[]>;
 }

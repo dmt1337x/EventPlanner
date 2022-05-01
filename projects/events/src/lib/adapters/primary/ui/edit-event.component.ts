@@ -43,7 +43,7 @@ export class EditEventComponent {
     .asObservable()
     .pipe(
       switchMap((data) =>
-        this._getsAllEventDto.getAll({ id: data.selectedEventId })
+        this._getsAllEventDto.getAllToEdit({ id: data.selectedEventId })
       )
     );
 

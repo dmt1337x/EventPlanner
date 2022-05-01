@@ -41,6 +41,13 @@ export class FirebaseEventService
       );
   }
 
+  getAllToEdit(criterion: Partial<EventDTO>): Observable<EventDTO[]> {
+    return this._client
+      .collection<EventDTO>('events')
+      .valueChanges({ idField: 'id' })
+      .pipe(map((data: EventDTO[]) => filterByCriterion(data, criterion)));
+  }
+
   remove(id: string): void {
     this._client.doc('events/' + id).delete();
   }
