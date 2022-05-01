@@ -3,21 +3,24 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { MyAccountPage } from './my-account.page';
 import { ReactiveFormsModule } from '@angular/forms';
-import { UserDataComponentModule } from '../../../../../projects/my-account/src/lib/adapters/primary/ui/user-data.component-module';
 import { FirebaseMyAccountServiceModule } from '../../../../../projects/my-account/src/lib/adapters/secondary/infrastructure/firebase-my-account.service-module';
-import { EventPageModule } from './event.page-module';
+import { CurrentUserResolverModule } from 'projects/user-core/src/lib/adapters/primary/ui/current-user.resolver-module';
+import { CurrentUserResolver } from 'projects/user-core/src/lib/adapters/primary/ui/current-user.resolver';
 
 @NgModule({
   imports: [
     CommonModule,
     ReactiveFormsModule,
+    CurrentUserResolverModule,
     RouterModule.forChild([
       {
         path: '',
         component: MyAccountPage,
+        resolve: {
+          email: CurrentUserResolver,
+        },
       },
     ]),
-    UserDataComponentModule,
     FirebaseMyAccountServiceModule,
   ],
   declarations: [MyAccountPage],

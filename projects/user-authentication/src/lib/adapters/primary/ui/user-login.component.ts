@@ -40,9 +40,9 @@ export class UserLoginComponent {
       email: this.userLoginForm.get('email')?.value,
       password: this.userLoginForm.get('password')?.value,
     });
-    this._currentUserDtoStorage.next({
-      email: this.userLoginForm.get('email')?.value,
-    });
+    // this._currentUserDtoStorage.next({
+    //   email: this.userLoginForm.get('email')?.value,
+    // });
     this._router.navigate(['/my-account']);
   }
 }
