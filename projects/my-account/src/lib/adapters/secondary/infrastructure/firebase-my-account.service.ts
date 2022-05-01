@@ -8,10 +8,14 @@ import { ParticipantDTO } from '../../../application/ports/secondary/participant
 import { EventDTO } from '../../../application/ports/secondary/event.dto';
 import { GetsOneParticipantDtoPort } from '../../../application/ports/secondary/gets-one-participant.dto-port';
 import { GetsOneEventDtoPort } from '../../../application/ports/secondary/gets-one-event.dto-port';
+import { SetsParticipantDtoPort } from '../../../application/ports/secondary/sets-participant.dto-port';
 
 @Injectable()
 export class FirebaseMyAccountService
-  implements GetsOneParticipantDtoPort, GetsOneEventDtoPort
+  implements
+    GetsOneParticipantDtoPort,
+    GetsOneEventDtoPort,
+    SetsParticipantDtoPort
 {
   constructor(private _client: AngularFirestore) {}
 
@@ -31,5 +35,9 @@ export class FirebaseMyAccountService
       .collection<EventDTO>('events')
       .valueChanges({ idField: 'id' })
       .pipe(map((data: EventDTO[]) => filterByCriterion(data, criterion)));
+  }
+
+  setParticipant(participant: Partial<ParticipantDTO>): void {
+    this._client.doc('participants/' + participant.id).update(participant);
   }
 }

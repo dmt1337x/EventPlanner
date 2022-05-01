@@ -18,6 +18,12 @@ import {
   CURRENT_USER_DTO_STORAGE,
   CurrentUserDtoStoragePort,
 } from 'projects/user-core/src/lib/application/ports/secondary/current-user-dto.storage-port';
+import {
+  SETS_PARTICIPANT_DTO,
+  SetsParticipantDtoPort,
+} from '../../../application/ports/secondary/sets-participant.dto-port';
+import { Router } from '@angular/router';
+import { EventContextDTO } from 'projects/user-core/src/lib/application/ports/secondary/event-context.dto';
 
 @Component({
   selector: 'lib-confirm-attendance',
@@ -38,12 +44,29 @@ export class ConfirmAttendanceComponent {
     )
   );
 
+  event$: Observable<EventContextDTO> =
+    this._eventContextDtoStoragePort.asObservable();
+
   constructor(
     @Inject(GETS_ONE_PARTICIPANT_DTO)
     private _getsOneParticipantDto: GetsOneParticipantDtoPort,
     @Inject(CURRENT_USER_DTO_STORAGE)
     private _currentUserDtoStoragePort: CurrentUserDtoStoragePort,
     @Inject(EVENT_CONTEXT_DTO_STORAGE)
-    private _eventContextDtoStoragePort: EventContextDtoStoragePort
+    private _eventContextDtoStoragePort: EventContextDtoStoragePort,
+    @Inject(SETS_PARTICIPANT_DTO)
+    private _setsParticipantDto: SetsParticipantDtoPort,
+    private _router: Router
   ) {}
+
+  confirmAttendance(event: EventContextDTO): void {
+    this._router.navigate(['event/' + event.eventId + '/setup']);
+  }
+  cantAttend(participant: ParticipantDTO, event: EventContextDTO): void {
+    this._setsParticipantDto.setParticipant({
+      id: participant.id,
+      confirmed: false,
+    });
+    this._router.navigate(['event/' + event.eventId + '/complete']);
+  }
 }
