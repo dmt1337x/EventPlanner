@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 import { EventDetailPage } from './event-detail.page';
 import { AccountEventDetailComponentModule } from '../../../../../projects/my-account/src/lib/adapters/primary/ui/account-event-detail.component-module';
 import { FirebaseMyAccountServiceModule } from '../../../../../projects/my-account/src/lib/adapters/secondary/infrastructure/firebase-my-account.service-module';
+import { ConfirmAttendanceComponentModule } from '../../../../../projects/my-account/src/lib/adapters/primary/ui/confirm-attendance.component-module';
 
 @NgModule({ imports: [CommonModule, 
       RouterModule.forChild([
@@ -13,7 +14,8 @@ import { FirebaseMyAccountServiceModule } from '../../../../../projects/my-accou
         }
       ]),
   AccountEventDetailComponentModule,
-  FirebaseMyAccountServiceModule
+  FirebaseMyAccountServiceModule,
+  ConfirmAttendanceComponentModule
 ],
   	declarations: [EventDetailPage],
   	providers: [],
