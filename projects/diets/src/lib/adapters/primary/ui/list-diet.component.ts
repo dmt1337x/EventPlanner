@@ -67,8 +67,8 @@ export class ListDietComponent {
     private _eventContextDtoStorage: EventContextDtoStoragePort
   ) {}
 
-  onDietRemoveed(diets: DietDTO): void {
-    this._removesDietDto.remove(diets.id);
+  onDietRemoveed(diet: DietDTO): void {
+    this._removesDietDto.remove(diet.id);
   }
 
   modalRef?: BsModalRef;

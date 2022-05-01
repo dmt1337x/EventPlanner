@@ -71,8 +71,8 @@ export class ListAttractionsComponent {
     private _eventContextDtoStorage: EventContextDtoStoragePort
   ) {}
 
-  onAttractionRemoveed(attractions: AttractionDTO): void {
-    this._removesAttractionDto.remove(attractions.id);
+  onAttractionRemoveed(attraction: AttractionDTO): void {
+    this._removesAttractionDto.remove(attraction.id);
   }
 
   modalRef?: BsModalRef;

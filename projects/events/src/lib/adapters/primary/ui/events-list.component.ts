@@ -50,8 +50,8 @@ export class EventsListComponent {
     private modalService: BsModalService
   ) {}
 
-  onEventDeleteed(events$: EventDTO): void {
-    this._removesEventDto.remove(events$.id);
+  onEventDeleteed(event: EventDTO): void {
+    this._removesEventDto.remove(event.id);
     this.modalRef?.hide();
   }
 

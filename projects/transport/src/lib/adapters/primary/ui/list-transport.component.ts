@@ -70,8 +70,8 @@ export class ListTransportComponent {
     private _eventContextDtoStorage: EventContextDtoStoragePort
   ) {}
 
-  onTransportRemoveed(transports: TransportDTO): void {
-    this._removesTransportDto.remove(transports.id);
+  onTransportRemoveed(transport: TransportDTO): void {
+    this._removesTransportDto.remove(transport.id);
   }
 
   modalRef?: BsModalRef;
