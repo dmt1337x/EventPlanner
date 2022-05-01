@@ -36,13 +36,11 @@ export class UserLoginComponent {
   ) {}
 
   onUserLogined(userLoginForm: FormGroup): void {
-    this._addsCredentialsDto.addCredentials({
-      email: this.userLoginForm.get('email')?.value,
-      password: this.userLoginForm.get('password')?.value,
-    });
-    // this._currentUserDtoStorage.next({
-    //   email: this.userLoginForm.get('email')?.value,
-    // });
-    this._router.navigate(['/my-account']);
+    this._addsCredentialsDto
+      .addCredentials({
+        email: this.userLoginForm.get('email')?.value,
+        password: this.userLoginForm.get('password')?.value,
+      })
+      .subscribe((_) => this._router.navigate(['/my-account']));
   }
 }
