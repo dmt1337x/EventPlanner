@@ -7,6 +7,7 @@ import { FirebaseMyAccountServiceModule } from '../../../../../projects/my-accou
 import { CurrentUserResolverModule } from 'projects/user-core/src/lib/adapters/primary/ui/current-user.resolver-module';
 import { CurrentUserResolver } from 'projects/user-core/src/lib/adapters/primary/ui/current-user.resolver';
 import { AccountEventListComponentModule } from '../../../../../projects/my-account/src/lib/adapters/primary/ui/account-event-list.component-module';
+import { LogoutComponentModule } from '../../../../../projects/my-account/src/lib/adapters/primary/ui/logout.component-module';
 
 @NgModule({
   imports: [
@@ -23,7 +24,8 @@ import { AccountEventListComponentModule } from '../../../../../projects/my-acco
       },
     ]),
     FirebaseMyAccountServiceModule,
-    AccountEventListComponentModule
+    AccountEventListComponentModule,
+    LogoutComponentModule
   ],
   declarations: [MyAccountPage],
   providers: [],

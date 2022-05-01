@@ -35,6 +35,6 @@ export class UserRegistrationComponent {
       password: this.registrationForm.get('password')?.value,
     });
     this.registrationForm.reset();
-    this._router.navigate(['/login']);
+    this._router.navigate(['/']);
   }
 }

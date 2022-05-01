@@ -2,3 +2,4 @@ export * from './lib/adapters/secondary/infrastructure/firebase-my-account.servi
 export * from './lib/adapters/primary/ui/account-event-list.component-module';
 export * from './lib/adapters/primary/ui/account-event-detail.component-module';
 export * from './lib/adapters/primary/ui/confirm-attendance.component-module';
+export * from './lib/adapters/primary/ui/logout.component-module';
