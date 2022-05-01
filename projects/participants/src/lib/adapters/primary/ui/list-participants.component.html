@@ -1,24 +1,79 @@
-<div class="w-50">
-    <div *ngFor="let participant of participants$ | async" class="mb-3">
-        <div class="d-flex justify-content-between">
+<div class="container-fluid mx-auto fs-6">
+    <table class="table table-borderless text-center">
+        <thead class="bg-white fw-bold">
+            <tr class="">
+                <th class="text-start ps-5">Name</th>
+                <th>Diet</th>
+                <th>Transport</th>
+                <th>Attraction</th>
+                <th>Room type</th>
+                <th>Roommates</th>
+                <th class="me-5">Manage</th>
+            </tr>
+        </thead>
 
-            <div class="fw-bold"
-                [ngClass]=" {'text-success' : participant.confirmed==true,'text-danger' : participant.confirmed==false}">
-                <div>
-                    <span class="bi-person-circle"></span>
-                    <span class="fs-5 ms-3">{{participant.name
-                        + " " +
-                        participant.lastName}}</span>
-                </div>
-                <div>
-                    <span class="fs-6 ms-5">{{participant.email}}</span>
-                </div>
-            </div>
-            <div class="d-flex">
-                <div>
-                    <span class=" bi-trash3" (click)="onParticipantRemoveed(participant)"></span>
-                </div>
-            </div>
-        </div>
-    </div>
+        <tbody class="text-white">
+            <tr *ngFor="let participant of participants$ | async" class=" border-bottom">
+                <td class=" text-start">
+                    <div class=""
+                        [ngClass]=" {'text-success' : participant.confirmed==true,'text-danger' : participant.confirmed==false}">
+                        <div>
+                            <span class="bi-person-circle"></span>
+                            <span class="fs-5 ms-3">{{participant.name
+                                + " " +
+                                participant.lastName}}</span>
+                        </div>
+                        <div>
+                            <span class="ms-5">{{participant.email}}</span>
+                        </div>
+                    </div>
+                </td>
+
+                <td>
+                    ...diet...
+                </td>
+
+                <td>
+                    ...transport...
+                </td>
+                <td>
+                    ...attraction...
+                </td>
+                <td>
+                    ....room type...
+                </td>
+                <td>
+                    ...roommates...
+                </td>
+                <td>
+                    <div class="d-flex justify-content-center">
+                        <div>
+                            <span class=" bi-pencil-fill me-3"></span>
+                            <!-- <span class=" bi-pencil-fill me-3" (click)="openModal(template, participant)"></span> -->
+                            <span class=" bi-trash3" (click)="onParticipantRemoveed(participant)"></span>
+                        </div>
+                    </div>
+                </td>
+
+
+                <!-- <ng-template #template>
+                    <div class="modal-body text-center">
+                        <span>Edit user details: </span>
+
+                    </div>
+                    <form [formGroup]="userEdit" (ngSubmit)="onUserEdited(userEdit)" *ngIf="userContext$ | async as id"
+                        class="p-3">
+                        <input type="text" formControlName="name" class="form-control mb-1" [ngModel]="user.name">
+                        <input type="text" formControlName="lastName" class="form-control mb-1"
+                            [ngModel]="user.lastName">
+                        <input type="text" formControlName="email" class="form-control" [ngModel]="user.email" readonly>
+                        <input type="text" formControlName="id" [ngModel]="id.selectedUserId" hidden>
+                        <input type="submit" value="Save" class="btn btn-success mt-3 rounded rounded-3"
+                            [disabled]="!userEdit.valid">
+                    </form>
+                </ng-template> -->
+            </tr>
+        </tbody>
+    </table>
+
 </div>
