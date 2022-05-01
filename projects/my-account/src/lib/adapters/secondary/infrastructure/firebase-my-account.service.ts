@@ -6,13 +6,16 @@ import { UserDTO } from '../../../application/ports/secondary/user.dto';
 import { filterByCriterion } from '@lowgular/shared';
 import { ParticipantDTO } from '../../../application/ports/secondary/participant.dto';
 import { EventDTO } from '../../../application/ports/secondary/event.dto';
-import { GetsAllParticipantDtoPort } from '../../../application/ports/secondary/gets-all-participant.dto-port';
+import { GetsOneParticipantDtoPort } from '../../../application/ports/secondary/gets-one-participant.dto-port';
+import { GetsOneEventDtoPort } from '../../../application/ports/secondary/gets-one-event.dto-port';
 
 @Injectable()
-export class FirebaseMyAccountService implements GetsAllParticipantDtoPort {
+export class FirebaseMyAccountService
+  implements GetsOneParticipantDtoPort, GetsOneEventDtoPort
+{
   constructor(private _client: AngularFirestore) {}
 
-  getAllParticipants(
+  getOneParticipant(
     criterion: Partial<ParticipantDTO>
   ): Observable<ParticipantDTO[]> {
     return this._client
@@ -21,5 +24,12 @@ export class FirebaseMyAccountService implements GetsAllParticipantDtoPort {
       .pipe(
         map((data: ParticipantDTO[]) => filterByCriterion(data, criterion))
       );
+  }
+
+  getOneEvent(criterion: Partial<EventDTO>): Observable<EventDTO[]> {
+    return this._client
+      .collection<EventDTO>('events')
+      .valueChanges({ idField: 'id' })
+      .pipe(map((data: EventDTO[]) => filterByCriterion(data, criterion)));
   }
 }

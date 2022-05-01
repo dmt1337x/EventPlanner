@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { FirebaseMyAccountService } from './firebase-my-account.service';
-import { GETS_ALL_PARTICIPANT_DTO } from '../../../application/ports/secondary/gets-all-participant.dto-port';
+import { GETS_ONE_PARTICIPANT_DTO } from '../../../application/ports/secondary/gets-one-participant.dto-port';
+import { GETS_ONE_EVENT_DTO } from '../../../application/ports/secondary/gets-one-event.dto-port';
 
 @NgModule({
   imports: [AngularFirestoreModule],
@@ -9,9 +10,10 @@ import { GETS_ALL_PARTICIPANT_DTO } from '../../../application/ports/secondary/g
   providers: [
     FirebaseMyAccountService,
     {
-      provide: GETS_ALL_PARTICIPANT_DTO,
+      provide: GETS_ONE_PARTICIPANT_DTO,
       useExisting: FirebaseMyAccountService,
     },
+    { provide: GETS_ONE_EVENT_DTO, useExisting: FirebaseMyAccountService },
   ],
   exports: [],
 })

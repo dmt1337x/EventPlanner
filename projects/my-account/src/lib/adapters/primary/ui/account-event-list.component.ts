@@ -7,9 +7,9 @@ import {
 import { Observable } from 'rxjs';
 import { ParticipantDTO } from '../../../application/ports/secondary/participant.dto';
 import {
-  GETS_ALL_PARTICIPANT_DTO,
-  GetsAllParticipantDtoPort,
-} from '../../../application/ports/secondary/gets-all-participant.dto-port';
+  GETS_ONE_PARTICIPANT_DTO,
+  GetsOneParticipantDtoPort,
+} from '../../../application/ports/secondary/gets-one-participant.dto-port';
 import { switchMap } from 'rxjs/operators';
 import {
   CURRENT_USER_DTO_STORAGE,
@@ -29,7 +29,7 @@ export class AccountEventListComponent {
     .asObservable()
     .pipe(
       switchMap((data) =>
-        this._getsAllParticipantDto.getAllParticipants({ email: data.email })
+        this._getsOneParticipantDto.getOneParticipant({ email: data.email })
       )
     );
   readonly selectedEventForm: FormGroup = new FormGroup({
@@ -38,8 +38,8 @@ export class AccountEventListComponent {
   });
 
   constructor(
-    @Inject(GETS_ALL_PARTICIPANT_DTO)
-    private _getsAllParticipantDto: GetsAllParticipantDtoPort,
+    @Inject(GETS_ONE_PARTICIPANT_DTO)
+    private _getsOneParticipantDto: GetsOneParticipantDtoPort,
     @Inject(CURRENT_USER_DTO_STORAGE)
     private _currentUserDtoStoragePort: CurrentUserDtoStoragePort,
     private _router: Router
