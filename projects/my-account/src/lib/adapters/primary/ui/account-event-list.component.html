@@ -1,0 +1,19 @@
+<ul>
+    <li *ngFor="let item of participants$ | async">{{ item | json }}</li>
+</ul>
+
+
+
+
+<div class=" d-flex justify-content-center">
+    <form [formGroup]="selectedEventForm" (ngSubmit)="selectEvent(selectedEventForm)">
+
+        <label for="" class=" form-label fw-bold fs-5">Select your event:</label>
+        <select formControlName="eventId" class=" form-select mb-2">
+            <option *ngFor="let event of participants$ | async" [value]="event.eventId">{{event.eventId}}</option>
+        </select>
+        <!-- <input type="text" formControlName="eventName" placeholder="Event Name"> -->
+
+        <input type="submit" value="SetUp" class="btn btn-success fw-bold">
+    </form>
+</div>

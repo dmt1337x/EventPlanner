@@ -6,8 +6,20 @@ import { UserDTO } from '../../../application/ports/secondary/user.dto';
 import { filterByCriterion } from '@lowgular/shared';
 import { ParticipantDTO } from '../../../application/ports/secondary/participant.dto';
 import { EventDTO } from '../../../application/ports/secondary/event.dto';
+import { GetsAllParticipantDtoPort } from '../../../application/ports/secondary/gets-all-participant.dto-port';
 
 @Injectable()
-export class FirebaseMyAccountService {
-  constructor() {}
+export class FirebaseMyAccountService implements GetsAllParticipantDtoPort {
+  constructor(private _client: AngularFirestore) {}
+
+  getAllParticipants(
+    criterion: Partial<ParticipantDTO>
+  ): Observable<ParticipantDTO[]> {
+    return this._client
+      .collection<ParticipantDTO>('participants')
+      .valueChanges({ idField: 'id' })
+      .pipe(
+        map((data: ParticipantDTO[]) => filterByCriterion(data, criterion))
+      );
+  }
 }
