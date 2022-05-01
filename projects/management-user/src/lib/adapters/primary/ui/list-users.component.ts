@@ -26,6 +26,11 @@ import {
   SETS_USER_DTO,
   SetsUserDtoPort,
 } from '../../../application/ports/secondary/sets-user.dto-port';
+import { switchMap } from 'rxjs/operators';
+import {
+  SEARCH_USER_DTO_STORAGE,
+  SearchUserDtoStoragePort,
+} from '../../../application/ports/secondary/search-user-dto.storage-port';
 
 @Component({
   selector: 'lib-list-users',
@@ -34,16 +39,27 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ListUsersComponent {
-  users$: Observable<UserDTO[]> = this._getsAllUserDto.getAllUsers();
   userContext$: Observable<UserContextDTO> = this._userContext.asObservable();
-
+  users$: Observable<UserDTO[]> = this._searchUserDtoStoragePort
+    .asObservable()
+    .pipe(
+      switchMap((data) =>
+        this._getsAllUserDto.getAllUsers(
+          data && data.name && data.name.length
+            ? { name: data.name }
+            : undefined
+        )
+      )
+    );
   constructor(
     @Inject(GETS_ALL_USERS_DTO) private _getsAllUserDto: GetsAllUsersDtoPort,
     @Inject(REMOVES_USER_DTO) private _removesUserDto: RemovesUserDtoPort,
     @Inject(USER_CONTEXT_DTO_STORAGE)
     private _userContext: UserContextDtoStoragePort,
     private modalService: BsModalService,
-    @Inject(SETS_USER_DTO) private _setsUserDto: SetsUserDtoPort
+    @Inject(SETS_USER_DTO) private _setsUserDto: SetsUserDtoPort,
+    @Inject(SEARCH_USER_DTO_STORAGE)
+    private _searchUserDtoStoragePort: SearchUserDtoStoragePort
   ) {}
 
   readonly userEdit: FormGroup = new FormGroup({

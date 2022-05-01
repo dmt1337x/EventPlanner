@@ -8,6 +8,8 @@ import { ListUsersComponentModule } from '../../../../../projects/management-use
 import { ConnectUserComponentModule } from '../../../../../projects/management-user/src/lib/adapters/primary/ui/connect-user.component-module';
 import { SearchEventComponentModule } from '../../../../../projects/events/src/lib/adapters/primary/ui/search-event.component-module';
 import { InMemoryUserContextStorageModule } from 'projects/management-user/src/lib/adapters/secondary/infrastructure/in-memory-user-context.storage-module';
+import { SearchUserComponentModule } from '../../../../../projects/management-user/src/lib/adapters/primary/ui/search-user.component-module';
+import { InMemorySearchUserStorageModule } from 'projects/management-user/src/lib/adapters/secondary/infrastructure/in-memory-search-user.storage-module';
 
 @NgModule({
   imports: [
@@ -24,6 +26,8 @@ import { InMemoryUserContextStorageModule } from 'projects/management-user/src/l
     ConnectUserComponentModule,
     SearchEventComponentModule,
     InMemoryUserContextStorageModule,
+    SearchUserComponentModule,
+    InMemorySearchUserStorageModule,
   ],
   declarations: [UsersPage],
   providers: [],
