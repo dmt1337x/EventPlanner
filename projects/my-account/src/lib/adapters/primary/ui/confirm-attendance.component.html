@@ -1,6 +1,6 @@
 <div *ngFor="let participant of participant$ | async" class="d-flex justify-content-center">
-    <div *ngIf="event$ | async as event" class="d-flex justify-content-between w-25">
-        <button (click)="confirmAttendance(event)" class="btn btn-success">I
+    <div *ngIf="event$ | async as event" class="d-flex justify-content-between mt-5">
+        <button (click)="confirmAttendance(event)" class="btn btn-success me-5">I
             confirm my attendance</button>
         <button (click)="cantAttend(participant,event)" class="btn btn-danger">I can't attend</button>
     </div>
