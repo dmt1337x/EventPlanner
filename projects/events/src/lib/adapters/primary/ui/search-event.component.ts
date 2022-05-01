@@ -5,6 +5,7 @@ import {
   Inject,
 } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { startWith } from 'rxjs';
 import {
   SearchEventDtoStoragePort,
   SEARCH_EVENT_DTO_STORAGE,
@@ -21,9 +22,9 @@ export class SearchEventComponent {
     @Inject(SEARCH_EVENT_DTO_STORAGE)
     private _search: SearchEventDtoStoragePort
   ) {
-    this.search.valueChanges.subscribe((form) =>
-      this._search.next({ eventTitle: form.eventTitle })
-    );
+    this.search.valueChanges
+      .pipe(startWith(''))
+      .subscribe((form) => this._search.next({ eventTitle: form.eventTitle }));
   }
   readonly search: FormGroup = new FormGroup({ eventTitle: new FormControl() });
 }
