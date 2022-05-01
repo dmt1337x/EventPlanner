@@ -36,6 +36,7 @@ export class AccountEventDetailComponent {
     private _eventContextDtoStoragePort: EventContextDtoStoragePort,
     @Inject(GETS_ONE_EVENT_DTO) private _getsOneEventDto: GetsOneEventDtoPort
   ) {}
+
   toDate(event: any): Date {
     return event.toDate();
   }

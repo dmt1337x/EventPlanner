@@ -5,8 +5,6 @@
         <select formControlName="eventId" class=" form-select mb-2">
             <option *ngFor="let event of participants$ | async" [value]="event.eventId">{{event.eventId}}</option>
         </select>
-        <!-- <input type="text" formControlName="eventName" placeholder="Event Name"> -->
-
         <input type="submit" value="Setup" class="btn btn-success fw-bold" [disabled]="!selectedEventForm.valid">
     </form>
 </div>

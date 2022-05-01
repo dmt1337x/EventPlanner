@@ -43,22 +43,6 @@ export class ListParticipantsComponent {
       )
     );
 
-  // users$: Observable<UserDTO[]> = this._getsAllUserDto.getAllUsers();
-  // participants$: Observable<ParticipantDTO[]> =
-  //   this._getsAllParticipantDto.getAllParticipants();
-
-  // test$: Observable<ParticipantDTO[]> = combineLatest([
-  //   this._eventContextDtoStoragePort.asObservable(),
-  //   this._getsAllUserDto.getAllUser(),
-  // ]).pipe(
-  //   switchMap(([context, users]) =>
-  //     this._getsAllParticipantDto.getAllParticipants({
-  //       eventId: context.selectedEventId,
-  //       email: users[1].email,
-  //     })
-  //   )
-  // );
-
   constructor(
     @Inject(GETS_ALL_PARTICIPANT_DTO)
     private _getsAllParticipantDto: GetsAllParticipantDtoPort,
