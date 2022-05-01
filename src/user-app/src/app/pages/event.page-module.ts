@@ -5,14 +5,24 @@ import { EventPage } from './event.page';
 import { SetupPageModule } from './setup.page-module';
 import { CompletePageModule } from './complete.page-module';
 import { EventDetailPageModule } from './event-detail.page-module';
+import { CurrentUserResolverModule } from '@user-core';
+import { EventContextResolverModule } from 'projects/user-core/src/lib/adapters/primary/ui/event-context.resolver-module';
+import { EventContextResolver } from 'projects/user-core/src/lib/adapters/primary/ui/event-context.resolver';
+import { CurrentUserResolver } from 'projects/user-core/src/lib/adapters/primary/ui/current-user.resolver';
 
 @NgModule({
   imports: [
     CommonModule,
+    CurrentUserResolverModule,
+    EventContextResolverModule,
     RouterModule.forChild([
       {
         path: '',
         component: EventPage,
+        resolve: {
+          email: CurrentUserResolver,
+          eventId: EventContextResolver,
+        },
         children: [
           {
             path: 'setup',

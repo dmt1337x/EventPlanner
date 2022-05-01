@@ -47,7 +47,7 @@ export class AccountEventListComponent {
 
   selectEvent(selectedEventForm: FormGroup) {
     this._router.navigate([
-      '/event/' + this.selectedEventForm.get('eventId')?.value + '/setup',
+      '/event/' + this.selectedEventForm.get('eventId')?.value + '/detail',
     ]);
   }
 }
