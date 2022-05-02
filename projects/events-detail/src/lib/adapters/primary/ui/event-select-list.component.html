@@ -1,11 +1,15 @@
-<div class="btn-group " dropdown *ngFor="let thisEvent of thisEvent$ | async">
-    <div id="button-animated " dropdownToggle type="button" class="btn dropdown-toggle text-white "
-        aria-controls="dropdown-animated">
+<div class="btn-group" dropdown placement="bottom right" *ngFor="let thisEvent of thisEvent$ | async">
+    <div id="button-alignment" dropdownToggle type="button" class="btn  dropdown-toggle text-white"
+        aria-controls="dropdown-alignment">
         <span class="fw-bold fs-3">Event - {{thisEvent.eventTitle}} </span>
+        <span class="caret"></span>
     </div>
-    <div id="dropdown-animated" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-animated">
-        <div role="menuitem" class="p-2" *ngFor="let otherEvent of otherEvents$ | async"
+
+    <ul id="dropdown-animated" *dropdownMenu class="dropdown-menu dropdown-menu-right bg-black text-white border-white"
+        role="menu" aria-labelledby="button-animated">
+        <div role="dropdown-item" class="text-center py-2 " *ngFor="let otherEvent of otherEvents$ | async"
             [routerLink]="'/events/' + otherEvent.id + '/event-detail'">
-            {{otherEvent.eventTitle}}</div>
-    </div>
+            {{otherEvent.eventTitle}}
+        </div>
+    </ul>
 </div>
