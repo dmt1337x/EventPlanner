@@ -9,6 +9,7 @@ import { CurrentUserResolverModule } from '@user-core';
 import { EventContextResolverModule } from 'projects/user-core/src/lib/adapters/primary/ui/event-context.resolver-module';
 import { EventContextResolver } from 'projects/user-core/src/lib/adapters/primary/ui/event-context.resolver';
 import { CurrentUserResolver } from 'projects/user-core/src/lib/adapters/primary/ui/current-user.resolver';
+import { HeaderComponentModule } from '../../../../../projects/my-account/src/lib/adapters/primary/ui/header.component-module';
 
 @NgModule({
   imports: [
@@ -39,6 +40,7 @@ import { CurrentUserResolver } from 'projects/user-core/src/lib/adapters/primary
         ],
       },
     ]),
+    HeaderComponentModule
   ],
   declarations: [EventPage],
   providers: [],

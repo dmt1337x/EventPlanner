@@ -1,5 +1,5 @@
 <div class=" bg-light rounded-3 p-3 min-vh-100" *ngIf="event$ | async as event">
-    <h1 class="my-5 fw-bolder ms-5">Complete your registration</h1>
+    <h1 class="mb-5 fw-bolder ms-5">Complete your registration</h1>
 
     <form [formGroup]="setupParticipant" class="w-50 mt-5 ms-5" *ngFor="let participant of participant$|async"
         (ngSubmit)="attend(setupParticipant,event)">
