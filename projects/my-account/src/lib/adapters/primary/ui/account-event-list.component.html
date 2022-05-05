@@ -3,8 +3,7 @@
 
         <label for="" class=" form-label fw-bold fs-5">Select your event:</label>
         <select formControlName="eventId" class=" form-select mb-2">
-            <option *ngFor="let event of participants$ | async" [value]="event.eventId">{{event.eventId}}</option>
+            <option *ngFor="let event of events$ | async" [value]="event.id">{{event.eventTitle}}</option>
         </select>
         <input type="submit" value="Setup" class="btn btn-success fw-bold" [disabled]="!selectedEventForm.valid">
     </form>
-</div>

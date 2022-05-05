@@ -7,14 +7,14 @@ import { filterByCriterion } from '@lowgular/shared';
 import { ParticipantDTO } from '../../../application/ports/secondary/participant.dto';
 import { EventDTO } from '../../../application/ports/secondary/event.dto';
 import { GetsOneParticipantDtoPort } from '../../../application/ports/secondary/gets-one-participant.dto-port';
-import { GetsOneEventDtoPort } from '../../../application/ports/secondary/gets-one-event.dto-port';
+import { GetsAllEventDtoPort } from '../../../application/ports/secondary/gets-all-event.dto-port';
 import { SetsParticipantDtoPort } from '../../../application/ports/secondary/sets-participant.dto-port';
 
 @Injectable()
 export class FirebaseMyAccountService
   implements
     GetsOneParticipantDtoPort,
-    GetsOneEventDtoPort,
+    GetsAllEventDtoPort,
     SetsParticipantDtoPort
 {
   constructor(private _client: AngularFirestore) {}
@@ -30,7 +30,7 @@ export class FirebaseMyAccountService
       );
   }
 
-  getOneEvent(criterion: Partial<EventDTO>): Observable<EventDTO[]> {
+  getAllEvent(criterion: Partial<EventDTO>): Observable<EventDTO[]> {
     return this._client
       .collection<EventDTO>('events')
       .valueChanges({ idField: 'id' })

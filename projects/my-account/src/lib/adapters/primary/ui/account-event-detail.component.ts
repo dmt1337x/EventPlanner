@@ -12,9 +12,9 @@ import {
   EventContextDtoStoragePort,
 } from 'projects/user-core/src/lib/application/ports/secondary/event-context-dto.storage-port';
 import {
-  GETS_ONE_EVENT_DTO,
-  GetsOneEventDtoPort,
-} from '../../../application/ports/secondary/gets-one-event.dto-port';
+  GETS_ALL_EVENT_DTO,
+  GetsAllEventDtoPort,
+} from '../../../application/ports/secondary/gets-all-event.dto-port';
 
 @Component({
   selector: 'lib-account-event-detail',
@@ -27,14 +27,14 @@ export class AccountEventDetailComponent {
     .asObservable()
     .pipe(
       switchMap((data) =>
-        this._getsOneEventDto.getOneEvent({ id: data.eventId })
+        this._getsOneEventDto.getAllEvent({ id: data.eventId })
       )
     );
 
   constructor(
     @Inject(EVENT_CONTEXT_DTO_STORAGE)
     private _eventContextDtoStoragePort: EventContextDtoStoragePort,
-    @Inject(GETS_ONE_EVENT_DTO) private _getsOneEventDto: GetsOneEventDtoPort
+    @Inject(GETS_ALL_EVENT_DTO) private _getsOneEventDto: GetsAllEventDtoPort
   ) {}
 
   toDate(event: any): Date {
