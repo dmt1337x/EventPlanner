@@ -21,6 +21,7 @@ import {
 } from '../../../application/ports/secondary/search-event-dto.storage-port';
 import { switchMap } from 'rxjs/operators';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'lib-events-list',
@@ -47,7 +48,8 @@ export class EventsListComponent {
     @Inject(REMOVES_EVENT_DTO) private _removesEventDto: RemovesEventDtoPort,
     @Inject(SEARCH_EVENT_DTO_STORAGE)
     private _search: SearchEventDtoStoragePort,
-    private modalService: BsModalService
+    private modalService: BsModalService,
+    private _router: Router
   ) {}
 
   onEventDeleteed(event: EventDTO): void {
@@ -67,5 +69,10 @@ export class EventsListComponent {
   }
   toDate(event: any): Date {
     return event.toDate();
+  }
+
+  goToEvent(event: EventDTO) {
+    window.location.href =
+      'http://ep-user-app.web.app/event/' + event.id + '/detail';
   }
 }

@@ -1,6 +1,6 @@
 <div class="container-fluid mx-auto ">
   <table class="table table-borderless text-center bg-light text-black p-5 rounded table-hover">
-    <thead class="bg-secondary rounded-3 p-3 fw-bold mb-5">
+    <thead class="bg-primary rounded-3 p-3 fw-bold mb-5">
       <tr class="">
         <th class="text-start ps-5">Event Title</th>
         <th>Link</th>
@@ -17,18 +17,15 @@
           {{ event.eventTitle }}
         </td>
         <td>
-          <!-- <span [routerLink]="'/events/' + event.id + '/event-detail'">{{"/events/" +
-            event.id +
-            "/event-detail"}}</span> -->
-          <span>...in progress...</span>
+          <button class="btn btn-primary btn-sm " (click)="goToEvent(event)">Go to event</button>
+          <!-- <span>...in progress...</span> -->
         </td>
         <td>
           {{toDate(event.eventDate[0]) | date: 'dd.MM.YYYY'}} -
           {{toDate(event.eventDate[1]) | date: 'dd.MM.YYYY'}}
         </td>
         <td>
-          <button [routerLink]="'events/' + event.id + '/event-detail'"
-            class="  btn-secondary text-black btn-sm fw-bold">
+          <button [routerLink]="'events/' + event.id + '/event-detail'" class="  btn-primary  btn-sm ">
             Manage
           </button>
         </td>
