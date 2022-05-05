@@ -35,13 +35,13 @@ const routes: Routes = [
     path: 'my-account',
     loadChildren: () => MyAccountPageModule,
     canActivate: [AngularFireAuthGuard],
-    data: { redirectUnauthorizedToLogin },
+    data: { authGuardPipe: redirectUnauthorizedToLogin },
   },
   {
     path: 'event/:eventId',
     loadChildren: () => EventPageModule,
     canActivate: [AngularFireAuthGuard],
-    data: { redirectUnauthorizedToLogin },
+    data: { authGuardPipe: redirectUnauthorizedToLogin },
   },
   {
     path: '**',
