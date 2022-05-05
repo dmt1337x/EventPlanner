@@ -1,5 +1,8 @@
 <div class=" bg-light rounded-3 p-3 min-vh-100" *ngIf="event$ | async as event">
-    <h1 class="mb-5 fw-bolder ms-5">Complete your registration</h1>
+    <div class="d-flex justify-content-between me-3">
+        <h1 class="mb-5 fw-bolder ms-5">Complete your registration</h1>
+        <span class="bi-arrow-left fs-3 fw-bolder " [routerLink]="'../detail'"></span>
+    </div>
 
     <form [formGroup]="setupParticipant" class="w-50 mt-5 ms-5" *ngFor="let participant of participant$|async"
         (ngSubmit)="attend(setupParticipant,event)">
