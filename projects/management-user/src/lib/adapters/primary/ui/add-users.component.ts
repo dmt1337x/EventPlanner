@@ -47,15 +47,13 @@ export class AddUsersComponent {
       name: this.addUser.get('name')?.value,
       lastName: this.addUser.get('lastName')?.value,
       email: this.addUser.get('email')?.value,
-    }),
-      this._addParticipantDto.addParticipant(
-        this.addUser.get('eventId')?.value
-          ? {
-              eventId: this.addUser.get('eventId')?.value,
-              email: this.addUser.get('email')?.value,
-            }
-          : {}
-      ),
-      addUser.reset();
+    });
+    if (this.addUser.get('eventId')?.value !== null) {
+      this._addParticipantDto.addParticipant({
+        eventId: this.addUser.get('eventId')?.value,
+        email: this.addUser.get('email')?.value,
+      });
+    }
+    addUser.reset();
   }
 }
