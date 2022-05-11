@@ -1,7 +1,8 @@
 <div class=" bg-light rounded-3 p-3 min-vh-100 d-flex justify-content-center align-items-center">
-    <form [formGroup]="userLoginForm" (ngSubmit)="onUserLogined(userLoginForm)">
+    <form [formGroup]="userLoginForm" (ngSubmit)="onUserLogined(userLoginForm)" class="">
         <input type="text" formControlName="email" placeholder="Email" class="form-control mb-2">
         <input type="password" formControlName="password" placeholder="Password" class="form-control mb-4">
-        <input type="submit" value="Login" class="btn btn-primary fw-bolder w-75">
+        <input type="submit" value="Login" class="btn btn-primary fw-bolder w-100"><br>
+        <a class="nav-link text-center" [routerLink]="'/registration'">Registration</a>
     </form>
 </div>

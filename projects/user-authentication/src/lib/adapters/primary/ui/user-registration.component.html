@@ -2,6 +2,8 @@
     <form [formGroup]="registrationForm" (ngSubmit)="onUserRegistrationed(registrationForm)">
         <input type="text" formControlName="email" placeholder="Email" class="form-control mb-1">
         <input type="password" formControlName="password" placeholder="Password" class="form-control mb-4">
-        <input type="submit" value="Register" class="btn btn-primary fw-bolder w-75">
+        <input type="submit" value="Register" class="btn btn-primary fw-bolder w-100">
+        <a class="nav-link text-center" [routerLink]="'/login'">Login</a>
+
     </form>
 </div>
