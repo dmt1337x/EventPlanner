@@ -5,7 +5,7 @@ export interface ParticipantDTO {
   readonly email: string;
   readonly eventId: string;
   readonly dietId: string;
-  readonly transportid: string;
+  readonly transportId: string;
   readonly attractionId: string;
   readonly confirmed: boolean;
 }

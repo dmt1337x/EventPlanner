@@ -4,13 +4,13 @@ import {
   ChangeDetectionStrategy,
   Inject,
 } from '@angular/core';
-import { combineLatest, Observable } from 'rxjs';
+import { combineLatestWith, Observable } from 'rxjs';
 import { ParticipantDTO } from '../../../application/ports/secondary/participant.dto';
 import {
   GETS_ALL_PARTICIPANT_DTO,
   GetsAllParticipantDtoPort,
 } from '../../../application/ports/secondary/gets-all-participant.dto-port';
-import { switchMap } from 'rxjs/operators';
+import { switchMap, map } from 'rxjs/operators';
 import {
   EVENT_CONTEXT_DTO_STORAGE,
   EventContextDtoStoragePort,
@@ -40,6 +40,30 @@ export class ListParticipantsComponent {
         this._getsAllParticipantDto.getAllParticipants({
           eventId: data.selectedEventId,
         })
+      ),
+      combineLatestWith(this._getsAllUserDto.getAllUser()),
+      map(([participants, users]) =>
+        participants.map((participant) => ({
+          name:
+            users.find((user) => user.email === participant.email)?.name !=
+            undefined
+              ? (users.find((user) => user.email === participant.email)
+                  ?.name as string)
+              : '',
+          lastName:
+            users.find((user) => user.email === participant.email)?.lastName !=
+            undefined
+              ? (users.find((user) => user.email === participant.email)
+                  ?.lastName as string)
+              : '',
+          email: participant.email,
+          eventId: participant.eventId,
+          attractionId: participant.attractionId,
+          confirmed: participant.confirmed,
+          dietId: participant.dietId,
+          transportId: participant.transportId,
+          id: participant.id,
+        }))
       )
     );
 
