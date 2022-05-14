@@ -1,0 +1,6 @@
+<form [formGroup]="addRoomsForm" (ngSubmit)="onRoomsAdded(addRoomsForm)">
+    <div class="d-flex justify-content-between">
+        <input type="text" formControlName="number" placeholder="Number" class=" form-control me-2">
+        <input type="text" formControlName="capacity" placeholder="Capacity" class=" form-control me-5">
+        <input type="submit" value="Add new room" class="btn btn-success fw-bold">
+    </div>

@@ -1,0 +1,54 @@
+<div class="container-fluid mx-auto ">
+    <table class="table table-borderless text-center bg-light text-black p-5 rounded table-hover ">
+        <thead class="bg-primary rounded-3 p-3 fw-bold mb-5">
+            <tr class="">
+                <th class="text-start ps-5">Number</th>
+                <th>Capacity</th>
+                <th>Participants</th>
+                <th>Manage</th>
+                <th class="me-5">Delete</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr *ngFor="let room of rooms$ | async">
+                <td class=" text-start ps-5">
+                    <span class="bi-person-circle me-2"></span>
+                    {{ room.number }}
+                </td>
+
+                <td>
+                    {{room.capacity}}
+                </td>
+                <td>
+                    xxx/{{room.capacity}}
+                </td>
+                <td>
+                    <button (click)="openModal(template,room)" class="  btn-primary btn-sm">
+                        Manage
+                    </button>
+                </td>
+
+                <td>
+                    <span class="bi-trash3" (click)="onRoomRemoveed(room)"></span>
+
+                </td>
+
+                <ng-template #template>
+                    <div class="modal-body text-center">
+                        <span>Edit user details: </span>
+
+                    </div>
+                    <form [formGroup]="roomEditForm" (ngSubmit)="onRoomEdited(roomEditForm)"
+                        *ngIf="roomsContext$ | async as id" class="p-3">
+                        <input type="text" formControlName="number" class="form-control mb-1" [ngModel]="room.number">
+                        <input type="text" formControlName="capacity" class="form-control mb-1"
+                            [ngModel]="room.capacity">
+                        <input type="text" formControlName="id" [ngModel]="id.id" hidden>
+                        <input type="submit" value="Save" class="btn btn-success mt-3 rounded rounded-3"
+                            [disabled]="!roomEditForm.valid">
+                    </form>
+                </ng-template>
+            </tr>
+        </tbody>
+    </table>
