@@ -63,6 +63,8 @@ export class ListParticipantsComponent {
           dietId: participant.dietId,
           transportId: participant.transportId,
           id: participant.id,
+          roomType: participant.roomType,
+          roomId: participant.roomId,
         }))
       )
     );
