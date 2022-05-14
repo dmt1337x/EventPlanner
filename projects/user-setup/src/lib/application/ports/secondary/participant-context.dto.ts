@@ -1,3 +1,3 @@
 export interface ParticipantContextDTO {
-  readonly roomType: string;
+  readonly roomType: number;
 }

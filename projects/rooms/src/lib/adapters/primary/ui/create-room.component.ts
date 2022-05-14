@@ -8,7 +8,7 @@ import {
   ADDS_ROOM_DTO,
   AddsRoomDtoPort,
 } from '../../../application/ports/secondary/adds-room.dto-port';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'lib-create-room',
@@ -18,8 +18,8 @@ import { FormGroup, FormControl } from '@angular/forms';
 })
 export class CreateRoomComponent {
   readonly addRoomsForm: FormGroup = new FormGroup({
-    capacity: new FormControl(),
-    number: new FormControl(),
+    capacity: new FormControl('', Validators.required),
+    number: new FormControl('', Validators.required),
   });
 
   constructor(@Inject(ADDS_ROOM_DTO) private _addsRoomDto: AddsRoomDtoPort) {}

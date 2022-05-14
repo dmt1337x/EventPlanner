@@ -1,5 +1,5 @@
 export interface RoomDTO {
   readonly id: string;
-  readonly capacity: string;
-  readonly number: string;
+  readonly capacity: number;
+  readonly number: number;
 }
