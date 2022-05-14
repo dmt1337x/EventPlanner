@@ -15,7 +15,7 @@ import {
   GETS_ALL_ROOM_DTO,
   GetsAllRoomDtoPort,
 } from '../../../application/ports/secondary/gets-all-room.dto-port';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ParticipantDTO } from '../../../application/ports/secondary/participant.dto';
 import {
   GETS_ONE_PARTICIPANT_DTO,
@@ -46,8 +46,8 @@ import { ParticipantContextDTO } from '../../../application/ports/secondary/part
 })
 export class SetupRoomComponent {
   readonly setupRoom: FormGroup = new FormGroup({
-    capacity: new FormControl(),
-    number: new FormControl(),
+    capacity: new FormControl('', Validators.required),
+    number: new FormControl('', Validators.required),
     id: new FormControl(),
   });
   event$: Observable<EventContextDTO> =
@@ -85,19 +85,21 @@ export class SetupRoomComponent {
     private _router: Router,
     @Inject(PARTICIPANT_CONTEXT_DTO_STORAGE)
     private _participantContextDtoStoragePort: ParticipantContextDtoStoragePort
-  ) {}
+  ) {
+    console.log(this.setupRoom.getRawValue);
+  }
 
   onRoomTypeSeted(roomType: FormGroup): void {
     this._participantContextDtoStoragePort.next({
-      roomType: this.setupRoom.get('capacity')?.value,
+      roomType: roomType.get('capacity')?.value,
     });
   }
 
   onRoomNumberSeted(event: EventContextDTO, roomType: FormGroup): void {
     this._setsParticipantDto.set({
-      roomId: this.setupRoom.get('number')?.value,
-      roomType: this.setupRoom.get('capacity')?.value,
-      id: this.setupRoom.get('id')?.value,
+      roomId: roomType.get('number')?.value,
+      roomType: roomType.get('capacity')?.value,
+      id: roomType.get('id')?.value,
       confirmed: true,
     });
     this._router.navigate(['event/' + event.eventId + '/complete']);

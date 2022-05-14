@@ -115,10 +115,10 @@ export class SetupFormComponent {
 
   attend(setupParticipant: FormGroup, event: EventContextDTO): void {
     this._setsParticipantDto.set({
-      dietId: this.setupParticipant.get('dietId')?.value,
-      transportId: this.setupParticipant.get('transportId')?.value,
-      attractionId: this.setupParticipant.get('attractionId')?.value,
-      id: this.setupParticipant.get('id')?.value,
+      dietId: setupParticipant.get('dietId')?.value,
+      transportId: setupParticipant.get('transportId')?.value,
+      attractionId: setupParticipant.get('attractionId')?.value,
+      id: setupParticipant.get('id')?.value,
     });
     this._router.navigate(['event/' + event.eventId + '/setup-room']);
   }
