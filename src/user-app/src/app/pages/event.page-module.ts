@@ -10,6 +10,7 @@ import { EventContextResolverModule } from 'projects/user-core/src/lib/adapters/
 import { EventContextResolver } from 'projects/user-core/src/lib/adapters/primary/ui/event-context.resolver';
 import { CurrentUserResolver } from 'projects/user-core/src/lib/adapters/primary/ui/current-user.resolver';
 import { HeaderComponentModule } from '../../../../../projects/my-account/src/lib/adapters/primary/ui/header.component-module';
+import { SetupRoomPageModule } from './setup-room.page-module';
 
 @NgModule({
   imports: [
@@ -30,6 +31,10 @@ import { HeaderComponentModule } from '../../../../../projects/my-account/src/li
             loadChildren: () => SetupPageModule,
           },
           {
+            path: 'setup-room',
+            loadChildren: () => SetupRoomPageModule,
+          },
+          {
             path: 'complete',
             loadChildren: () => CompletePageModule,
           },
@@ -40,7 +45,7 @@ import { HeaderComponentModule } from '../../../../../projects/my-account/src/li
         ],
       },
     ]),
-    HeaderComponentModule
+    HeaderComponentModule,
   ],
   declarations: [EventPage],
   providers: [],

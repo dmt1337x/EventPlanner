@@ -12,6 +12,8 @@ import { AttractionDTO } from '../../../application/ports/secondary/attraction.d
 import { GetsOneParticipantDtoPort } from '../../../application/ports/secondary/gets-one-participant.dto-port';
 import { ParticipantDTO } from '../../../application/ports/secondary/participant.dto';
 import { SetsParticipantDtoPort } from '../../../application/ports/secondary/sets-participant.dto-port';
+import { GetsAllRoomDtoPort } from '../../../application/ports/secondary/gets-all-room.dto-port';
+import { RoomDTO } from '../../../application/ports/secondary/room.dto';
 
 @Injectable()
 export class FirebaseSetupService
@@ -20,7 +22,8 @@ export class FirebaseSetupService
     GetsAllTransportDtoPort,
     GetsAllAttractionDtoPort,
     GetsOneParticipantDtoPort,
-    SetsParticipantDtoPort
+    SetsParticipantDtoPort,
+    GetsAllRoomDtoPort
 {
   constructor(private _client: AngularFirestore) {}
 
@@ -61,5 +64,12 @@ export class FirebaseSetupService
 
   set(participant: Partial<ParticipantDTO>): void {
     this._client.doc('participants/' + participant.id).update(participant);
+  }
+
+  getAllRoom(criterion: Partial<RoomDTO>): Observable<RoomDTO[]> {
+    return this._client
+      .collection<RoomDTO>('rooms')
+      .valueChanges({ idField: 'id' })
+      .pipe(map((data: RoomDTO[]) => filterByCriterion(data, criterion)));
   }
 }

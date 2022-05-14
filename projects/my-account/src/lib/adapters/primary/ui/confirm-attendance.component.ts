@@ -24,6 +24,7 @@ import {
 } from '../../../application/ports/secondary/sets-participant.dto-port';
 import { Router } from '@angular/router';
 import { EventContextDTO } from 'projects/user-core/src/lib/application/ports/secondary/event-context.dto';
+import { isNull } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'lib-confirm-attendance',
@@ -65,6 +66,11 @@ export class ConfirmAttendanceComponent {
   cantAttend(participant: ParticipantDTO, event: EventContextDTO): void {
     this._setsParticipantDto.setParticipant({
       id: participant.id,
+      dietId: null,
+      roomId: null,
+      transportId: null,
+      attractionId: null,
+      roomType: null,
       confirmed: false,
     });
     this._router.navigate(['event/' + event.eventId + '/complete']);

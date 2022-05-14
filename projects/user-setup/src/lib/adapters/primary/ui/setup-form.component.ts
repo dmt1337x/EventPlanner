@@ -119,8 +119,7 @@ export class SetupFormComponent {
       transportId: this.setupParticipant.get('transportId')?.value,
       attractionId: this.setupParticipant.get('attractionId')?.value,
       id: this.setupParticipant.get('id')?.value,
-      confirmed: true,
     });
-    this._router.navigate(['event/' + event.eventId + '/complete']);
+    this._router.navigate(['event/' + event.eventId + '/setup-room']);
   }
 }

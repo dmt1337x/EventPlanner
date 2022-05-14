@@ -6,6 +6,7 @@ import { GETS_ALL_TRANSPORT_DTO } from '../../../application/ports/secondary/get
 import { GETS_ALL_ATTRACTION_DTO } from '../../../application/ports/secondary/gets-all-attraction.dto-port';
 import { GETS_ONE_PARTICIPANT_DTO } from '../../../application/ports/secondary/gets-one-participant.dto-port';
 import { SETS_PARTICIPANT_DTO } from '../../../application/ports/secondary/sets-participant.dto-port';
+import { GETS_ALL_ROOM_DTO } from '../../../application/ports/secondary/gets-all-room.dto-port';
 
 @NgModule({
   imports: [AngularFirestoreModule],
@@ -17,6 +18,7 @@ import { SETS_PARTICIPANT_DTO } from '../../../application/ports/secondary/sets-
     { provide: GETS_ALL_ATTRACTION_DTO, useExisting: FirebaseSetupService },
     { provide: GETS_ONE_PARTICIPANT_DTO, useExisting: FirebaseSetupService },
     { provide: SETS_PARTICIPANT_DTO, useExisting: FirebaseSetupService },
+    { provide: GETS_ALL_ROOM_DTO, useExisting: FirebaseSetupService },
   ],
   exports: [],
 })

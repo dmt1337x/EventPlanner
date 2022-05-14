@@ -1,0 +1,50 @@
+<div class=" bg-light rounded-3 p-3 min-vh-100" *ngIf="event$ | async as event">
+    <div class="d-flex justify-content-between me-3">
+        <h1 class="mb-5 fw-bolder ms-5">Complete your registration</h1>
+        <span class="bi-arrow-left fs-3 fw-bolder " [routerLink]="'../setup'"></span>
+    </div>
+
+
+
+
+
+    <form [formGroup]="setupRoom" class="w-50 mt-5 ms-5" *ngFor="let participant of participant$|async">
+
+        <div class="mb-5">
+            <span class=" form-label fw-bold fs-5 me-4">Room type: </span>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" formControlName="capacity" name="inlineRadioOptions"
+                    id="inlineRadio1" value="1" (change)="onRoomTypeSeted(setupRoom)">
+                <label class="form-check-label" for="inlineRadio1">1</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" formControlName="capacity" name="inlineRadioOptions"
+                    id="inlineRadio2" value="2" (change)="onRoomTypeSeted(setupRoom)">
+                <label class="form-check-label" for="inlineRadio2">2</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" formControlName="capacity" name="inlineRadioOptions"
+                    id="inlineRadio3" value="3" (change)="onRoomTypeSeted(setupRoom)">
+                <label class="form-check-label" for="inlineRadio3">3</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" formControlName="capacity" name="inlineRadioOptions"
+                    id="inlineRadio4" value="4" (change)="onRoomTypeSeted(setupRoom)">
+                <label class="form-check-label" for="inlineRadio4">4</label>
+            </div>
+        </div>
+
+        <label class="form-label fw-bold fs-5">Room number:</label>
+        <select formControlName="number" class="form-select mb-2">
+            <option *ngFor="let room of rooms$ | async" [value]="room.id">{{
+                room.number }}</option>
+        </select>
+
+
+        <input type="text" formControlName="id" placeholder="Id" [ngModel]="participant.id" hidden>
+
+        <input type="submit" value="I confirm my attendance" class="btn btn-primary fw-bolder w-100 mb-2"
+            [disabled]="!setupRoom.valid" (click)="onRoomNumberSeted(event, setupRoom)">
+    </form>
+
+</div>
