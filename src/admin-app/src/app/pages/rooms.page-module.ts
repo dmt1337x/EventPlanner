@@ -1,0 +1,17 @@
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+import { RoomsPage } from './rooms.page';
+
+@NgModule({ imports: [CommonModule, 
+      RouterModule.forChild([
+        {
+          path: '',
+          component: RoomsPage,
+        }
+      ])],
+  	declarations: [RoomsPage],
+  	providers: [],
+  	exports: [] })
+export class RoomsPageModule {
+}
