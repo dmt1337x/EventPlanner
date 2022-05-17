@@ -10,6 +10,7 @@ import { NotFoundPageModule } from './pages/not-found.page-module';
 import { LoginPageModule } from './pages/login.page-module';
 import { MyAccountPageModule } from './pages/my-account.page-module';
 import { EventPageModule } from './pages/event.page-module';
+import { EventsPermissionGuard } from '@my-account';
 
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['/login']);
 
@@ -42,6 +43,7 @@ const routes: Routes = [
     loadChildren: () => EventPageModule,
     canActivate: [AngularFireAuthGuard],
     data: { authGuardPipe: redirectUnauthorizedToLogin },
+    // EventsPermissionGuard add to canActivate
   },
   {
     path: '**',
