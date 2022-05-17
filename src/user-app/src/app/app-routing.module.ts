@@ -4,6 +4,7 @@ import { HomePageModule } from './pages/home.page-module';
 import { RegistrationPageModule } from './pages/registration.page-module';
 import {
   AngularFireAuthGuard,
+  redirectLoggedInTo,
   redirectUnauthorizedTo,
 } from '@angular/fire/compat/auth-guard';
 import { NotFoundPageModule } from './pages/not-found.page-module';
@@ -13,11 +14,14 @@ import { EventPageModule } from './pages/event.page-module';
 import { EventsPermissionGuard } from '@my-account';
 
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['/login']);
+const redirectIsLogin = () => redirectLoggedInTo(['/my-account']);
 
 const routes: Routes = [
   {
     path: '',
     loadChildren: () => HomePageModule,
+    canActivate: [AngularFireAuthGuard],
+    data: { authGuardPipe: redirectIsLogin },
   },
 
   {
@@ -27,10 +31,14 @@ const routes: Routes = [
   {
     path: 'login',
     loadChildren: () => LoginPageModule,
+    canActivate: [AngularFireAuthGuard],
+    data: { authGuardPipe: redirectIsLogin },
   },
   {
     path: 'registration',
     loadChildren: () => RegistrationPageModule,
+    canActivate: [AngularFireAuthGuard],
+    data: { authGuardPipe: redirectIsLogin },
   },
   {
     path: 'my-account',

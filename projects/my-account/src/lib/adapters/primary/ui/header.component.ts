@@ -4,8 +4,9 @@ import {
   ChangeDetectionStrategy,
 } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { getAuth } from 'firebase/auth';
+import { getAuth, reload } from 'firebase/auth';
 import { Router } from '@angular/router';
+import { pipe, take } from 'rxjs';
 
 @Component({
   selector: 'lib-header',
@@ -17,7 +18,10 @@ export class HeaderComponent {
   constructor(private _auth: AngularFireAuth, private _router: Router) {}
 
   logout() {
-    return this._auth.signOut(), this._router.navigate(['/']);
+    return (
+      this._auth.signOut(),
+      this._router.navigate(['/login']).then(() => window.location.reload())
+    );
   }
 
   currentAccount() {
