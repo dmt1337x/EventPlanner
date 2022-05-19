@@ -64,13 +64,17 @@ export class SetupRoomComponent {
       })
     )
   );
-  rooms$: Observable<RoomDTO[]> = this._participantContextDtoStoragePort
-    .asObservable()
-    .pipe(
-      switchMap((data) =>
-        this._getsAllRoomDto.getAllRoom({ capacity: data.roomType })
-      )
-    );
+  rooms$: Observable<RoomDTO[]> = combineLatest([
+    this._participantContextDtoStoragePort.asObservable(),
+    this._eventContextDtoStoragePort.asObservable(),
+  ]).pipe(
+    switchMap(([participant, event]) =>
+      this._getsAllRoomDto.getAllRoom({
+        capacity: participant.roomType,
+        eventId: event.eventId,
+      })
+    )
+  );
 
   constructor(
     @Inject(EVENT_CONTEXT_DTO_STORAGE)
