@@ -13,10 +13,10 @@
         </thead>
 
         <tbody class="text-white">
-            <tr *ngFor="let participant of participants$ | async" class=" border-bottom">
+            <tr *ngFor="let participant of participants$ | async" class=" border-bottom" class=""
+                [ngClass]=" {'text-success' : participant.confirmed==true,'text-danger' : participant.confirmed==false}">
                 <td class=" text-start">
-                    <div class=""
-                        [ngClass]=" {'text-success' : participant.confirmed==true,'text-danger' : participant.confirmed==false}">
+                    <div>
                         <div>
                             <span class="bi-person-circle"></span>
                             <span class="fs-5 ms-3">{{participant.name
@@ -30,32 +30,31 @@
                 </td>
 
                 <td>
-                    <span>{{participant.dietId}}</span>
+                    <span *ngIf="participant.dietId!=null else noChoice">{{participant.dietId}}</span>
                 </td>
 
                 <td>
-                    <span>{{participant.transportId}}</span>
+                    <span *ngIf="participant.transportId!=null else noChoice">{{participant.transportId}}</span>
                 </td>
                 <td>
-                    <span>{{participant.attractionId}}</span>
+                    <span *ngIf="participant.attractionId!=null else noChoice">{{participant.attractionId}}</span>
                 </td>
                 <td>
-                    <span>{{participant.roomType}}</span>
+                    <span *ngIf="participant.roomType!=null else noChoice">{{participant.roomType}}</span>
                 </td>
                 <td>
-                    <span>{{participant.roomId}}</span>
+                    <span *ngIf="participant.roomId!=null else noChoice">{{participant.roomId}}</span>
                 </td>
                 <td>
-                    <div class="d-flex justify-content-center">
+                    <div class="d-flex justify-content-center text-white">
                         <div>
-                            <span class=" bi-pencil-fill me-3"></span>
                             <!-- <span class=" bi-pencil-fill me-3" (click)="openModal(template, participant)"></span> -->
                             <span class=" bi-trash3" (click)="onParticipantRemoveed(participant)"></span>
                         </div>
                     </div>
                 </td>
 
-
+                <ng-template #noChoice><span>---</span></ng-template>
                 <!-- <ng-template #template>
                     <div class="modal-body text-center">
                         <span>Edit user details: </span>
@@ -75,5 +74,3 @@
             </tr>
         </tbody>
     </table>
-
-    <!-- </div><ul><li *ngFor="let item of diet$ | async">{{ item | json }}</li></ul><ul><li *ngFor="let item of transport$ | async">{{ item | json }}</li></ul><ul><li *ngFor="let item of room$ | async">{{ item | json }}</li></ul><ul><li *ngFor="let item of attr$ | async">{{ item | json }}</li></ul> -->
