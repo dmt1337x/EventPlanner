@@ -3,7 +3,10 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { ParticipantsPage } from './participants.page';
 import { ListParticipantsComponentModule } from '../../../../../projects/participants/src/lib/adapters/primary/ui/list-participants.component-module';
-import { FirebaseParticipantsServiceModule } from '@participants';
+import {
+  FirebaseParticipantDetailsServiceModule,
+  FirebaseParticipantsServiceModule,
+} from '@participants';
 import { ConnectUserComponentModule } from '../../../../../projects/management-user/src/lib/adapters/primary/ui/connect-user.component-module';
 import { FirebaseManagementUsersServiceModule } from '@management-user';
 import { InviteUserComponentModule } from '../../../../../projects/participants/src/lib/adapters/primary/ui/invite-user.component-module';
@@ -23,6 +26,7 @@ import { InviteUserComponentModule } from '../../../../../projects/participants/
     FirebaseParticipantsServiceModule,
     FirebaseManagementUsersServiceModule,
     InviteUserComponentModule,
+    FirebaseParticipantDetailsServiceModule,
   ],
   declarations: [ParticipantsPage],
   providers: [],

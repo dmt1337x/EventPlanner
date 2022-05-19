@@ -9,5 +9,5 @@ export interface ParticipantDTO {
   readonly attractionId: string;
   readonly confirmed: boolean;
   readonly roomType: number;
-  readonly roomId: string;
+  readonly roomId: string | number;
 }

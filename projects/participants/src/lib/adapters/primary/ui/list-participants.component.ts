@@ -25,6 +25,26 @@ import {
   GETS_ALL_USER_DTO,
   GetsAllUserDtoPort,
 } from '../../../application/ports/secondary/gets-all-user.dto-port';
+import { AttractionDTO } from '../../../application/ports/secondary/participant-detail-ports/attraction.dto';
+import { DietDTO } from '../../../application/ports/secondary/participant-detail-ports/diet.dto';
+import {
+  GetsAllAttractionDtoPort,
+  GETS_ALL_ATTRACTION_DTO,
+} from '../../../application/ports/secondary/participant-detail-ports/gets-all-attraction.dto-port';
+import {
+  GetsAllDietDtoPort,
+  GETS_ALL_DIET_DTO,
+} from '../../../application/ports/secondary/participant-detail-ports/gets-all-diet.dto-port';
+import {
+  GetsAllRoomDtoPort,
+  GETS_ALL_ROOM_DTO,
+} from '../../../application/ports/secondary/participant-detail-ports/gets-all-room.dto-port';
+import {
+  GetsAllTransportDtoPort,
+  GETS_ALL_TRANSPORT_DTO,
+} from '../../../application/ports/secondary/participant-detail-ports/gets-all-transport.dto-port';
+import { RoomDTO } from '../../../application/ports/secondary/participant-detail-ports/room.dto';
+import { TransportDTO } from '../../../application/ports/secondary/participant-detail-ports/transport.dto';
 
 @Component({
   selector: 'lib-list-participants',
@@ -41,30 +61,34 @@ export class ListParticipantsComponent {
           eventId: data.selectedEventId,
         })
       ),
-      combineLatestWith(this._getsAllUserDto.getAllUser()),
-      map(([participants, users]) =>
+      combineLatestWith(
+        this._getsAllUserDto.getAllUser(),
+        this._getsAllDietDto.getAllDiet(),
+        this._getsAllTransportDto.getAllTransport(),
+        this._getsAllRoomDto.getAllRoom(),
+        this._getsAllAttractionDto.getAllAttraction()
+      ),
+      map(([participants, users, diets, transports, rooms, attractions]) =>
         participants.map((participant) => ({
-          name:
-            users.find((user) => user.email === participant.email)?.name !=
-            undefined
-              ? (users.find((user) => user.email === participant.email)
-                  ?.name as string)
-              : '',
-          lastName:
-            users.find((user) => user.email === participant.email)?.lastName !=
-            undefined
-              ? (users.find((user) => user.email === participant.email)
-                  ?.lastName as string)
-              : '',
+          name: users.find((user) => user.email === participant.email)
+            ?.name as string,
+          lastName: users.find((user) => user.email === participant.email)
+            ?.lastName as string,
           email: participant.email,
           eventId: participant.eventId,
-          attractionId: participant.attractionId,
+          attractionId: attractions.find(
+            (attraction) => attraction.id === participant.attractionId
+          )?.attractionName as string,
           confirmed: participant.confirmed,
-          dietId: participant.dietId,
-          transportId: participant.transportId,
+          dietId: diets.find((diet) => diet.id === participant.dietId)
+            ?.dietName as string,
+          transportId: transports.find(
+            (transport) => transport.id === participant.transportId
+          )?.transportName as string,
           id: participant.id,
           roomType: participant.roomType,
-          roomId: participant.roomId,
+          roomId: rooms.find((room) => room.id === participant.roomId)
+            ?.number as number,
         }))
       )
     );
@@ -76,7 +100,13 @@ export class ListParticipantsComponent {
     private _eventContextDtoStoragePort: EventContextDtoStoragePort,
     @Inject(REMOVES_PARTICIPANT_DTO)
     private _removesParticipantDto: RemovesParticipantDtoPort,
-    @Inject(GETS_ALL_USER_DTO) private _getsAllUserDto: GetsAllUserDtoPort
+    @Inject(GETS_ALL_USER_DTO) private _getsAllUserDto: GetsAllUserDtoPort,
+    @Inject(GETS_ALL_DIET_DTO) private _getsAllDietDto: GetsAllDietDtoPort,
+    @Inject(GETS_ALL_TRANSPORT_DTO)
+    private _getsAllTransportDto: GetsAllTransportDtoPort,
+    @Inject(GETS_ALL_ROOM_DTO) private _getsAllRoomDto: GetsAllRoomDtoPort,
+    @Inject(GETS_ALL_ATTRACTION_DTO)
+    private _getsAllAttractionDto: GetsAllAttractionDtoPort
   ) {}
 
   onParticipantRemoveed(participant: ParticipantDTO): void {
