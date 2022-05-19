@@ -38,7 +38,6 @@ export class CreateRoomComponent {
       Validators.required,
     ]),
     number: new FormControl('', [Validators.min(1), Validators.required]),
-    eventId: new FormControl(),
   });
 
   constructor(
@@ -51,7 +50,7 @@ export class CreateRoomComponent {
     this._addsRoomDto.add({
       number: addRoomsForm.get('number')?.value,
       capacity: addRoomsForm.get('capacity')?.value,
-      eventId: addRoomsForm.get('eventId')?.value,
+      eventId: eventId.selectedEventId,
     });
     addRoomsForm.reset();
   }
