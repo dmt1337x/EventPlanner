@@ -2,6 +2,7 @@ import { Inject, Injectable } from '@angular/core';
 import {
   ActivatedRouteSnapshot,
   CanActivate,
+  Router,
   RouterStateSnapshot,
 } from '@angular/router';
 import {
@@ -20,7 +21,8 @@ export class EventsPermissionGuard implements CanActivate {
     @Inject(GETS_ONE_PARTICIPANT_DTO)
     private _getsOneParticipant: GetsOneParticipantDtoPort,
     @Inject(CURRENT_USER_DTO_STORAGE)
-    private _currentUser: CurrentUserDtoStoragePort
+    private _currentUser: CurrentUserDtoStoragePort,
+    private _router: Router
   ) {}
 
   canActivate(

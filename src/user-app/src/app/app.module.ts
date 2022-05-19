@@ -3,6 +3,7 @@ import { FirebaseAppModule } from '@angular/fire/app';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { BrowserModule } from '@angular/platform-browser';
+import { FirebaseMyAccountServiceModule } from '@my-account';
 import { InMemoryCurrentUserStorageModule } from '@user-core';
 import { InMemoryEventContextStorageModule } from 'projects/user-core/src/lib/adapters/secondary/infrastructure/in-memory-event-context.storage-module';
 import { environment } from '../environments/environment';
@@ -19,6 +20,7 @@ import { AppComponent } from './app.component';
     AngularFireAuthModule,
     InMemoryCurrentUserStorageModule,
     InMemoryEventContextStorageModule,
+    FirebaseMyAccountServiceModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -49,7 +49,7 @@ const routes: Routes = [
   {
     path: 'event/:eventId',
     loadChildren: () => EventPageModule,
-    canActivate: [AngularFireAuthGuard],
+    canActivate: [AngularFireAuthGuard, EventsPermissionGuard],
     data: { authGuardPipe: redirectUnauthorizedToLogin },
     // EventsPermissionGuard add to canActivate
   },
