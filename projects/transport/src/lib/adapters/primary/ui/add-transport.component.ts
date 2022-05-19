@@ -37,7 +37,7 @@ export class AddTransportComponent {
 
   onTransportAdded(transport: FormGroup, eventId: EventContextDTO): void {
     this._addsTransportDto.add({
-      transportName: this.addTransport.get('transportName')?.value,
+      transportName: transport.get('transportName')?.value,
       eventId: eventId.selectedEventId,
     });
     transport.reset();

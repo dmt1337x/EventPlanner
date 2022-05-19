@@ -31,8 +31,8 @@ export class UserRegistrationComponent {
 
   onUserRegistrationed(registrationForm: FormGroup): void {
     this._addsRegistrationDto.addUserToAuth({
-      email: this.registrationForm.get('email')?.value,
-      password: this.registrationForm.get('password')?.value,
+      email: registrationForm.get('email')?.value,
+      password: registrationForm.get('password')?.value,
     });
     this.registrationForm.reset();
     this._router.navigate(['/']);

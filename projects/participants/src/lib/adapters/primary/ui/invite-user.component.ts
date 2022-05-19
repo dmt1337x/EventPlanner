@@ -47,8 +47,8 @@ export class InviteUserComponent {
 
   onUserInviteed(inviteUser: FormGroup): void {
     this._addsParticipantDto.addParticipant({
-      email: this.inviteUser.get('email')?.value,
-      eventId: this.inviteUser.get('eventId')?.value,
+      email: inviteUser.get('email')?.value,
+      eventId: inviteUser.get('eventId')?.value,
     });
   }
 }

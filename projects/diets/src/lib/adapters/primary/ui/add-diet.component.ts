@@ -40,7 +40,7 @@ export class AddDietComponent {
 
   onDietAdded(diet: FormGroup, eventId: EventContextDTO): void {
     this._addsDietDto.add({
-      dietName: this.addDiet.get('dietName')?.value,
+      dietName: diet.get('dietName')?.value,
       eventId: eventId.selectedEventId,
     });
     diet.reset();

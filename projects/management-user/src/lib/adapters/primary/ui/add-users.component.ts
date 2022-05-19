@@ -44,14 +44,14 @@ export class AddUsersComponent {
 
   onUserAdded(addUser: FormGroup): void {
     this._addsUserDto.addUser({
-      name: this.addUser.get('name')?.value,
-      lastName: this.addUser.get('lastName')?.value,
-      email: this.addUser.get('email')?.value,
+      name: addUser.get('name')?.value,
+      lastName: addUser.get('lastName')?.value,
+      email: addUser.get('email')?.value,
     });
-    if (this.addUser.get('eventId')?.value !== null) {
+    if (addUser.get('eventId')?.value !== null) {
       this._addParticipantDto.addParticipant({
-        eventId: this.addUser.get('eventId')?.value,
-        email: this.addUser.get('email')?.value,
+        eventId: addUser.get('eventId')?.value,
+        email: addUser.get('email')?.value,
       });
     }
     addUser.reset();

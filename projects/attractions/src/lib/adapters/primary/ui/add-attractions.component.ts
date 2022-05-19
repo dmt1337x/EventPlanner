@@ -40,7 +40,7 @@ export class AddAttractionsComponent {
 
   onAttractionAdded(attraction: FormGroup, eventId: EventContextDTO): void {
     this._addsAttractionDto.add({
-      attractionName: this.addAttraction.get('attractionName')?.value,
+      attractionName: attraction.get('attractionName')?.value,
       eventId: eventId.selectedEventId,
     });
     attraction.reset();

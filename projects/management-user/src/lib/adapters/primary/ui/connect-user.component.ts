@@ -47,8 +47,8 @@ export class ConnectUserComponent {
 
   onConnectUsered(connectUser: FormGroup): void {
     this._addsParticipantDto.addParticipant({
-      email: this.connectUser.get('email')?.value,
-      eventId: this.connectUser.get('eventId')?.value,
+      email: connectUser.get('email')?.value,
+      eventId: connectUser.get('eventId')?.value,
     });
     connectUser.reset();
   }
