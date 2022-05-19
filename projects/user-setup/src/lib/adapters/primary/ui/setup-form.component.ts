@@ -88,10 +88,7 @@ export class SetupFormComponent {
   // participant$: Observable<ParticipantDTO[]> = this._eventContextDtoStoragePort
   //   .asObservable()
   //   .pipe(
-  //     combineLatestWith(
-  //       this._currentUserDtoStoragePort.asObservable(),
-  //       this._getsOneParticipantDto.getOneParticipant()
-  //     ),
+  //     combineLatestWith(this._currentUserDtoStoragePort.asObservable()),
   //     switchMap(([event, user]) =>
   //       this._getsOneParticipantDto.getOneParticipant({
   //         eventId: event.eventId,
@@ -99,6 +96,7 @@ export class SetupFormComponent {
   //       })
   //     )
   //   );
+  //   combineLatest vs. combineLatestWith Tests
 
   event$: Observable<EventContextDTO> =
     this._eventContextDtoStoragePort.asObservable();

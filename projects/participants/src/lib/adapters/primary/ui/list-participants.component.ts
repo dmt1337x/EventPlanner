@@ -20,13 +20,10 @@ import {
   REMOVES_PARTICIPANT_DTO,
   RemovesParticipantDtoPort,
 } from '../../../application/ports/secondary/removes-participant.dto-port';
-import { UserDTO } from '../../../application/ports/secondary/user.dto';
 import {
   GETS_ALL_USER_DTO,
   GetsAllUserDtoPort,
 } from '../../../application/ports/secondary/gets-all-user.dto-port';
-import { AttractionDTO } from '../../../application/ports/secondary/participant-detail-ports/attraction.dto';
-import { DietDTO } from '../../../application/ports/secondary/participant-detail-ports/diet.dto';
 import {
   GetsAllAttractionDtoPort,
   GETS_ALL_ATTRACTION_DTO,
@@ -43,8 +40,6 @@ import {
   GetsAllTransportDtoPort,
   GETS_ALL_TRANSPORT_DTO,
 } from '../../../application/ports/secondary/participant-detail-ports/gets-all-transport.dto-port';
-import { RoomDTO } from '../../../application/ports/secondary/participant-detail-ports/room.dto';
-import { TransportDTO } from '../../../application/ports/secondary/participant-detail-ports/transport.dto';
 
 @Component({
   selector: 'lib-list-participants',
@@ -70,23 +65,23 @@ export class ListParticipantsComponent {
       ),
       map(([participants, users, diets, transports, rooms, attractions]) =>
         participants.map((participant) => ({
+          id: participant.id,
+          roomType: participant.roomType,
+          email: participant.email,
+          eventId: participant.eventId,
+          confirmed: participant.confirmed,
           name: users.find((user) => user.email === participant.email)
             ?.name as string,
           lastName: users.find((user) => user.email === participant.email)
             ?.lastName as string,
-          email: participant.email,
-          eventId: participant.eventId,
           attractionId: attractions.find(
             (attraction) => attraction.id === participant.attractionId
           )?.attractionName as string,
-          confirmed: participant.confirmed,
           dietId: diets.find((diet) => diet.id === participant.dietId)
             ?.dietName as string,
           transportId: transports.find(
             (transport) => transport.id === participant.transportId
           )?.transportName as string,
-          id: participant.id,
-          roomType: participant.roomType,
           roomId: rooms.find((room) => room.id === participant.roomId)
             ?.number as number,
         }))

@@ -36,7 +36,6 @@ import {
   PARTICIPANT_CONTEXT_DTO_STORAGE,
   ParticipantContextDtoStoragePort,
 } from '../../../application/ports/secondary/participant-context-dto.storage-port';
-import { ParticipantContextDTO } from '../../../application/ports/secondary/participant-context.dto';
 
 @Component({
   selector: 'lib-setup-room',
