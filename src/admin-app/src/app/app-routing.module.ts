@@ -23,10 +23,6 @@ const routes: Routes = [
     path: 'users',
     loadChildren: () => UsersPageModule,
   },
-  {
-    path: 'rooms',
-    loadChildren: () => RoomsPageModule,
-  },
 ];
 
 @NgModule({

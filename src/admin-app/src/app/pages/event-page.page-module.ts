@@ -11,6 +11,7 @@ import { AttractionsPageModule } from './attractions.page-module';
 import { EditEventPageModule } from './edit-event.page-module';
 import { NavigationComponentModule } from '@core';
 import { ParticipantsPageModule } from './participants.page-module';
+import { RoomsPageModule } from './rooms.page-module';
 
 @NgModule({
   imports: [
@@ -48,6 +49,10 @@ import { ParticipantsPageModule } from './participants.page-module';
           {
             path: 'participants',
             loadChildren: () => ParticipantsPageModule,
+          },
+          {
+            path: 'rooms',
+            loadChildren: () => RoomsPageModule,
           },
         ],
       },

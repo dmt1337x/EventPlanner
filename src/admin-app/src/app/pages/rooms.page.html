@@ -1,27 +1,12 @@
-<div class="container py-3 d-flex justify-content-between">
-    <div>
-        <span class="fs-4 me-5" [routerLink]="'/'">Events</span>
-        <span class="fs-4 me-5" [routerLink]="'/users'">Users</span>
-        <span class="fs-4 border-bottom border-success border-5" [routerLink]="'/rooms'">Rooms</span>
+<div class="">
+    <div class=" py-3 d-flex justify-content-between">
+        <span class="fs-4">Attractions - enter some attractions</span>
+        <span class="bi-arrow-left fs-3" [routerLink]="'../event-detail'"></span>
     </div>
-    <!-- <button class="btn btn-success mt-3 fw-bold" routerLink="/create-event">Create new event</button> -->
-</div>
-
-
-
-<div class="container  border-white py-3 border-top d-flex justify-content-between ">
-    <div></div>
-    <div>
+    <div class="  border-white py-5 border-top border-bottom">
         <lib-create-room></lib-create-room>
     </div>
-</div>
-<!-- <div class="container  border-white py-3 border-top d-flex justify-content-between">
-    <div class="w-50">
-        SEARCH </div>
-    <div>
-        CONNECT
+    <div class=" py-5">
+        <lib-room-list></lib-room-list>
     </div>
-</div> -->
-<div class="container  border-white py-5 border-top">
-    <lib-room-list></lib-room-list>
 </div>
