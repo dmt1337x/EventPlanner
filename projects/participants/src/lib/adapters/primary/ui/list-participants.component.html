@@ -13,7 +13,7 @@
         </thead>
 
         <tbody class="text-white">
-            <tr *ngFor="let participant of participants$ | async" class=" border-bottom" class=""
+            <tr *ngFor="let participant of participants$ | async" class="border-bottom border-white border-opacity-25"
                 [ngClass]=" {'text-success' : participant.confirmed==true,'text-danger' : participant.confirmed==false}">
                 <td class=" text-start">
                     <div>
