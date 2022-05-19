@@ -36,7 +36,13 @@ export class EventsPermissionGuard implements CanActivate {
           email: currentUser.email,
         })
       ),
-      map((data) => data.length > 0)
+      map((data) => {
+        if (data.length > 0) {
+          return true;
+        }
+        this._router.navigate(['/not-permission']);
+        return false;
+      })
     );
   }
 }
