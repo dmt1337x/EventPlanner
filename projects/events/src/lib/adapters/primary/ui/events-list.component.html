@@ -11,7 +11,7 @@
     </thead>
 
     <tbody>
-      <tr *ngFor="let event of events$ | async">
+      <tr *ngFor="let event of events$ | async" class="border-bottom border-dark border-opacity-25">
         <td class="text-start ps-5 ">
           <span class="bi-star-fill me-2"></span>
           {{ event.eventTitle }}

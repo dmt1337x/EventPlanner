@@ -11,7 +11,7 @@
         </thead>
 
         <tbody>
-            <tr *ngFor="let user of users$ | async">
+            <tr *ngFor="let user of users$ | async" class="border-bottom border-dark border-opacity-25">
                 <td class=" text-start ps-5">
                     <span class="bi-person-circle me-2"></span>
                     {{ user.name + " " + user.lastName }}
@@ -21,7 +21,7 @@
                     {{user.email}}
                 </td>
                 <td>
-                    <button (click)="openModal(template,user)" class="  btn-primary btn-sm">
+                    <button (click)="openModal(template,user)" class=" btn btn-primary btn-sm">
                         Manage
                     </button>
                 </td>
