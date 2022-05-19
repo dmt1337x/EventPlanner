@@ -4,7 +4,7 @@ import {
   ChangeDetectionStrategy,
   Inject,
 } from '@angular/core';
-import { combineLatest, Observable } from 'rxjs';
+import { combineLatestWith, combineLatest, Observable } from 'rxjs';
 import { DietDTO } from '../../../application/ports/secondary/diet.dto';
 import {
   GETS_ALL_DIET_DTO,
@@ -84,6 +84,21 @@ export class SetupFormComponent {
       })
     )
   );
+
+  // participant$: Observable<ParticipantDTO[]> = this._eventContextDtoStoragePort
+  //   .asObservable()
+  //   .pipe(
+  //     combineLatestWith(
+  //       this._currentUserDtoStoragePort.asObservable(),
+  //       this._getsOneParticipantDto.getOneParticipant()
+  //     ),
+  //     switchMap(([event, user]) =>
+  //       this._getsOneParticipantDto.getOneParticipant({
+  //         eventId: event.eventId,
+  //         email: user.email,
+  //       })
+  //     )
+  //   );
 
   event$: Observable<EventContextDTO> =
     this._eventContextDtoStoragePort.asObservable();
