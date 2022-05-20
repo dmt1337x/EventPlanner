@@ -6,10 +6,12 @@ import { ListParticipantsComponentModule } from '../../../../../projects/partici
 import {
   FirebaseParticipantDetailsServiceModule,
   FirebaseParticipantsServiceModule,
+  InMemorySearchParticipantStorageModule,
 } from '@participants';
 import { ConnectUserComponentModule } from '../../../../../projects/management-user/src/lib/adapters/primary/ui/connect-user.component-module';
 import { FirebaseManagementUsersServiceModule } from '@management-user';
 import { InviteUserComponentModule } from '../../../../../projects/participants/src/lib/adapters/primary/ui/invite-user.component-module';
+import { SearchParticipantComponentModule } from '../../../../../projects/participants/src/lib/adapters/primary/ui/search-participant.component-module';
 
 @NgModule({
   imports: [
@@ -27,6 +29,8 @@ import { InviteUserComponentModule } from '../../../../../projects/participants/
     FirebaseManagementUsersServiceModule,
     InviteUserComponentModule,
     FirebaseParticipantDetailsServiceModule,
+    SearchParticipantComponentModule,
+    InMemorySearchParticipantStorageModule,
   ],
   declarations: [ParticipantsPage],
   providers: [],

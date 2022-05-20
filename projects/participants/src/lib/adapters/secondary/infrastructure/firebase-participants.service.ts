@@ -35,7 +35,17 @@ export class FirebaseParticipantsService
     return this._client
       .collection<UserDTO>('users')
       .valueChanges({ idField: 'id' })
-      .pipe(map((data: UserDTO[]) => filterByCriterion(data, criterion)));
+      .pipe(
+        map((data: UserDTO[]) =>
+          criterion && criterion.name
+            ? data.filter((user) =>
+                user.name
+                  .toLowerCase()
+                  .includes(criterion?.name?.toLowerCase() as string)
+              )
+            : data
+        )
+      );
   }
 
   addParticipant(participant: Partial<ParticipantDTO>): void {

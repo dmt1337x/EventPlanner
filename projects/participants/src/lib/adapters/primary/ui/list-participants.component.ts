@@ -40,6 +40,10 @@ import {
   GetsAllTransportDtoPort,
   GETS_ALL_TRANSPORT_DTO,
 } from '../../../application/ports/secondary/participant-detail-ports/gets-all-transport.dto-port';
+import {
+  SEARCH_PARTICIPANT_DTO_STORAGE,
+  SearchParticipantDtoStoragePort,
+} from '../../../application/ports/secondary/search-participant-dto.storage-port';
 
 @Component({
   selector: 'lib-list-participants',
@@ -57,7 +61,17 @@ export class ListParticipantsComponent {
         })
       ),
       combineLatestWith(
-        this._getsAllUserDto.getAllUser(),
+        this._searchParticipant
+          .asObservable()
+          .pipe(
+            switchMap((data2) =>
+              this._getsAllUserDto.getAllUser(
+                data2 && data2.name && data2.name.length
+                  ? { name: data2.name }
+                  : undefined
+              )
+            )
+          ),
         this._getsAllDietDto.getAllDiet(),
         this._getsAllTransportDto.getAllTransport(),
         this._getsAllRoomDto.getAllRoom(),
@@ -85,6 +99,9 @@ export class ListParticipantsComponent {
           roomId: rooms.find((room) => room.id === participant.roomId)
             ?.number as number,
         }))
+      ),
+      map((participants) =>
+        participants.filter((participant) => participant.name !== undefined)
       )
     );
 
@@ -101,7 +118,9 @@ export class ListParticipantsComponent {
     private _getsAllTransportDto: GetsAllTransportDtoPort,
     @Inject(GETS_ALL_ROOM_DTO) private _getsAllRoomDto: GetsAllRoomDtoPort,
     @Inject(GETS_ALL_ATTRACTION_DTO)
-    private _getsAllAttractionDto: GetsAllAttractionDtoPort
+    private _getsAllAttractionDto: GetsAllAttractionDtoPort,
+    @Inject(SEARCH_PARTICIPANT_DTO_STORAGE)
+    private _searchParticipant: SearchParticipantDtoStoragePort
   ) {}
 
   onParticipantRemoveed(participant: ParticipantDTO): void {
