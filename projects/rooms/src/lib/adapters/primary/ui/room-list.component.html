@@ -70,7 +70,19 @@
                         <div>
                             <span class="bi-pencil-fill me-3" (click)="openModal(template,room)"></span>
                             <span class="bi-trash3 me-3" (click)="onRoomRemoveed(room)"></span>
-                            <span class="bi-eye" (click)="showParticipants(room)"></span>
+                            <!-- <span class="bi-eye" (click)="showParticipants(room)"></span> -->
+
+                            <div class="btn-group" dropdown>
+                                <span (click)="showParticipants(room)" id="button-basic" dropdownToggle type="button" class="bi-eye" aria-controls="dropdown-basic">
+                                 <span class="caret"></span>
+                                </span>
+                                <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu"
+                                    role="menu" aria-labelledby="button-basic">
+                                    <span><lib-seat-in-rooms></lib-seat-in-rooms></span>
+                                </ul>
+                              </div>
+
+                              
                         </div>
                     </div>
                 </td>
