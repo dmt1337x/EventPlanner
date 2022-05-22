@@ -50,6 +50,7 @@ export class CreateRoomComponent {
     this._addsRoomDto.add({
       number: addRoomsForm.get('number')?.value,
       capacity: addRoomsForm.get('capacity')?.value,
+      available: addRoomsForm.get('capacity')?.value,
       eventId: eventId.selectedEventId,
     });
     addRoomsForm.reset();

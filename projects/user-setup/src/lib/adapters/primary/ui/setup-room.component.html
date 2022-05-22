@@ -36,16 +36,16 @@
         </div>
 
         <label class="form-label fw-bold fs-5">Room number:</label>
-        <select formControlName="number" class="form-select mb-2">
-            <option *ngFor="let room of rooms$ | async" [value]="room.id">{{
+        <select formControlName="number" class="form-select mb-2" (change)="selectRoomId($event)" >
+            <option *ngFor="let room of rooms$ | async" [value]="room.id" >{{
                 room.number }}</option>
         </select>
 
 
         <input type="text" formControlName="id" placeholder="Id" [ngModel]="participant.id" hidden>
 
-        <input type="submit" value="I confirm my attendance" class="btn btn-primary fw-bolder w-100 mb-2"
-            [disabled]="!setupRoom.valid" (click)="onRoomNumberSeted(event, setupRoom)">
+        <input type="submit" *ngIf=" roomContext$ | async as roomContext" value="I confirm my attendance" class="btn btn-primary fw-bolder w-100 mb-2"
+            [disabled]="!setupRoom.valid" (click)="onRoomNumberSeted(event,roomContext , participant, setupRoom)">
     </form>
-
+TEST: {{roomContext$ | async | json}}
 </div>

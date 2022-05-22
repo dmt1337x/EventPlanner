@@ -1,5 +1,7 @@
 {
-  "projects": {},
+  "projects": {
+    "default": "eventplanner-adb48"
+  },
   "targets": {
     "eventplanner-adb48": {
       "hosting": {

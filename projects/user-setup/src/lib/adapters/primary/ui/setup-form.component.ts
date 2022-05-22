@@ -31,9 +31,9 @@ import {
   CurrentUserDtoStoragePort,
 } from 'projects/user-core/src/lib/application/ports/secondary/current-user-dto.storage-port';
 import {
-  GetsOneParticipantDtoPort,
-  GETS_ONE_PARTICIPANT_DTO,
-} from '../../../application/ports/secondary/gets-one-participant.dto-port';
+  GetsAllParticipantDtoPort,
+  GETS_ALL_PARTICIPANT_DTO,
+} from '../../../application/ports/secondary/gets-all-participant.dto-port';
 import { ParticipantDTO } from '../../../application/ports/secondary/participant.dto';
 import {
   SETS_PARTICIPANT_DTO,
@@ -78,7 +78,7 @@ export class SetupFormComponent {
     this._eventContextDtoStoragePort.asObservable(),
   ]).pipe(
     switchMap(([user, event]) =>
-      this._getsOneParticipantDto.getOneParticipant({
+      this._getsAllParticipantDto.getAllParticipant({
         eventId: event.eventId,
         email: user.email,
       })
@@ -119,15 +119,15 @@ export class SetupFormComponent {
     private _eventContextDtoStoragePort: EventContextDtoStoragePort,
     @Inject(CURRENT_USER_DTO_STORAGE)
     private _currentUserDtoStoragePort: CurrentUserDtoStoragePort,
-    @Inject(GETS_ONE_PARTICIPANT_DTO)
-    private _getsOneParticipantDto: GetsOneParticipantDtoPort,
+    @Inject(GETS_ALL_PARTICIPANT_DTO)
+    private _getsAllParticipantDto: GetsAllParticipantDtoPort,
     @Inject(SETS_PARTICIPANT_DTO)
     private _setsParticipantDto: SetsParticipantDtoPort,
     private _router: Router
   ) {}
 
   attend(setupParticipant: FormGroup, event: EventContextDTO): void {
-    this._setsParticipantDto.set({
+    this._setsParticipantDto.setParticipant({
       dietId: setupParticipant.get('dietId')?.value,
       transportId: setupParticipant.get('transportId')?.value,
       attractionId: setupParticipant.get('attractionId')?.value,
