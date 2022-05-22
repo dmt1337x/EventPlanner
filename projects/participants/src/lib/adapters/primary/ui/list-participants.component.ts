@@ -102,6 +102,9 @@ export class ListParticipantsComponent {
       ),
       map((participants) =>
         participants.filter((participant) => participant.name !== undefined)
+      ),
+      map((sort) =>
+        sort.sort((a, b) => Number(b.confirmed) - Number(a.confirmed))
       )
     );
 
