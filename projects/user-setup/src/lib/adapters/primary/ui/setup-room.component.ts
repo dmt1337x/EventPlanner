@@ -9,7 +9,7 @@ import {
   EVENT_CONTEXT_DTO_STORAGE,
 } from 'projects/user-core/src/lib/application/ports/secondary/event-context-dto.storage-port';
 import { EventContextDTO } from 'projects/user-core/src/lib/application/ports/secondary/event-context.dto';
-import { combineLatest, Observable, switchMap, take, tap } from 'rxjs';
+import { combineLatest, map, Observable, switchMap, take, tap } from 'rxjs';
 import { RoomDTO } from '../../../application/ports/secondary/room.dto';
 import {
   GETS_ALL_ROOM_DTO,
@@ -88,10 +88,12 @@ export class SetupRoomComponent {
     this._eventContextDtoStoragePort.asObservable(),
   ]).pipe(
     switchMap(([participant, event]) =>
-      this._getsAllRoomDto.getAllRoom({
-        capacity: participant.roomType,
-        eventId: event.eventId,
-      })
+      this._getsAllRoomDto
+        .getAllRoom({
+          capacity: participant.roomType,
+          eventId: event.eventId,
+        })
+        .pipe(map((rooms) => rooms.filter((room) => room.available > 0)))
     )
   );
 
