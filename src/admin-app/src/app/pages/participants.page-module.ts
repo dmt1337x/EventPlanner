@@ -12,6 +12,10 @@ import { ConnectUserComponentModule } from '../../../../../projects/management-u
 import { FirebaseManagementUsersServiceModule } from '@management-user';
 import { InviteUserComponentModule } from '../../../../../projects/participants/src/lib/adapters/primary/ui/invite-user.component-module';
 import { SearchParticipantComponentModule } from '../../../../../projects/participants/src/lib/adapters/primary/ui/search-participant.component-module';
+import { SeatInRoomsComponentModule } from '../../../../../projects/rooms/src/lib/adapters/primary/ui/seat-in-rooms.component-module';
+import { FirebaseRoomsServiceModule } from '../../../../../projects/rooms/src/lib/adapters/secondary/infrastructure/firebase-rooms.service-module';
+import { InMemorySeatInRoomStorageModule } from '@rooms';
+import { InMemoryEventContextStorageModule } from '@user-core';
 
 @NgModule({
   imports: [
@@ -31,6 +35,9 @@ import { SearchParticipantComponentModule } from '../../../../../projects/partic
     FirebaseParticipantDetailsServiceModule,
     SearchParticipantComponentModule,
     InMemorySearchParticipantStorageModule,
+    SeatInRoomsComponentModule,
+    FirebaseRoomsServiceModule,
+    InMemorySeatInRoomStorageModule,
   ],
   declarations: [ParticipantsPage],
   providers: [],

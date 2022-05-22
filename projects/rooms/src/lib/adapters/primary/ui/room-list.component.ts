@@ -16,6 +16,10 @@ import {
   RemovesRoomDtoPort,
 } from '../../../application/ports/secondary/removes-room.dto-port';
 import {
+  SEAT_IN_ROOM_DTO_STORAGE,
+  SeatInRoomDtoStoragePort,
+} from '../../../application/ports/secondary/seat-in-room-dto.storage-port';
+import {
   RoomDtoStoragePort,
   ROOM_DTO_STORAGE,
 } from '../../../application/ports/secondary/room-dto.storage-port';
@@ -48,7 +52,7 @@ export class RoomListComponent {
     .asObservable()
     .pipe(
       switchMap((data) =>
-        this._getsAllRoomDto.getAll({ eventId: data.selectedEventId })
+        this._getsAllRoomDto.getAllRoom({ eventId: data.selectedEventId })
       )
     );
 
@@ -59,7 +63,9 @@ export class RoomListComponent {
     private modalService: BsModalService,
     @Inject(SETS_ROOM_DTO) private _setsRoomDto: SetsRoomDtoPort,
     @Inject(EVENT_CONTEXT_DTO_STORAGE)
-    private _eventContextDtoStoragePort: EventContextDtoStoragePort
+    private _eventContextDtoStoragePort: EventContextDtoStoragePort,
+    @Inject(SEAT_IN_ROOM_DTO_STORAGE)
+    private _seatInRoomDtoStorage: SeatInRoomDtoStoragePort
   ) {}
 
   onRoomRemoveed(room: RoomDTO): void {
@@ -82,5 +88,9 @@ export class RoomListComponent {
       id: roomEditForm.get('id')?.value,
     });
     this.modalRef?.hide();
+  }
+
+  showParticipants(room: RoomDTO) {
+    this._seatInRoomDtoStorage.next({ id: room.id });
   }
 }

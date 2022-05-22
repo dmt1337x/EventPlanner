@@ -8,6 +8,10 @@ import { GetsAllRoomDtoPort } from '../../../application/ports/secondary/gets-al
 import { filterByCriterion } from '@lowgular/shared';
 import { SetsRoomDtoPort } from '../../../application/ports/secondary/sets-room.dto-port';
 import { RemovesRoomDtoPort } from '../../../application/ports/secondary/removes-room.dto-port';
+import { GetsAllUserDtoPort } from '../../../application/ports/secondary/gets-all-user.dto-port';
+import { GetsAllParticipantDtoPort } from '../../../application/ports/secondary/gets-all-participant.dto-port';
+import { ParticipantDTO } from '../../../application/ports/secondary/participant.dto';
+import { UserDTO } from '../../../application/ports/secondary/user.dto';
 
 @Injectable()
 export class FirebaseRoomsService
@@ -15,7 +19,9 @@ export class FirebaseRoomsService
     AddsRoomDtoPort,
     GetsAllRoomDtoPort,
     SetsRoomDtoPort,
-    RemovesRoomDtoPort
+    RemovesRoomDtoPort,
+    GetsAllParticipantDtoPort,
+    GetsAllUserDtoPort
 {
   constructor(private _client: AngularFirestore) {}
 
@@ -23,7 +29,7 @@ export class FirebaseRoomsService
     this._client.collection('rooms').add(room);
   }
 
-  getAll(criterion: Partial<RoomDTO>): Observable<RoomDTO[]> {
+  getAllRoom(criterion: Partial<RoomDTO>): Observable<RoomDTO[]> {
     return this._client
       .collection<RoomDTO>('rooms')
       .valueChanges({ idField: 'id' })
@@ -36,5 +42,23 @@ export class FirebaseRoomsService
 
   remove(id: string): void {
     this._client.doc('rooms/' + id).delete();
+  }
+
+  getAllParticipant(
+    criterion: Partial<ParticipantDTO>
+  ): Observable<ParticipantDTO[]> {
+    return this._client
+      .collection<ParticipantDTO>('participants')
+      .valueChanges({ idField: 'id' })
+      .pipe(
+        map((data: ParticipantDTO[]) => filterByCriterion(data, criterion))
+      );
+  }
+
+  getAllUser(criterion: Partial<UserDTO>): Observable<UserDTO[]> {
+    return this._client
+      .collection<UserDTO>('users')
+      .valueChanges({ idField: 'id' })
+      .pipe(map((data: UserDTO[]) => filterByCriterion(data, criterion)));
   }
 }

@@ -6,12 +6,15 @@ import { CreateRoomComponentModule } from '../../../../../projects/rooms/src/lib
 import { FirebaseRoomsServiceModule } from 'projects/rooms/src/lib/adapters/secondary/infrastructure/firebase-rooms.service-module';
 import { RoomListComponentModule } from '../../../../../projects/rooms/src/lib/adapters/primary/ui/room-list.component-module';
 import { InMemoryRoomContextStorageModule } from 'projects/rooms/src/lib/adapters/secondary/infrastructure/in-memory-room-context.storage-module';
+import { InMemorySeatInRoomStorageModule } from '@rooms';
+import { SeatInRoomsComponentModule } from '../../../../../projects/rooms/src/lib/adapters/primary/ui/seat-in-rooms.component-module';
 
 @NgModule({
   imports: [
     CommonModule,
     FirebaseRoomsServiceModule,
     InMemoryRoomContextStorageModule,
+    InMemorySeatInRoomStorageModule,
     RouterModule.forChild([
       {
         path: '',
@@ -20,6 +23,7 @@ import { InMemoryRoomContextStorageModule } from 'projects/rooms/src/lib/adapter
     ]),
     CreateRoomComponentModule,
     RoomListComponentModule,
+    SeatInRoomsComponentModule,
   ],
   declarations: [RoomsPage],
   providers: [],
