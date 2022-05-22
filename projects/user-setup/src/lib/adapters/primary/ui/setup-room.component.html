@@ -45,7 +45,6 @@
         <input type="text" formControlName="id" placeholder="Id" [ngModel]="participant.id" hidden>
 
         <input type="submit" *ngIf=" roomContext$ | async as roomContext" value="I confirm my attendance" class="btn btn-primary fw-bolder w-100 mb-2"
-            [disabled]="!setupRoom.valid" (click)="onRoomNumberSeted(event,roomContext , participant, setupRoom)">
+            [disabled]="!setupRoom.valid" (click)="onRoomNumberSeted(event,roomContext, participant, setupRoom)">
     </form>
-TEST: {{roomContext$ | async | json}}
 </div>

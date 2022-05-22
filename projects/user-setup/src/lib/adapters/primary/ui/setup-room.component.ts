@@ -9,14 +9,7 @@ import {
   EVENT_CONTEXT_DTO_STORAGE,
 } from 'projects/user-core/src/lib/application/ports/secondary/event-context-dto.storage-port';
 import { EventContextDTO } from 'projects/user-core/src/lib/application/ports/secondary/event-context.dto';
-import {
-  combineLatest,
-  Observable,
-  switchMap,
-  take,
-  tap,
-  withLatestFrom,
-} from 'rxjs';
+import { combineLatest, Observable, switchMap, take, tap } from 'rxjs';
 import { RoomDTO } from '../../../application/ports/secondary/room.dto';
 import {
   GETS_ALL_ROOM_DTO,
@@ -75,6 +68,9 @@ export class SetupRoomComponent {
   });
   event$: Observable<EventContextDTO> =
     this._eventContextDtoStoragePort.asObservable();
+
+  roomContext$: Observable<RoomContextDTO> =
+    this._roomContextDtoStoragePort.asObservable();
 
   participant$: Observable<ParticipantDTO[]> = combineLatest([
     this._currentUserDtoStoragePort.asObservable(),
@@ -163,16 +159,12 @@ export class SetupRoomComponent {
                   id: room.id,
                   available: room.available + 1,
                 })
-              ),
-              tap(() => console.log('funkcja 1'))
+              )
             );
           } else {
-            return this._getsOneRoomDto
-              .getOneRoom(selectedRoomID.selectedRoomId)
-              .pipe(tap(() => console.log('funkcja else')));
+            return participant.id;
           }
         }),
-
         take(1),
         switchMap(() =>
           this._getsOneRoomDto.getOneRoom(selectedRoomID.selectedRoomId).pipe(
@@ -181,8 +173,7 @@ export class SetupRoomComponent {
                 id: room.id,
                 available: room.available - 1,
               })
-            ),
-            tap(() => console.log('funkcja 3'))
+            )
           )
         ),
         take(1),
@@ -200,6 +191,4 @@ export class SetupRoomComponent {
         this._router.navigate(['event/' + event.eventId + '/complete'])
       );
   }
-  roomContext$: Observable<RoomContextDTO> =
-    this._roomContextDtoStoragePort.asObservable();
 }
