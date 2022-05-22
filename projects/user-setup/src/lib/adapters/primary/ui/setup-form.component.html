@@ -1,35 +1,35 @@
-<div class=" bg-light rounded-3 p-3 min-vh-100" *ngIf="event$ | async as event">
+<div class="bg-light rounded-3 p-3 min-vh-100" *ngIf="event$ | async as event">
     <div class="d-flex justify-content-between me-3">
         <h1 class="mb-5 fw-bolder ms-5">Complete your registration</h1>
-        <span class="bi-arrow-left fs-3 fw-bolder " [routerLink]="'../detail'"></span>
+        <span class="bi-arrow-left fs-3 fw-bolder" [routerLink]="'../detail'"></span>
     </div>
 
-    <form [formGroup]="setupParticipant" class="w-50 mt-5 ms-5" *ngFor="let participant of participant$|async"
-        (ngSubmit)="attend(setupParticipant,event)">
-
-        <label for="" class=" form-label fw-bold fs-5">Diet</label>
-        <select formControlName="dietId" class=" form-select mb-5">
-
-            <option *ngFor="let diet of diets$ | async" [value]="diet.id">{{ diet.dietName }}</option>
+    <form [formGroup]="setupParticipant" class="w-50 mt-5 ms-5" *ngFor="let participant of participant$ | async"
+        (ngSubmit)="attend(setupParticipant, event)">
+        <label for="" class="form-label fw-bold fs-5">Diet</label>
+        <select formControlName="dietId" class="form-select mb-5">
+            <option *ngFor="let diet of diets$ | async" [value]="diet.id">
+                {{ diet.dietName }}
+            </option>
         </select>
 
-        <label for="" class=" form-label fw-bold fs-5">Transport</label>
+        <label for="" class="form-label fw-bold fs-5">Transport</label>
         <select formControlName="transportId" class="form-select mb-5">
-            <option *ngFor="let transport of transports$ | async" [value]="transport.id">{{
-                transport.transportName }}</option>
+            <option *ngFor="let transport of transports$ | async" [value]="transport.id">
+                {{ transport.transportName }}
+            </option>
         </select>
 
-        <label for="" class=" form-label fw-bold fs-5">Attraction</label>
-        <select formControlName="attractionId" class=" form-select mb-5">
-            <option *ngFor="let atraction of attractions$ | async" [value]="atraction.id">{{
-                atraction.attractionName }}</option>
+        <label for="" class="form-label fw-bold fs-5">Attraction</label>
+        <select formControlName="attractionId" class="form-select mb-5">
+            <option *ngFor="let atraction of attractions$ | async" [value]="atraction.id">
+                {{ atraction.attractionName }}
+            </option>
         </select>
 
-
-        <input type="text" formControlName="id" placeholder="Id" [ngModel]="participant.id" hidden>
+        <input type="text" formControlName="id" placeholder="Id" [ngModel]="participant.id" hidden />
 
         <input type="submit" value="Choice room" class="btn btn-primary fw-bolder w-100 mb-2"
-            [disabled]="!setupParticipant.valid">
-
+            [disabled]="!setupParticipant.valid" />
     </form>
 </div>
