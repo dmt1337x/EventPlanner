@@ -33,7 +33,10 @@ export class FirebaseRoomsService
     return this._client
       .collection<RoomDTO>('rooms')
       .valueChanges({ idField: 'id' })
-      .pipe(map((data: RoomDTO[]) => filterByCriterion(data, criterion)));
+      .pipe(
+        map((data: RoomDTO[]) => filterByCriterion(data, criterion)),
+        map((room) => room.sort((a, b) => Number(a.number) - Number(b.number)))
+      );
   }
 
   set(room: Partial<RoomDTO>): void {

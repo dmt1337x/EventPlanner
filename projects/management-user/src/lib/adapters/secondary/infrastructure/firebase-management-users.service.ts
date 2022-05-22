@@ -42,7 +42,8 @@ export class FirebaseManagementUsersService
                   .includes(criterion?.name?.toLowerCase() as string)
               )
             : data
-        )
+        ),
+        map((user) => user.sort((a, b) => a.name.localeCompare(b.name)))
       );
   }
 

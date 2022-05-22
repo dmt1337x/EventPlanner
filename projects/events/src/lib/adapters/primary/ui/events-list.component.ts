@@ -19,7 +19,7 @@ import {
   SearchEventDtoStoragePort,
   SEARCH_EVENT_DTO_STORAGE,
 } from '../../../application/ports/secondary/search-event-dto.storage-port';
-import { switchMap } from 'rxjs/operators';
+import { switchMap, map } from 'rxjs/operators';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { Router } from '@angular/router';
 

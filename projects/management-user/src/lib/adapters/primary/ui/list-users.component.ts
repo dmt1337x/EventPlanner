@@ -26,7 +26,7 @@ import {
   SETS_USER_DTO,
   SetsUserDtoPort,
 } from '../../../application/ports/secondary/sets-user.dto-port';
-import { switchMap } from 'rxjs/operators';
+import { switchMap, map } from 'rxjs/operators';
 import {
   SEARCH_USER_DTO_STORAGE,
   SearchUserDtoStoragePort,

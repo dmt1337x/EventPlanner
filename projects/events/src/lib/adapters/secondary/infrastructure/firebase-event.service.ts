@@ -37,6 +37,9 @@ export class FirebaseEventService
                   .includes(criterion?.eventTitle?.toLowerCase() as string)
               )
             : data
+        ),
+        map((event) =>
+          event.sort((a, b) => a.eventTitle.localeCompare(b.eventTitle))
         )
       );
   }
