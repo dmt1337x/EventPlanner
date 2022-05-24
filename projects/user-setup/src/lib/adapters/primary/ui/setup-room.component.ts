@@ -126,16 +126,6 @@ export class SetupRoomComponent {
     });
   }
 
-  // onRoomNumberSeted(event: EventContextDTO, setupRoom: FormGroup): void {
-  //   this._setsParticipantDto.setParticipant({
-  //     roomId: setupRoom.get('number')?.value,
-  //     roomType: setupRoom.get('capacity')?.value,
-  //     id: setupRoom.get('id')?.value,
-  //     confirmed: true,
-  //   });
-  //   this._router.navigate(['event/' + event.eventId + '/complete']);
-  // }
-
   selectRoomId(event: Event) {
     if ((event.target as HTMLInputElement).value != null) {
       return this._roomContextDtoStoragePort.next({
@@ -164,7 +154,7 @@ export class SetupRoomComponent {
               )
             );
           } else {
-            return participant.id;
+            return participant.eventId;
           }
         }),
         take(1),
@@ -179,7 +169,7 @@ export class SetupRoomComponent {
           )
         ),
         take(1),
-        switchMap(async () =>
+        switchMap(() =>
           this._setsParticipantDto.setParticipant({
             roomId: setupRoom.get('number')?.value,
             roomType: setupRoom.get('capacity')?.value,

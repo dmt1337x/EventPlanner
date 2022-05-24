@@ -15,11 +15,6 @@ import {
   GETS_ALL_USER_DTO,
   GetsAllUserDtoPort,
 } from '../../../application/ports/secondary/gets-all-user.dto-port';
-import { RoomDTO } from '../../../application/ports/secondary/room.dto';
-import {
-  GETS_ALL_ROOM_DTO,
-  GetsAllRoomDtoPort,
-} from '../../../application/ports/secondary/gets-all-room.dto-port';
 import { switchMap, map } from 'rxjs/operators';
 import {
   SEAT_IN_ROOM_DTO_STORAGE,
@@ -29,7 +24,6 @@ import {
   EVENT_CONTEXT_DTO_STORAGE,
   EventContextDtoStoragePort,
 } from 'projects/core/src/lib/application/ports/secondary/event-context-dto.storage-port';
-import { SeatInRoomDTO } from '../../../application/ports/secondary/seat-in-room.dto';
 
 @Component({
   selector: 'lib-seat-in-rooms',
@@ -38,9 +32,6 @@ import { SeatInRoomDTO } from '../../../application/ports/secondary/seat-in-room
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SeatInRoomsComponent {
-  test$: Observable<SeatInRoomDTO> =
-    this._seatInRoomDtoStoragePort.asObservable();
-
   participants$: Observable<ParticipantDTO[]> = this._eventContextDtoStoragePort
     .asObservable()
     .pipe(
@@ -72,7 +63,6 @@ export class SeatInRoomsComponent {
     @Inject(GETS_ALL_PARTICIPANT_DTO)
     private _getsAllParticipantDto: GetsAllParticipantDtoPort,
     @Inject(GETS_ALL_USER_DTO) private _getsAllUserDto: GetsAllUserDtoPort,
-    @Inject(GETS_ALL_ROOM_DTO) private _getsAllRoomDto: GetsAllRoomDtoPort,
     @Inject(SEAT_IN_ROOM_DTO_STORAGE)
     private _seatInRoomDtoStoragePort: SeatInRoomDtoStoragePort,
     @Inject(EVENT_CONTEXT_DTO_STORAGE)

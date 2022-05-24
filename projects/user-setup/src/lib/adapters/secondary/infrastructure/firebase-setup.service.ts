@@ -26,7 +26,10 @@ export class FirebaseSetupService
     GetsAllAttractionDtoPort,
     GetsAllParticipantDtoPort,
     SetsParticipantDtoPort,
-    GetsAllRoomDtoPort, GetsOneParticipantDtoPort, SetsRoomDtoPort, GetsOneRoomDtoPort
+    GetsAllRoomDtoPort,
+    GetsOneParticipantDtoPort,
+    SetsRoomDtoPort,
+    GetsOneRoomDtoPort
 {
   constructor(private _client: AngularFirestore) {}
 
@@ -65,8 +68,10 @@ export class FirebaseSetupService
       );
   }
 
-  setParticipant(participant: Partial<ParticipantDTO>): void {
-    this._client.doc('participants/' + participant.id).update(participant);
+  setParticipant(participant: Partial<ParticipantDTO>): Observable<void> {
+    return from(
+      this._client.doc('participants/' + participant.id).update(participant)
+    );
   }
 
   getAllRoom(criterion: Partial<RoomDTO>): Observable<RoomDTO[]> {
@@ -77,14 +82,34 @@ export class FirebaseSetupService
   }
 
   getOneParticipant(id: string): Observable<ParticipantDTO> {
-    return this._client.doc<ParticipantDTO>('participants/'+id).valueChanges({idField: 'id'}).pipe(switchMap((item) => (item ? of(item) : throwError(new Error('Item does not exist in firebase')))));
+    return this._client
+      .doc<ParticipantDTO>('participants/' + id)
+      .valueChanges({ idField: 'id' })
+      .pipe(
+        switchMap((item) =>
+          item
+            ? of(item)
+            : throwError(new Error('Item does not exist in firebase'))
+        )
+      );
   }
 
   setRoom(room: Partial<RoomDTO>): Observable<void> {
-    return from(this._client.doc('rooms/'+room.id).update(room)).pipe(map(() => void 0));
+    return from(this._client.doc('rooms/' + room.id).update(room)).pipe(
+      map(() => void 0)
+    );
   }
 
   getOneRoom(id: string): Observable<RoomDTO> {
-    return this._client.doc<RoomDTO>('rooms/'+id).valueChanges({idField: 'id'}).pipe(switchMap((item) => (item ? of(item) : throwError(new Error('Item does not exist in firebase')))));
+    return this._client
+      .doc<RoomDTO>('rooms/' + id)
+      .valueChanges({ idField: 'id' })
+      .pipe(
+        switchMap((item) =>
+          item
+            ? of(item)
+            : throwError(new Error('Item does not exist in firebase'))
+        )
+      );
   }
 }
