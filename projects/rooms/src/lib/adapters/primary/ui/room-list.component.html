@@ -1,37 +1,3 @@
-<!-- <div class="w-50" *ngFor="let room of rooms$ | async">
-    <span>
-        <div class="d-flex justify-content-between">
-            <div>{{room.number}}</div>
-            <div class="d-flex">
-                <div class="me-3">
-                    <span class="bi-pencil-fill" (click)="openModal(template,room)"></span>
-                </div>
-                <div>
-                    <span class="bi-trash3" (click)="onRoomRemoveed(room)"></span>
-                </div>
-            </div>
-        </div>
-    </span>
-
-
-
-    <ng-template #template>
-        <div class="modal-body text-center">
-            <span>Edit room details: </span>
-
-        </div>
-        <form [formGroup]="roomEditForm" (ngSubmit)="onRoomEdited(roomEditForm)" *ngIf="roomsContext$ | async as id"
-            class="p-3">
-            <input type="text" formControlName="number" class="form-control mb-1" [ngModel]="room.number">
-            <input type="text" formControlName="capacity" class="form-control mb-1" [ngModel]="room.capacity">
-            <input type="text" formControlName="id" [ngModel]="id.id" hidden>
-            <input type="submit" value="Save" class="btn btn-success mt-3 rounded rounded-3"
-                [disabled]="!roomEditForm.valid">
-        </form>
-    </ng-template>
-</div>
- -->
-
 <div class="container-fluid mx-auto">
     <table class="table table-borderless text-center">
         <thead class="bg-white fw-bold">
@@ -65,18 +31,24 @@
                         <div>
                             <span class="bi-pencil-fill me-3" (click)="openModal(template, room)"></span>
                             <span class="bi-trash3 me-3" (click)="onRoomRemoveed(room)"></span>
-                            <div class="btn-group" dropdown>
-                                <span (click)="showParticipants(room)" id="button-basic" dropdownToggle type="button"
-                                    class="bi-eye" aria-controls="dropdown-basic">
-                                    <span class="caret"></span>
-                                </span>
-                                <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu"
-                                    aria-labelledby="button-basic">
-                                    <span>
-                                        <lib-seat-in-rooms></lib-seat-in-rooms>
+
+                            <span *ngIf="room.capacity==room.available else eye"><span
+                                    class="bi-eye-slash"></span></span>
+
+                            <ng-template #eye>
+                                <div class="btn-group" dropdown>
+                                    <span (click)="showParticipants(room)" id="button-basic" dropdownToggle
+                                        type="button" class="bi-eye" aria-controls="dropdown-basic">
+                                        <span class="caret"></span>
                                     </span>
-                                </ul>
-                            </div>
+                                    <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu bg-success" role="menu"
+                                        aria-labelledby="button-basic">
+                                        <span>
+                                            <lib-seat-in-rooms></lib-seat-in-rooms>
+                                        </span>
+                                    </ul>
+                                </div>
+                            </ng-template>
                         </div>
                     </div>
                 </td>
@@ -95,6 +67,7 @@
                             [disabled]="!roomEditForm.valid" />
                     </form>
                 </ng-template>
+
             </tr>
         </tbody>
     </table>

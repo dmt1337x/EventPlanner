@@ -38,10 +38,6 @@ import { SeatInRoomDTO } from '../../../application/ports/secondary/seat-in-room
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SeatInRoomsComponent {
-  // participant$: Observable<ParticipantDTO[]> =
-  //   this._getsAllParticipantDto.getAllParticipant();
-  // user$: Observable<UserDTO[]> = this._getsAllUserDto.getAllUser();
-  // room$: Observable<RoomDTO[]> = this._getsAllRoomDto.getAllRoom();
   test$: Observable<SeatInRoomDTO> =
     this._seatInRoomDtoStoragePort.asObservable();
 

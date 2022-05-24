@@ -1,9 +1,7 @@
-<div>
-  <span class="m-2">
-    <ol>
-      <li *ngFor="let participant of participants$ | async" class="mb-2">
-        {{ participant.name }} {{ participant.lastName }}
-      </li>
-    </ol>
-  </span>
+<div class="">
+  <ol>
+    <li *ngFor="let participant of participants$ | async" class="mb-2">
+      <span>{{ participant.name }} {{ participant.lastName }}</span>
+    </li>
+  </ol>
 </div>
