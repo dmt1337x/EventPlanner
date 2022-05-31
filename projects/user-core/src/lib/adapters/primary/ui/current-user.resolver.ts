@@ -31,3 +31,4 @@ export class CurrentUserResolver implements Resolve<boolean> {
     return of(true);
   }
 }
+//TEST
